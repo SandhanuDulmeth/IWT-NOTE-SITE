@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CSS Lecture 3 — CSS Layouts, Display Property, Box Model, Flexbox, Responsive Web Design, and Media Queries.">
+    <title>Lecture 3 — Layouts &amp; Responsive Design — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">CSS Lectures</div>
+                    <a href="css-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Introduction to CSS</a>
+                    <a href="css-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Preprocessors &amp;
+                        Modern CSS</a>
+                    <a href="css-lecture3.html" class="nav-link active"><span class="nav-icon">3</span> Layouts &amp;
+                        Responsive</a>
+                    <a href="css-lecture4.html" class="nav-link"><span class="nav-icon">4</span> HTML &amp; CSS
+                        Reference</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#css-display" class="nav-link"><span class="nav-icon">1</span> Display &amp; Box Model</a>
+                    <a href="#css-flexbox" class="nav-link"><span class="nav-icon">2</span> Flexbox</a>
+                    <a href="#css-flex-props" class="nav-link"><span class="nav-icon">3</span> Flex Properties</a>
+                    <a href="#css-flex-layout" class="nav-link"><span class="nav-icon">4</span> Page Layout</a>
+                    <a href="#css-responsive" class="nav-link"><span class="nav-icon">5</span> Responsive Design</a>
+                    <a href="#css-media" class="nav-link"><span class="nav-icon">6</span> Media Queries</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">CSS — Lecture 3</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge css">🔵 CSS · Lecture 3</span>
+                    <h1>Layouts &amp; Responsive Web Design</h1>
+                    <p>CSS display property, the box model, Flexbox layout, responsive design principles, and media
+                        queries for building modern, adaptive web pages.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: Display Property & Box Model           -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-display">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Display Property &amp; Box Model</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-display"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 3</strong> · SCS 1311 · Topics: Layout importance, display values, block vs
+                        inline, box model
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>📐 Why CSS Layout Matters</h4>
+                        <ul>
+                            <li>Styling individual elements is <strong>not enough</strong></li>
+                            <li>Real websites contain headers, navs, content areas, sidebars, footers</li>
+                            <li>Layout controls <strong>where elements appear</strong> on the screen</li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">📜 Layout Evolution</h4>
+                        <ul>
+                            <li><strong>Early web</strong>: tables and float-based layouts (complex, fragile)</li>
+                            <li><strong>Modern CSS</strong>: Flexbox (1D) and CSS Grid (2D)</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🖥️ CSS <code>display</code> Property</h4>
+                        <p>Controls how an element is rendered.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Behaviour</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>block</code></td>
+                                    <td style="padding:0.5rem;">Full width, starts on new line</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>inline</code></td>
+                                    <td style="padding:0.5rem;">Only required width, same line</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>inline-block</code></td>
+                                    <td style="padding:0.5rem;">Same line but accepts width/height</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>none</code></td>
+                                    <td style="padding:0.5rem;">Element is hidden</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🧱 Block vs Inline Elements</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Block</th>
+                                    <th style="text-align:left; padding:0.5rem;">Inline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Starts on new line</td>
+                                    <td style="padding:0.5rem;">Stays on the same line</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Full available width</td>
+                                    <td style="padding:0.5rem;">Only required width</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>div</code>, <code>p</code>, <code>h1</code></td>
+                                    <td style="padding:0.5rem;"><code>span</code>, <code>a</code>,
+                                        <code>strong</code>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top:0.5rem;"><strong>Inline-block</strong> — appears on the same line like
+                            inline but allows width &amp; height like block. Useful for nav menus and small card
+                            layouts.</p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📦 The CSS Box Model</h4>
+                        <p>Every HTML element is a rectangular box with four layers:</p>
+                        <ol>
+                            <li><strong>Content</strong> — actual text or image (controlled by <code>width</code> /
+                                <code>height</code>)
+                            </li>
+                            <li><strong>Padding</strong> — space <em>inside</em> the border</li>
+                            <li><strong>Border</strong> — surrounds the padding</li>
+                            <li><strong>Margin</strong> — space <em>outside</em> the element</li>
+                        </ol>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">Understanding the
+                            box model helps avoid unexpected spacing and sizing issues.</p>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Change a <code>&lt;span&gt;</code> to <code>display: block</code> and observe the
+                                difference</li>
+                            <li>Create three <code>inline-block</code> boxes side by side</li>
+                            <li>Add padding, border, and margin to an element and inspect the box model in DevTools</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: Flexbox Basics                         -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-flexbox">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Flexbox Basics</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-flexbox"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💪 What is Flexbox?</h4>
+                        <p>A modern CSS layout system used to:</p>
+                        <ul>
+                            <li>Align elements easily</li>
+                            <li>Distribute space efficiently</li>
+                            <li>Adapt to different screen sizes</li>
+                        </ul>
+                        <p>Flexbox works in <strong>one direction at a time</strong>:</p>
+                        <ul>
+                            <li>Horizontal → <code>row</code></li>
+                            <li>Vertical → <code>column</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔲 Flex Container &amp; Flex Items</h4>
+                        <ul>
+                            <li>Parent becomes the <strong>flex container</strong></li>
+                            <li>Children become <strong>flex items</strong></li>
+                            <li>Only <strong>direct children</strong> are affected</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.wrapper</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>➡️ Flex Direction</h4>
+                        <p>Defines the direction of items inside the container.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Direction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>row</code> (default)</td>
+                                    <td style="padding:0.5rem;">Left → Right</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>column</code></td>
+                                    <td style="padding:0.5rem;">Top → Bottom</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.container</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+  <span class="css-prop">flex-direction</span><span class="punc">:</span> <span class="css-val">column</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a flex container with three child boxes</li>
+                            <li>Switch between <code>flex-direction: row</code> and <code>column</code></li>
+                            <li>Observe how only <strong>direct children</strong> become flex items</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Flex Properties                        -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-flex-props">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Flex Properties</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-flex-props"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>↔️ <code>justify-content</code> (Main Axis)</h4>
+                        <p>Controls alignment along the <strong>main axis</strong> — used to center items, add space
+                            between them, or distribute them evenly.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>flex-start</code> (default)</td>
+                                    <td style="padding:0.5rem;">Pack items at the start</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>flex-end</code></td>
+                                    <td style="padding:0.5rem;">Pack items at the end</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>center</code></td>
+                                    <td style="padding:0.5rem;">Center items</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>space-between</code></td>
+                                    <td style="padding:0.5rem;">Equal space between, none at edges</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>space-around</code></td>
+                                    <td style="padding:0.5rem;">Equal space around each item</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>space-evenly</code></td>
+                                    <td style="padding:0.5rem;">Equal space everywhere</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.container</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+  <span class="css-prop">justify-content</span><span class="punc">:</span> <span class="css-val">space-between</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>↕️ <code>align-items</code> (Cross Axis)</h4>
+                        <p>Controls alignment along the <strong>cross axis</strong> — used for vertical centering and
+                            aligning items of different heights.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>stretch</code> (default)</td>
+                                    <td style="padding:0.5rem;">Items stretch to fill container</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>flex-start</code></td>
+                                    <td style="padding:0.5rem;">Align to top</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>flex-end</code></td>
+                                    <td style="padding:0.5rem;">Align to bottom</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>center</code></td>
+                                    <td style="padding:0.5rem;">Center vertically</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>baseline</code></td>
+                                    <td style="padding:0.5rem;">Align by text baseline</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.container</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+  <span class="css-prop">align-items</span><span class="punc">:</span> <span class="css-val">center</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📏 <code>gap</code> Property</h4>
+                        <p>Defines space between flex items — <strong>cleaner than margins</strong> and easier to
+                            maintain.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>gap: 0;</code></td>
+                                    <td style="padding:0.5rem;">No gap</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>gap: 10px;</code></td>
+                                    <td style="padding:0.5rem;">Fixed pixel gap</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>gap: 1rem;</code></td>
+                                    <td style="padding:0.5rem;">Relative to root font size</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>gap: 5%;</code></td>
+                                    <td style="padding:0.5rem;">Percentage of container</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>gap: 10px 20px;</code></td>
+                                    <td style="padding:0.5rem;">Row gap &amp; column gap</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.container</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+  <span class="css-prop">gap</span><span class="punc">:</span> <span class="css-val">15px</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Try every <code>justify-content</code> value and observe the differences</li>
+                            <li>Vertically center items using <code>align-items: center</code></li>
+                            <li>Replace margins between items with the <code>gap</code> property</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Page Layout with Flexbox               -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-flex-layout">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Page Layout with Flexbox</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-flex-layout"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏗️ Typical Page Layout</h4>
+                        <ul>
+                            <li>Header</li>
+                            <li>Main content + Sidebar</li>
+                            <li>Footer</li>
+                        </ul>
+                        <p>Flexbox allows <strong>automatic adjustment</strong> based on screen size.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.page</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">main</span> <span class="punc">{</span>
+  <span class="css-prop">flex</span><span class="punc">:</span> <span class="css-val">3</span><span class="punc">;</span>   <span class="cmt">/* takes 3 parts of space */</span>
+<span class="punc">}</span>
+
+<span class="sel">aside</span> <span class="punc">{</span>
+  <span class="css-prop">flex</span><span class="punc">:</span> <span class="css-val">1</span><span class="punc">;</span>   <span class="cmt">/* takes 1 part of space */</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🪆 Nested Flexboxes</h4>
+                        <ul>
+                            <li>Flex layouts can exist <strong>inside other flex layouts</strong></li>
+                            <li>Example: page uses Flexbox, navigation bar inside it also uses Flexbox</li>
+                            <li>Allows fine-grained control over every section</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Build a page with header, main (3/4 width), sidebar (1/4 width), and footer</li>
+                            <li>Use <code>flex: 3</code> and <code>flex: 1</code> to control proportions</li>
+                            <li>Nest a Flexbox nav inside the header</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: Responsive Web Design                  -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-responsive">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Responsive Web Design</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-responsive"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📱 What is Responsive Design?</h4>
+                        <p>Ensures a site works on <strong>desktops, tablets, and mobile phones</strong>. Same HTML
+                            adapts visually using CSS.</p>
+                        <h4 style="margin-top:1rem;">❓ Why It Matters</h4>
+                        <ul>
+                            <li>Most users browse on <strong>mobile</strong></li>
+                            <li>Devices have different screen sizes</li>
+                            <li>Users expect: <strong>no zooming</strong>, <strong>no horizontal scrolling</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚖️ Non-Responsive vs Responsive</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Non-Responsive</th>
+                                    <th style="text-align:left; padding:0.5rem;">Responsive</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Fixed width layout</td>
+                                    <td style="padding:0.5rem;">Layout adjusts automatically</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Only for desktop</td>
+                                    <td style="padding:0.5rem;">Works on all devices</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Horizontal scrolling</td>
+                                    <td style="padding:0.5rem;">Content stacks vertically</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Poor UX on mobile</td>
+                                    <td style="padding:0.5rem;">Easy to read &amp; navigate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🖼️ Responsive Images</h4>
+                        <p>Images should scale with their container:</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">img</span> <span class="punc">{</span>
+  <span class="css-prop">max-width</span><span class="punc">:</span> <span class="css-val">100%</span><span class="punc">;</span>
+  <span class="css-prop">height</span><span class="punc">:</span> <span class="css-val">auto</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚠️ Common Layout Mistakes</h4>
+                        <ul>
+                            <li>Using <strong>fixed widths</strong> everywhere</li>
+                            <li>Ignoring <strong>mobile users</strong></li>
+                            <li>Mixing <strong>outdated layout techniques</strong></li>
+                            <li>Not <strong>testing</strong> on different screen sizes</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 6: Media Queries                          -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-media">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> Media Queries</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-media"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📐 What Are Media Queries?</h4>
+                        <p>Apply CSS <strong>only under certain conditions</strong>. Used to:</p>
+                        <ul>
+                            <li>Change layouts on smaller screens</li>
+                            <li>Adjust font sizes</li>
+                            <li>Rearrange content</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Desktop layout */</span>
+<span class="sel">.container</span> <span class="punc">{</span>
+  <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">flex</span><span class="punc">;</span>
+  <span class="css-prop">gap</span><span class="punc">:</span> <span class="css-val">10px</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">.box</span> <span class="punc">{</span>
+  <span class="css-prop">width</span><span class="punc">:</span> <span class="css-val">50%</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Mobile layout */</span>
+<span class="sel">@media</span> (<span class="css-prop">max-width</span><span class="punc">:</span> <span class="css-val">768px</span>) <span class="punc">{</span>
+  <span class="sel">.container</span> <span class="punc">{</span>
+    <span class="css-prop">flex-direction</span><span class="punc">:</span> <span class="css-val">column</span><span class="punc">;</span>
+  <span class="punc">}</span>
+
+  <span class="sel">.box</span> <span class="punc">{</span>
+    <span class="css-prop">width</span><span class="punc">:</span> <span class="css-val">100%</span><span class="punc">;</span>
+  <span class="punc">}</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a two-column layout that stacks into one column below <code>768px</code></li>
+                            <li>Change the font size of headings at different breakpoints</li>
+                            <li>Make all images responsive with <code>max-width: 100%</code></li>
+                            <li>Test your layout at 1200px, 768px, and 480px widths</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="css-lecture2.html" class="lecture-nav-btn prev"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--border-color); text-decoration:none; font-weight:600; color:var(--text-primary);">←
+                        Lecture 2</a>
+                    <a href="css-lecture4.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-weight:600;">Lecture
+                        4 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../css.html">All CSS Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

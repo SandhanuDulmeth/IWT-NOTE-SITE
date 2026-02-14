@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IWT Note Site — A comprehensive web development course covering HTML, CSS, JavaScript, and PHP with lectures, code examples, and exercises.">
+  <title>IWT Note Site — Web Development Course</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/code.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="page-wrapper">
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">
+          <div class="logo-icon">&lt;/&gt;</div>
+          <div>
+            <div class="logo-text">IWT Notes</div>
+            <span class="logo-badge">v1.0</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Search -->
+      <div class="sidebar-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="search-input" placeholder="Search topics…" autocomplete="off">
+          <div class="search-results" id="search-results"></div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="index.html" class="nav-link active" data-page="index.html">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Topics</div>
+          <a href="html.html" class="nav-link" data-page="html.html">
+            <span class="nav-dot html"></span>
+            <span>HTML</span>
+            <span class="completion-check">✓</span>
+          </a>
+          <a href="css.html" class="nav-link" data-page="css.html">
+            <span class="nav-dot css"></span>
+            <span>CSS</span>
+            <span class="completion-check">✓</span>
+          </a>
+          <a href="javascript.html" class="nav-link" data-page="javascript.html">
+            <span class="nav-dot js"></span>
+            <span>JavaScript</span>
+            <span class="completion-check">✓</span>
+          </a>
+          <a href="php.html" class="nav-link" data-page="php.html">
+            <span class="nav-dot php"></span>
+            <span>PHP</span>
+            <span class="completion-check">✓</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" id="theme-toggle">
+          <span>🌙</span> Dark Mode
+        </button>
+        <div class="progress-mini">
+          <div class="progress-mini-label">
+            <span>Progress</span>
+            <span id="mini-progress-label">0%</span>
+          </div>
+          <div class="progress-mini-bar">
+            <div class="progress-mini-fill" id="mini-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+      <!-- Top Bar (mobile) -->
+      <div class="top-bar">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <span class="top-bar-title">IWT Notes</span>
+        <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+      </div>
+
+      <div class="content-area">
+        <!-- Hero Section -->
+        <section class="hero">
+          <span class="hero-badge">📚 Web Development Course</span>
+          <h1>Internet &amp; Web Technologies</h1>
+          <p>Master the fundamentals of web development with comprehensive lecture notes, interactive code examples, and hands-on practice exercises.</p>
+        </section>
+
+        <!-- Progress Overview -->
+        <section class="progress-overview">
+          <div class="progress-header">
+            <h3>📊 Your Progress</h3>
+            <span class="progress-percentage" id="progress-percentage">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-stats">
+            <span><strong id="completed-count">0</strong> of <strong id="total-count">28</strong> sections completed</span>
+          </div>
+        </section>
+
+        <!-- Topic Cards -->
+        <h2 style="margin-bottom: var(--space-lg);">📖 Course Topics</h2>
+        <div class="topics-grid">
+          <!-- HTML Card -->
+          <a href="html.html" class="topic-card html">
+            <div class="topic-card-icon">H</div>
+            <h3>HTML</h3>
+            <p>Learn the building blocks of web pages — elements, attributes, forms, semantic markup, and more.</p>
+            <div class="topic-card-footer">
+              <span class="topic-card-sections" id="html-card-progress">0/7 completed</span>
+              <span class="topic-card-arrow">→</span>
+            </div>
+          </a>
+
+          <!-- CSS Card -->
+          <a href="css.html" class="topic-card css">
+            <div class="topic-card-icon">C</div>
+            <h3>CSS</h3>
+            <p>Style your websites with selectors, the box model, Flexbox, Grid, animations, and responsive design.</p>
+            <div class="topic-card-footer">
+              <span class="topic-card-sections" id="css-card-progress">0/7 completed</span>
+              <span class="topic-card-arrow">→</span>
+            </div>
+          </a>
+
+          <!-- JavaScript Card -->
+          <a href="javascript.html" class="topic-card js">
+            <div class="topic-card-icon">JS</div>
+            <h3>JavaScript</h3>
+            <p>Add interactivity with variables, functions, DOM manipulation, events, and asynchronous programming.</p>
+            <div class="topic-card-footer">
+              <span class="topic-card-sections" id="js-card-progress">0/7 completed</span>
+              <span class="topic-card-arrow">→</span>
+            </div>
+          </a>
+
+          <!-- PHP Card -->
+          <a href="php.html" class="topic-card php">
+            <div class="topic-card-icon">P</div>
+            <h3>PHP</h3>
+            <p>Build server-side applications with PHP — variables, functions, form handling, and MySQL integration.</p>
+            <div class="topic-card-footer">
+              <span class="topic-card-sections" id="php-card-progress">0/7 completed</span>
+              <span class="topic-card-arrow">→</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+          <p>IWT Note Site &copy; 2026 · Built for learning web development</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/progress.js"></script>
+</body>
+</html>

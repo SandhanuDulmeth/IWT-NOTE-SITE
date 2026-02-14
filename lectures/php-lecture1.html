@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PHP Lecture 1 — Introduction to PHP, server-side scripting, syntax, variables, operators, control structures, and loops.">
+    <title>Lecture 1 — Introduction to PHP — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">PHP Lectures</div>
+                    <a href="php-lecture1.html" class="nav-link active"><span class="nav-icon">1</span> Introduction to
+                        PHP</a>
+                    <a href="php-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Arrays &amp;
+                        Functions</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#php-intro" class="nav-link"><span class="nav-icon">1</span> Introduction</a>
+                    <a href="#php-setup" class="nav-link"><span class="nav-icon">2</span> Setup &amp; Environment</a>
+                    <a href="#php-syntax" class="nav-link"><span class="nav-icon">3</span> Syntax &amp; Basics</a>
+                    <a href="#php-variables" class="nav-link"><span class="nav-icon">4</span> Variables &amp; Types</a>
+                    <a href="#php-operators" class="nav-link"><span class="nav-icon">5</span> Operators</a>
+                    <a href="#php-control" class="nav-link"><span class="nav-icon">6</span> Control Structures</a>
+                    <a href="#php-loops" class="nav-link"><span class="nav-icon">7</span> Loops</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">PHP — Lecture 1</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge php">🟣 PHP · Lecture 1</span>
+                    <h1>Introduction to PHP</h1>
+                    <p>Server-side scripting fundamentals — what PHP is, how it works, syntax basics, variables, data
+                        types, operators, control structures, and loops.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: Introduction to PHP                    -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-intro">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Introduction to PHP</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-intro"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 1</strong> · SCS 1311 · Topics: PHP overview, server-side scripting, client vs
+                        server
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>⚠️ What Problem Does PHP Solve?</h4>
+                        <p>Early websites were <strong>static</strong> — same content for every user, no interaction, no
+                            data storage.</p>
+                        <p>Modern dynamic websites need to:</p>
+                        <ul>
+                            <li>Handle <strong>user input</strong> (forms, logins)</li>
+                            <li>Work with <strong>databases</strong></li>
+                            <li>Generate <strong>different content</strong> for different users</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🐘 What is PHP?</h4>
+                        <ul>
+                            <li>A <strong>server-side scripting language</strong> for dynamic web apps</li>
+                            <li>Originally: <strong>Personal Homepage</strong> → now: <strong>PHP: Hypertext
+                                    Preprocessor</strong></li>
+                            <li>Embedded inside HTML</li>
+                            <li>Executed on the server before reaching the browser</li>
+                            <li>Over <strong>75% of websites</strong> use PHP</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🖥️ What Does "Server-Side" Mean?</h4>
+                        <ol>
+                            <li>Code runs on the <strong>web server</strong></li>
+                            <li>Browser sends a request</li>
+                            <li>Server processes PHP</li>
+                            <li>Server sends back only the result (<strong>HTML</strong>)</li>
+                        </ol>
+                        <p>Users <strong>cannot see or modify PHP logic</strong>, making it more secure.</p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚖️ Client-Side vs Server-Side</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Aspect</th>
+                                    <th style="text-align:left; padding:0.5rem;">Client-Side</th>
+                                    <th style="text-align:left; padding:0.5rem;">Server-Side</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Runs in</td>
+                                    <td style="padding:0.5rem;">Browser</td>
+                                    <td style="padding:0.5rem;">Web server</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Languages</td>
+                                    <td style="padding:0.5rem;">HTML, CSS, JS</td>
+                                    <td style="padding:0.5rem;">PHP, Java, Python</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Speed</td>
+                                    <td style="padding:0.5rem;">Fast UI updates</td>
+                                    <td style="padding:0.5rem;">Depends on server</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Security</td>
+                                    <td style="padding:0.5rem;">Less secure</td>
+                                    <td style="padding:0.5rem;">More secure</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🌐 Where PHP is Used</h4>
+                        <ul>
+                            <li>Dynamic websites &amp; Content Management Systems</li>
+                            <li>E-commerce systems &amp; Web applications</li>
+                            <li>Examples: <strong>WordPress</strong>, <strong>Facebook</strong>,
+                                <strong>Wikipedia</strong>
+                            </li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">🗄️ PHP and Databases</h4>
+                        <p>PHP can store, retrieve, update, and delete data. Common databases: <strong>MySQL</strong>,
+                            PostgreSQL, SQLite</p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚙️ How PHP Works (Step-by-Step)</h4>
+                        <ol>
+                            <li>User enters URL</li>
+                            <li>Browser sends request to server</li>
+                            <li>Server finds the PHP file</li>
+                            <li>PHP executes on server</li>
+                            <li>PHP generates HTML</li>
+                            <li>HTML sent back to browser</li>
+                        </ol>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">A typical website:
+                            HTML → structure, CSS → styling, JavaScript → interactivity, PHP → logic &amp; data,
+                            Database → storage</p>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: Setup & Environment                    -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-setup">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Setup &amp; Environment</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-setup"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🛠️ Running PHP Files</h4>
+                        <ul>
+                            <li>PHP <strong>cannot run like .exe</strong> — needs a server environment</li>
+                            <li>Requires: <strong>Apache or Nginx</strong> + PHP interpreter + Database (MySQL)</li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">📦 WAMP &amp; XAMPP</h4>
+                        <ul>
+                            <li><strong>WAMP</strong>: Windows + Apache + MySQL + PHP</li>
+                            <li><strong>XAMPP</strong>: Cross-platform + Apache + MySQL + PHP + Perl</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📁 PHP Files &amp; Web Root</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Tool</th>
+                                    <th style="text-align:left; padding:0.5rem;">Web Root Folder</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">WAMP</td>
+                                    <td style="padding:0.5rem;"><code>www</code></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">XAMPP</td>
+                                    <td style="padding:0.5rem;"><code>htdocs</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Only files inside these folders are accessible via browser.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">browser</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code>http://localhost/filename.php
+http://localhost/folder/filename.php</code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Install XAMPP or WAMP on your computer</li>
+                            <li>Create a file <code>hello.php</code> in the web root folder</li>
+                            <li>Access it via <code>http://localhost/hello.php</code></li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Syntax & Basics                        -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-syntax">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Syntax &amp; Basics</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-syntax"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📝 PHP Syntax</h4>
+                        <ul>
+                            <li>PHP code is written between <code>&lt;?php</code> and <code>?&gt;</code></li>
+                            <li>Anything outside these tags is treated as HTML</li>
+                            <li>Statements end with <code>;</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — first program</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="kw">echo</span> <span class="val">"Hello World"</span><span class="punc">;</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔤 Case Sensitivity</h4>
+                        <ul>
+                            <li><strong>Variables</strong> → case-sensitive (<code>$name</code> ≠ <code>$Name</code>)
+                            </li>
+                            <li><strong>Keywords/functions</strong> → not case-sensitive (<code>ECHO</code> =
+                                <code>echo</code>)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — case sensitivity</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$name</span> <span class="punc">=</span> <span class="val">"John"</span><span class="punc">;</span>
+<span class="kw">ECHO</span> <span class="sel">$name</span><span class="punc">;</span>   <span class="cmt">// works — keywords are case-insensitive</span>
+<span class="kw">echo</span> <span class="sel">$Name</span><span class="punc">;</span>   <span class="cmt">// error — variables ARE case-sensitive</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💬 Comments</h4>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — comments</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Single-line comment</span>
+<span class="cmt"># Also single-line</span>
+
+<span class="cmt">/* Multi
+   line
+   comment */</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📤 <code>echo</code> Statement</h4>
+                        <ul>
+                            <li>Outputs text, variables, or HTML to the browser</li>
+                            <li>Does <strong>not</strong> return a value</li>
+                            <li><strong>Double quotes</strong> → variables are replaced</li>
+                            <li><strong>Single quotes</strong> → variables treated as plain text</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — echo</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$number</span> <span class="punc">=</span> <span class="css-val">25</span><span class="punc">;</span>
+<span class="sel">$message</span> <span class="punc">=</span> <span class="val">"Hello"</span><span class="punc">;</span>
+
+<span class="kw">echo</span> <span class="sel">$message</span><span class="punc">;</span>              <span class="cmt">// Hello</span>
+<span class="kw">echo</span> <span class="val">"5x5=$number"</span><span class="punc">;</span>       <span class="cmt">// 5x5=25  (variable replaced)</span>
+<span class="kw">echo</span> <span class="val">'5x5=$number'</span><span class="punc">;</span>       <span class="cmt">// 5x5=$number  (literal text)</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Write a PHP script that outputs your name using <code>echo</code></li>
+                            <li>Test the difference between single and double quotes with a variable</li>
+                            <li>Add single-line and multi-line comments to your code</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Variables & Data Types                 -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-variables">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Variables &amp; Data Types</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-variables"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📦 PHP Variables</h4>
+                        <ul>
+                            <li>Container to <strong>store data</strong></li>
+                            <li>Start with <code>$</code></li>
+                            <li>Type is detected <strong>automatically</strong></li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">📏 Naming Rules</h4>
+                        <ul>
+                            <li>Must start with <code>$</code></li>
+                            <li>Start with letter or underscore (not a number)</li>
+                            <li>No spaces allowed</li>
+                            <li>Case-sensitive</li>
+                        </ul>
+                        <p>✅ Valid: <code>$studentName</code>, <code>$_totalMarks</code><br>
+                            ❌ Invalid: <code>$1name</code>, <code>$student name</code></p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏷️ PHP Data Types</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Type</th>
+                                    <th style="text-align:left; padding:0.5rem;">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">String</td>
+                                    <td style="padding:0.5rem;"><code>"Kamal"</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Integer</td>
+                                    <td style="padding:0.5rem;"><code>22</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Float</td>
+                                    <td style="padding:0.5rem;"><code>5.6</code></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Boolean</td>
+                                    <td style="padding:0.5rem;"><code>true</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — data types</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$name</span> <span class="punc">=</span> <span class="val">"Kamal"</span><span class="punc">;</span>      <span class="cmt">// String</span>
+<span class="sel">$age</span> <span class="punc">=</span> <span class="css-val">22</span><span class="punc">;</span>             <span class="cmt">// Integer</span>
+<span class="sel">$height</span> <span class="punc">=</span> <span class="css-val">5.6</span><span class="punc">;</span>         <span class="cmt">// Float</span>
+<span class="sel">$isStudent</span> <span class="punc">=</span> <span class="css-val">true</span><span class="punc">;</span>     <span class="cmt">// Boolean</span>
+
+<span class="kw">echo</span> <span class="val">"My name is $name"</span><span class="punc">;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔭 Variable Scope</h4>
+                        <ul>
+                            <li><strong>Local</strong> — declared inside a function, only accessible there</li>
+                            <li><strong>Global</strong> — declared outside functions; use <code>global</code> keyword
+                                inside functions</li>
+                            <li><strong>Static</strong> — keeps its value between function calls</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — variable scope</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Local scope</span>
+<span class="kw">function</span> <span class="sel">showValue</span><span class="punc">() {</span>
+  <span class="sel">$x</span> <span class="punc">=</span> <span class="css-val">10</span><span class="punc">;</span>
+  <span class="kw">echo</span> <span class="sel">$x</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// Global scope</span>
+<span class="sel">$x</span> <span class="punc">=</span> <span class="css-val">5</span><span class="punc">;</span>
+<span class="kw">function</span> <span class="sel">test</span><span class="punc">() {</span>
+  <span class="kw">global</span> <span class="sel">$x</span><span class="punc">;</span>
+  <span class="kw">echo</span> <span class="sel">$x</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// Static variable</span>
+<span class="kw">function</span> <span class="sel">counter</span><span class="punc">() {</span>
+  <span class="kw">static</span> <span class="sel">$count</span> <span class="punc">=</span> <span class="css-val">0</span><span class="punc">;</span>
+  <span class="sel">$count</span><span class="punc">++;</span>
+  <span class="kw">echo</span> <span class="sel">$count</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔗 String Concatenation</h4>
+                        <p>Join strings using the <code>.</code> operator:</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — concatenation</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$txt1</span> <span class="punc">=</span> <span class="val">"Hello"</span><span class="punc">;</span>
+<span class="sel">$txt2</span> <span class="punc">=</span> <span class="val">"World"</span><span class="punc">;</span>
+<span class="kw">echo</span> <span class="sel">$txt1</span> <span class="punc">.</span> <span class="val">" "</span> <span class="punc">.</span> <span class="sel">$txt2</span><span class="punc">;</span>   <span class="cmt">// Hello World</span>
+<span class="kw">echo</span> <span class="val">"$txt1 $txt2"</span><span class="punc">;</span>           <span class="cmt">// Hello World</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Declare variables for name, age, height (float), and student status (boolean)</li>
+                            <li>Display them all using <code>echo</code> with string concatenation</li>
+                            <li>Write a function using a <code>static</code> variable that counts how many times it is
+                                called</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: Operators                              -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-operators">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Operators</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-operators"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>➕ Arithmetic Operators</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Operator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>+</code></td>
+                                    <td style="padding:0.5rem;">Addition</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>-</code></td>
+                                    <td style="padding:0.5rem;">Subtraction</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>*</code></td>
+                                    <td style="padding:0.5rem;">Multiplication</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>/</code></td>
+                                    <td style="padding:0.5rem;">Division</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>%</code></td>
+                                    <td style="padding:0.5rem;">Modulus</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>**</code></td>
+                                    <td style="padding:0.5rem;">Exponent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📝 Assignment Operators</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Operator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>=</code></td>
+                                    <td style="padding:0.5rem;">Assign</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>+=</code></td>
+                                    <td style="padding:0.5rem;">Add and assign</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>-=</code></td>
+                                    <td style="padding:0.5rem;">Subtract and assign</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>*=</code></td>
+                                    <td style="padding:0.5rem;">Multiply and assign</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>/=</code></td>
+                                    <td style="padding:0.5rem;">Divide and assign</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>%=</code></td>
+                                    <td style="padding:0.5rem;">Modulus and assign</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>**=</code></td>
+                                    <td style="padding:0.5rem;">Exponent and assign</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚖️ Comparison Operators</h4>
+                        <p>Return <strong>true</strong> or <strong>false</strong>.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Operator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>==</code></td>
+                                    <td style="padding:0.5rem;">Equal</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>!=</code></td>
+                                    <td style="padding:0.5rem;">Not equal</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&gt;</code> / <code>&lt;</code></td>
+                                    <td style="padding:0.5rem;">Greater / Less than</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&gt;=</code> / <code>&lt;=</code></td>
+                                    <td style="padding:0.5rem;">Greater/Less or equal</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>===</code></td>
+                                    <td style="padding:0.5rem;">Identical (value + type)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>!==</code></td>
+                                    <td style="padding:0.5rem;">Not identical</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔀 Logical Operators</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Operator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&amp;&amp;</code> / <code>and</code></td>
+                                    <td style="padding:0.5rem;">AND</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>||</code> / <code>or</code></td>
+                                    <td style="padding:0.5rem;">OR</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>!</code></td>
+                                    <td style="padding:0.5rem;">NOT</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>xor</code></td>
+                                    <td style="padding:0.5rem;">Exclusive OR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔢 Increment / Decrement &amp; String Operators</h4>
+                        <ul>
+                            <li><code>++$x</code> → pre-increment · <code>$x++</code> → post-increment</li>
+                            <li><code>--$x</code> → pre-decrement · <code>$x--</code> → post-decrement</li>
+                            <li><code>.</code> → concatenation · <code>.=</code> → concatenation assignment</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — string operators</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$a</span> <span class="punc">=</span> <span class="val">"Hello "</span><span class="punc">;</span>
+<span class="sel">$a</span> <span class="punc">.=</span> <span class="val">"World!"</span><span class="punc">;</span>
+<span class="kw">echo</span> <span class="sel">$a</span><span class="punc">;</span>  <span class="cmt">// Hello World!</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 6: Control Structures                     -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-control">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> Control Structures</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-control"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — if / if-else / if-elseif-else</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$marks</span> <span class="punc">=</span> <span class="css-val">65</span><span class="punc">;</span>
+
+<span class="cmt">// if</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$marks</span> <span class="punc">&gt;=</span> <span class="css-val">50</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"Pass"</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// if-else</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$marks</span> <span class="punc">&gt;=</span> <span class="css-val">50</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"Pass"</span><span class="punc">;</span>
+<span class="punc">}</span> <span class="kw">else</span> <span class="punc">{</span>
+  <span class="kw">echo</span> <span class="val">"Fail"</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// if-elseif-else</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$marks</span> <span class="punc">&gt;=</span> <span class="css-val">75</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"A"</span><span class="punc">;</span>
+<span class="punc">}</span> <span class="kw">elseif</span> <span class="punc">(</span><span class="sel">$marks</span> <span class="punc">&gt;=</span> <span class="css-val">60</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"B"</span><span class="punc">;</span>
+<span class="punc">}</span> <span class="kw">else</span> <span class="punc">{</span>
+  <span class="kw">echo</span> <span class="val">"C"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — switch</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$day</span> <span class="punc">=</span> <span class="val">"Monday"</span><span class="punc">;</span>
+<span class="kw">switch</span> <span class="punc">(</span><span class="sel">$day</span><span class="punc">) {</span>
+  <span class="kw">case</span> <span class="val">"Monday"</span><span class="punc">:</span>
+    <span class="kw">echo</span> <span class="val">"Weekday"</span><span class="punc">;</span>
+    <span class="kw">break</span><span class="punc">;</span>
+  <span class="kw">case</span> <span class="val">"Sunday"</span><span class="punc">:</span>
+    <span class="kw">echo</span> <span class="val">"Holiday"</span><span class="punc">;</span>
+    <span class="kw">break</span><span class="punc">;</span>
+  <span class="kw">default</span><span class="punc">:</span>
+    <span class="kw">echo</span> <span class="val">"Invalid day"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Write a grade calculator using <code>if-elseif-else</code></li>
+                            <li>Create a <code>switch</code> that displays a message for each day of the week</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 7: Loops                                  -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-loops">
+                    <div class="section-header">
+                        <h2><span class="section-number">07</span> Loops</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-loops"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — while &amp; do-while</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// while loop</span>
+<span class="sel">$i</span> <span class="punc">=</span> <span class="css-val">1</span><span class="punc">;</span>
+<span class="kw">while</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">&lt;=</span> <span class="css-val">5</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="sel">$i</span><span class="punc">;</span>
+  <span class="sel">$i</span><span class="punc">++;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// do-while loop</span>
+<span class="sel">$i</span> <span class="punc">=</span> <span class="css-val">1</span><span class="punc">;</span>
+<span class="kw">do</span> <span class="punc">{</span>
+  <span class="kw">echo</span> <span class="sel">$i</span><span class="punc">;</span>
+  <span class="sel">$i</span><span class="punc">++;</span>
+<span class="punc">}</span> <span class="kw">while</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">&lt;=</span> <span class="css-val">5</span><span class="punc">);</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — for &amp; foreach</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// for loop</span>
+<span class="kw">for</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">=</span> <span class="css-val">1</span><span class="punc">;</span> <span class="sel">$i</span> <span class="punc">&lt;=</span> <span class="css-val">5</span><span class="punc">;</span> <span class="sel">$i</span><span class="punc">++) {</span>
+  <span class="kw">echo</span> <span class="sel">$i</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">// foreach loop</span>
+<span class="sel">$colors</span> <span class="punc">=</span> <span class="kw">array</span><span class="punc">(</span><span class="val">"Red"</span><span class="punc">,</span> <span class="val">"Blue"</span><span class="punc">,</span> <span class="val">"Green"</span><span class="punc">);</span>
+<span class="kw">foreach</span> <span class="punc">(</span><span class="sel">$colors</span> <span class="kw">as</span> <span class="sel">$color</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="sel">$color</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⏹️ Break &amp; Continue</h4>
+                        <ul>
+                            <li><code>break</code> — stops the loop <strong>completely</strong></li>
+                            <li><code>continue</code> — skips <strong>current iteration</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — break &amp; continue</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="kw">for</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">=</span> <span class="css-val">1</span><span class="punc">;</span> <span class="sel">$i</span> <span class="punc">&lt;=</span> <span class="css-val">5</span><span class="punc">;</span> <span class="sel">$i</span><span class="punc">++) {</span>
+  <span class="kw">if</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">==</span> <span class="css-val">3</span><span class="punc">)</span> <span class="kw">continue</span><span class="punc">;</span>  <span class="cmt">// skip 3</span>
+  <span class="kw">if</span> <span class="punc">(</span><span class="sel">$i</span> <span class="punc">==</span> <span class="css-val">5</span><span class="punc">)</span> <span class="kw">break</span><span class="punc">;</span>     <span class="cmt">// stop at 5</span>
+  <span class="kw">echo</span> <span class="sel">$i</span><span class="punc">;</span>  <span class="cmt">// outputs: 1 2 4</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Print numbers 1–10 using <code>while</code>, <code>do-while</code>, and <code>for</code>
+                            </li>
+                            <li>Create an array of fruits and display them with <code>foreach</code></li>
+                            <li>Use <code>break</code> to stop a loop when a condition is met</li>
+                            <li>Use <code>continue</code> to skip even numbers in a loop</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <span></span>
+                    <a href="php-lecture2.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-weight:600;">Lecture
+                        2 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../php.html">All PHP Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PHP Lecture 2 — Arrays (indexed, associative, multidimensional), array functions, array operators, and PHP functions.">
+    <title>Lecture 2 — Arrays &amp; Functions — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">PHP Lectures</div>
+                    <a href="php-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Introduction to PHP</a>
+                    <a href="php-lecture2.html" class="nav-link active"><span class="nav-icon">2</span> Arrays &amp;
+                        Functions</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#php-indexed" class="nav-link"><span class="nav-icon">1</span> Indexed Arrays</a>
+                    <a href="#php-assoc" class="nav-link"><span class="nav-icon">2</span> Associative Arrays</a>
+                    <a href="#php-multi" class="nav-link"><span class="nav-icon">3</span> Multidimensional</a>
+                    <a href="#php-arr-funcs" class="nav-link"><span class="nav-icon">4</span> Array Functions</a>
+                    <a href="#php-arr-ops" class="nav-link"><span class="nav-icon">5</span> Array Operators</a>
+                    <a href="#php-functions" class="nav-link"><span class="nav-icon">6</span> Functions</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">PHP — Lecture 2</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge php">🟣 PHP · Lecture 2</span>
+                    <h1>Arrays &amp; Functions</h1>
+                    <p>Indexed, associative, and multidimensional arrays — essential array functions, array operators,
+                        and creating reusable PHP functions.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: Indexed Arrays                         -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-indexed">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Indexed Arrays</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-indexed"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 2</strong> · SCS 1311 · Topics: arrays, indexed arrays, creating, accessing,
+                        modifying
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>📦 What is an Array?</h4>
+                        <p>A <strong>collection of values</strong> stored under a single variable name, accessed using
+                            an index number or key name.</p>
+                        <h4 style="margin-top:1rem;">🗂️ Three Types of Arrays</h4>
+                        <ol>
+                            <li><strong>Indexed</strong> — numeric keys (0, 1, 2…)</li>
+                            <li><strong>Associative</strong> — named keys (key ⇒ value)</li>
+                            <li><strong>Multidimensional</strong> — arrays inside arrays</li>
+                        </ol>
+                        <h4 style="margin-top:1rem;">❓ Why Arrays Matter</h4>
+                        <ul>
+                            <li>Store multiple values in one variable</li>
+                            <li>Can hold different data types</li>
+                            <li><code>$_POST</code> and <code>$_GET</code> are associative arrays for form data</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔢 Creating Indexed Arrays</h4>
+                        <p>Numeric indexes start at <strong>0</strong>. Used for ordered lists.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — creating indexed arrays</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Method 1: array() syntax</span>
+<span class="sel">$sports</span> <span class="punc">=</span> <span class="kw">array</span><span class="punc">(</span><span class="val">"Soccer"</span><span class="punc">,</span> <span class="val">"Tennis"</span><span class="punc">,</span> <span class="val">"Cricket"</span><span class="punc">,</span> <span class="val">"Rugby"</span><span class="punc">);</span>
+
+<span class="cmt">// Method 2: Short syntax</span>
+<span class="sel">$colors</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"Red"</span><span class="punc">,</span> <span class="val">"Green"</span><span class="punc">,</span> <span class="val">"Blue"</span><span class="punc">,</span> <span class="val">"Yellow"</span><span class="punc">];</span>
+<span class="cmt">// 0 => Red, 1 => Green, 2 => Blue, 3 => Yellow</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🖨️ Printing Arrays</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Function</th>
+                                    <th style="text-align:left; padding:0.5rem;">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>echo $arr</code></td>
+                                    <td style="padding:0.5rem;">Prints "Array" — not useful for arrays</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>print_r($arr)</code></td>
+                                    <td style="padding:0.5rem;">Shows index and values — good for debugging</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>var_dump($arr)</code></td>
+                                    <td style="padding:0.5rem;">Shows type, count, and string lengths</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — access, modify, add, remove</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Accessing elements</span>
+<span class="kw">echo</span> <span class="sel">$sports</span><span class="punc">[</span><span class="css-val">0</span><span class="punc">];</span>  <span class="cmt">// Soccer</span>
+<span class="kw">echo</span> <span class="sel">$sports</span><span class="punc">[</span><span class="css-val">2</span><span class="punc">];</span>  <span class="cmt">// Cricket</span>
+
+<span class="cmt">// Modifying elements</span>
+<span class="sel">$sports</span><span class="punc">[</span><span class="css-val">1</span><span class="punc">]</span> <span class="punc">=</span> <span class="val">"Badminton"</span><span class="punc">;</span>  <span class="cmt">// replaces "Tennis"</span>
+
+<span class="cmt">// Adding elements</span>
+<span class="sel">$sports</span><span class="punc">[]</span> <span class="punc">=</span> <span class="val">"Hockey"</span><span class="punc">;</span>           <span class="cmt">// auto index</span>
+<span class="sel">$sports</span><span class="punc">[</span><span class="css-val">4</span><span class="punc">]</span> <span class="punc">=</span> <span class="val">"Hockey"</span><span class="punc">;</span>          <span class="cmt">// explicit index</span>
+<span class="kw">array_push</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">,</span> <span class="val">"Volleyball"</span><span class="punc">,</span> <span class="val">"Swimming"</span><span class="punc">);</span>
+
+<span class="cmt">// Removing elements</span>
+<span class="kw">unset</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">[</span><span class="css-val">3</span><span class="punc">]);</span>    <span class="cmt">// removes element (index NOT re-ordered)</span>
+<span class="kw">array_pop</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">);</span>    <span class="cmt">// removes last element</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — looping indexed arrays</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="kw">foreach</span> <span class="punc">(</span><span class="sel">$sports</span> <span class="kw">as</span> <span class="sel">$sport</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="sel">$sport</span> <span class="punc">.</span> <span class="val">"&lt;br&gt;"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create an indexed array of 5 fruits and display them with <code>foreach</code></li>
+                            <li>Add a new fruit using <code>array_push()</code> and remove one with <code>unset()</code>
+                            </li>
+                            <li>Use <code>print_r()</code> and <code>var_dump()</code> to inspect the array</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: Associative Arrays                     -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-assoc">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Associative Arrays</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-assoc"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏷️ Definition</h4>
+                        <p>Uses <strong>named keys</strong> instead of numbers. Stores data as <strong>key ⇒ value
+                                pairs</strong>. Common in form data and database records.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — associative arrays</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Creating</span>
+<span class="sel">$player</span> <span class="punc">=</span> <span class="punc">[</span>
+  <span class="val">"name"</span>  <span class="punc">=&gt;</span> <span class="val">"Kamal"</span><span class="punc">,</span>
+  <span class="val">"sport"</span> <span class="punc">=&gt;</span> <span class="val">"Cricket"</span><span class="punc">,</span>
+  <span class="val">"age"</span>   <span class="punc">=&gt;</span> <span class="css-val">22</span>
+<span class="punc">];</span>
+
+<span class="cmt">// Accessing</span>
+<span class="kw">echo</span> <span class="sel">$player</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">];</span>  <span class="cmt">// Cricket</span>
+
+<span class="cmt">// Modifying</span>
+<span class="sel">$player</span><span class="punc">[</span><span class="val">"age"</span><span class="punc">]</span> <span class="punc">=</span> <span class="css-val">23</span><span class="punc">;</span>
+
+<span class="cmt">// Looping</span>
+<span class="kw">foreach</span> <span class="punc">(</span><span class="sel">$player</span> <span class="kw">as</span> <span class="sel">$key</span> <span class="punc">=&gt;</span> <span class="sel">$value</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="sel">$key</span> <span class="punc">.</span> <span class="val">" : "</span> <span class="punc">.</span> <span class="sel">$value</span> <span class="punc">.</span> <span class="val">"&lt;br&gt;"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create an associative array for a student with name, age, and course</li>
+                            <li>Display all key-value pairs using <code>foreach</code></li>
+                            <li>Modify one value and add a new key</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Multidimensional Arrays                -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-multi">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Multidimensional Arrays</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-multi"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🧩 Definition</h4>
+                        <p>An array containing <strong>other arrays</strong>. Used to represent tables or multiple
+                            records.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — multidimensional arrays</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Creating</span>
+<span class="sel">$players</span> <span class="punc">=</span> <span class="punc">[</span>
+  <span class="punc">[</span><span class="val">"name"</span> <span class="punc">=&gt;</span> <span class="val">"Kamal"</span><span class="punc">,</span> <span class="val">"sport"</span> <span class="punc">=&gt;</span> <span class="val">"Cricket"</span><span class="punc">],</span>
+  <span class="punc">[</span><span class="val">"name"</span> <span class="punc">=&gt;</span> <span class="val">"Nimal"</span><span class="punc">,</span> <span class="val">"sport"</span> <span class="punc">=&gt;</span> <span class="val">"Rugby"</span><span class="punc">]</span>
+<span class="punc">];</span>
+
+<span class="cmt">// Accessing</span>
+<span class="kw">echo</span> <span class="sel">$players</span><span class="punc">[</span><span class="css-val">0</span><span class="punc">][</span><span class="val">"name"</span><span class="punc">];</span>   <span class="cmt">// Kamal</span>
+<span class="kw">echo</span> <span class="sel">$players</span><span class="punc">[</span><span class="css-val">1</span><span class="punc">][</span><span class="val">"sport"</span><span class="punc">];</span>  <span class="cmt">// Rugby</span>
+
+<span class="cmt">// Looping</span>
+<span class="kw">foreach</span> <span class="punc">(</span><span class="sel">$players</span> <span class="kw">as</span> <span class="sel">$player</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="sel">$player</span><span class="punc">[</span><span class="val">"name"</span><span class="punc">]</span> <span class="punc">.</span> <span class="val">" - "</span> <span class="punc">.</span> <span class="sel">$player</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">]</span> <span class="punc">.</span> <span class="val">"&lt;br&gt;"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a multidimensional array of 3 students with name, age, and course</li>
+                            <li>Loop through and display each student's info</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Array Functions                        -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-arr-funcs">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Essential Array Functions</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-arr-funcs"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔧 Key Functions</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Function</th>
+                                    <th style="text-align:left; padding:0.5rem;">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>count($arr)</code></td>
+                                    <td style="padding:0.5rem;">Returns number of elements</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>isset($arr[key])</code></td>
+                                    <td style="padding:0.5rem;">Checks if index/key exists and is not null</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>empty($arr)</code></td>
+                                    <td style="padding:0.5rem;">Checks if array has no data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — count, isset, empty</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// count()</span>
+<span class="kw">echo</span> <span class="kw">count</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">);</span>  <span class="cmt">// number of elements</span>
+
+<span class="cmt">// isset() — prevents "Undefined index" errors</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="kw">isset</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">[</span><span class="css-val">2</span><span class="punc">])) {</span>
+  <span class="kw">echo</span> <span class="sel">$sports</span><span class="punc">[</span><span class="css-val">2</span><span class="punc">];</span>
+<span class="punc">}</span>
+
+<span class="cmt">// empty()</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="kw">empty</span><span class="punc">(</span><span class="sel">$sports</span><span class="punc">)) {</span>
+  <span class="kw">echo</span> <span class="val">"Array is empty"</span><span class="punc">;</span>
+<span class="punc">}</span> <span class="kw">else</span> <span class="punc">{</span>
+  <span class="kw">echo</span> <span class="val">"Array has values"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: Array Operators                        -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-arr-ops">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Array Operators</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-arr-ops"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>➕ Union Operator (<code>+</code>)</h4>
+                        <p>Combines arrays. Keeps values from the <strong>first array</strong> if keys match.</p>
+                        <h4 style="margin-top:1rem;">⚖️ Comparison Operators</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Operator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>==</code></td>
+                                    <td style="padding:0.5rem;">Same key–value pairs (order doesn't matter)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>===</code></td>
+                                    <td style="padding:0.5rem;">Same pairs, same order, same types</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>!=</code> / <code>&lt;&gt;</code></td>
+                                    <td style="padding:0.5rem;">Arrays are different</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>!==</code></td>
+                                    <td style="padding:0.5rem;">Not identical (order or type differs)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — array operators</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Union</span>
+<span class="sel">$a</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"Soccer"</span> <span class="punc">=&gt;</span> <span class="css-val">1</span><span class="punc">,</span> <span class="val">"Tennis"</span> <span class="punc">=&gt;</span> <span class="css-val">2</span><span class="punc">];</span>
+<span class="sel">$b</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"Tennis"</span> <span class="punc">=&gt;</span> <span class="css-val">3</span><span class="punc">,</span> <span class="val">"Cricket"</span> <span class="punc">=&gt;</span> <span class="css-val">4</span><span class="punc">];</span>
+<span class="sel">$result</span> <span class="punc">=</span> <span class="sel">$a</span> <span class="punc">+</span> <span class="sel">$b</span><span class="punc">;</span>  <span class="cmt">// Tennis keeps value 2 from $a</span>
+
+<span class="cmt">// Comparison</span>
+<span class="sel">$x</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"a"</span> <span class="punc">=&gt;</span> <span class="css-val">1</span><span class="punc">,</span> <span class="val">"b"</span> <span class="punc">=&gt;</span> <span class="css-val">2</span><span class="punc">];</span>
+<span class="sel">$y</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"b"</span> <span class="punc">=&gt;</span> <span class="css-val">2</span><span class="punc">,</span> <span class="val">"a"</span> <span class="punc">=&gt;</span> <span class="css-val">1</span><span class="punc">];</span>
+<span class="sel">$z</span> <span class="punc">=</span> <span class="punc">[</span><span class="val">"a"</span> <span class="punc">=&gt;</span> <span class="css-val">1</span><span class="punc">,</span> <span class="val">"b"</span> <span class="punc">=&gt;</span> <span class="val">"2"</span><span class="punc">];</span>
+
+<span class="kw">var_dump</span><span class="punc">(</span><span class="sel">$x</span> <span class="punc">==</span> <span class="sel">$y</span><span class="punc">);</span>    <span class="cmt">// true  — same pairs</span>
+<span class="kw">var_dump</span><span class="punc">(</span><span class="sel">$x</span> <span class="punc">===</span> <span class="sel">$y</span><span class="punc">);</span>   <span class="cmt">// false — different order</span>
+<span class="kw">var_dump</span><span class="punc">(</span><span class="sel">$x</span> <span class="punc">!==</span> <span class="sel">$z</span><span class="punc">);</span>   <span class="cmt">// true  — different types</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 6: PHP Functions                          -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-functions">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> PHP Functions</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-functions"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔧 What is a Function?</h4>
+                        <p>A <strong>reusable block of code</strong> that helps reduce repetition, organize logic, and
+                            improve readability.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — creating &amp; calling functions</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Basic function</span>
+<span class="kw">function</span> <span class="sel">displaySport</span><span class="punc">() {</span>
+  <span class="kw">echo</span> <span class="val">"Soccer"</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="sel">displaySport</span><span class="punc">();</span>  <span class="cmt">// Soccer</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — parameters &amp; return</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// With parameters</span>
+<span class="kw">function</span> <span class="sel">showSport</span><span class="punc">(</span><span class="sel">$sport</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"Selected sport: "</span> <span class="punc">.</span> <span class="sel">$sport</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="sel">showSport</span><span class="punc">(</span><span class="val">"Cricket"</span><span class="punc">);</span>
+<span class="sel">showSport</span><span class="punc">(</span><span class="val">"Tennis"</span><span class="punc">);</span>
+
+<span class="cmt">// Returning values</span>
+<span class="kw">function</span> <span class="sel">getSport</span><span class="punc">(</span><span class="sel">$sport</span><span class="punc">) {</span>
+  <span class="kw">return</span> <span class="val">"Selected sport: "</span> <span class="punc">.</span> <span class="sel">$sport</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="sel">$result</span> <span class="punc">=</span> <span class="sel">getSport</span><span class="punc">(</span><span class="val">"Rugby"</span><span class="punc">);</span>
+<span class="kw">echo</span> <span class="sel">$result</span><span class="punc">;</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — default parameters</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="kw">function</span> <span class="sel">setTeamSize</span><span class="punc">(</span><span class="sel">$size</span> <span class="punc">=</span> <span class="css-val">11</span><span class="punc">) {</span>
+  <span class="kw">return</span> <span class="sel">$size</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="kw">echo</span> <span class="sel">setTeamSize</span><span class="punc">();</span>    <span class="cmt">// 11  (uses default)</span>
+<span class="kw">echo</span> <span class="sel">setTeamSize</span><span class="punc">(</span><span class="css-val">7</span><span class="punc">);</span>   <span class="cmt">// 7   (overrides default)</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a function that takes a student's name and returns a greeting</li>
+                            <li>Write a function with a default parameter for team size</li>
+                            <li>Create a function that accepts an array of marks and returns the average</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="php-lecture1.html" class="lecture-nav-btn prev"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--border-color); text-decoration:none; font-weight:600; color:var(--text-primary);">←
+                        Lecture 1</a>
+                    <a href="php-lecture3.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-weight:600;">Lecture
+                        3 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../php.html">All PHP Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML lists (ordered, unordered, description), tables, images, and semantic markup.">
+    <title>Lecture 3 — Lists, Tables &amp; Images — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">HTML Lectures</div>
+                    <a href="html-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Internet, Web & HTML</a>
+                    <a href="html-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Elements & Attributes</a>
+                    <a href="html-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Lists, Tables & Images</a>
+                    <a href="html-lecture4.html" class="nav-link"><span class="nav-icon">4</span> Links & Forms</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#html-semantic" class="nav-link"><span class="nav-icon">6</span> Lists &amp; Semantic</a>
+                    <a href="#html-tables" class="nav-link"><span class="nav-icon">7</span> Tables &amp; Images</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">HTML — Lecture 3</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge html">🟠 HTML · Lecture 3</span>
+                    <h1>Lists, Tables &amp; Images</h1>
+                    <p>HTML lists (ordered, unordered, description), tables, images, and semantic markup.</p>
+                </div>
+
+
+                <!-- Section 6: Lecture 3 — Lists & Semantic HTML -->
+                <section class="content-section" id="html-semantic">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> HTML Lists &amp; Semantic HTML</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-semantic"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 3</strong> · SCS 1311 · Topics: Unordered, ordered, nested &amp; description
+                        lists
+                    </p>
+
+                    <!-- Why Lists -->
+                    <div class="notes-block">
+                        <h4>📋 Why Lists Are Important</h4>
+                        <ul>
+                            <li>Present information in a <strong>structured, easy-to-read format</strong></li>
+                            <li>Improve readability</li>
+                            <li>Three main types: <strong>Unordered</strong>, <strong>Ordered</strong>,
+                                <strong>Description</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Unordered Lists -->
+                    <div class="notes-block">
+                        <h4>🔘 1. Unordered Lists <code>&lt;ul&gt;</code></h4>
+                        <ul>
+                            <li>Used when <strong>order does not matter</strong></li>
+                            <li>Items shown with <strong>bullet points</strong></li>
+                            <li><code>&lt;ul&gt;</code> → list container · <code>&lt;li&gt;</code> → list item</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ordered Lists -->
+                    <div class="notes-block">
+                        <h4>🔢 2. Ordered Lists <code>&lt;ol&gt;</code></h4>
+                        <ul>
+                            <li>Used when items follow a <strong>specific sequence</strong></li>
+                            <li><code>&lt;ol&gt;</code> → ordered list · <code>&lt;li&gt;</code> → list item</li>
+                        </ul>
+                        <p><strong>Attribute: <code>type</code></strong> — controls numbering style:</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Value</th>
+                                    <th style="text-align:left; padding:0.5rem;">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>1</code></td>
+                                    <td style="padding:0.5rem;">1, 2, 3 (default)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>a</code></td>
+                                    <td style="padding:0.5rem;">a, b, c</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>A</code></td>
+                                    <td style="padding:0.5rem;">A, B, C</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>i</code></td>
+                                    <td style="padding:0.5rem;">i, ii, iii</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>I</code></td>
+                                    <td style="padding:0.5rem;">I, II, III</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Attribute: <code>start</code></strong> — sets the starting number (e.g.,
+                            <code>start="3"</code>)
+                        </p>
+                        <p><strong>Attribute: <code>reversed</code></strong> — displays numbering in <strong>descending
+                                order</strong></p>
+                    </div>
+
+                    <!-- Nested & Description Lists -->
+                    <div class="notes-block">
+                        <h4>🪆 3. Nested Lists</h4>
+                        <ul>
+                            <li>A <strong>list inside another list item</strong> — used for hierarchy</li>
+                            <li>Must be placed <strong>inside <code>&lt;li&gt;</code></strong></li>
+                            <li>Can mix list types (ordered inside unordered and vice versa)</li>
+                        </ul>
+                        <h4>📖 4. Description Lists <code>&lt;dl&gt;</code></h4>
+                        <ul>
+                            <li>Used for <strong>terms and their descriptions</strong></li>
+                            <li><code>&lt;dl&gt;</code> → container · <code>&lt;dt&gt;</code> → term ·
+                                <code>&lt;dd&gt;</code> → description
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Code: Lists -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Unordered list --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>List item 1<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>List item 2<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="cmt">&lt;!-- Ordered list with type --&gt;</span>
+<span class="tag">&lt;ol</span> <span class="attr">type</span>=<span class="val">"A"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;li&gt;</span>First<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Second<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="cmt">&lt;!-- Reversed ordered list --&gt;</span>
+<span class="tag">&lt;ol</span> <span class="attr">reversed</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;li&gt;</span>One<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Two<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="cmt">&lt;!-- Nested list --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Step One
+    <span class="tag">&lt;ol&gt;</span>
+      <span class="tag">&lt;li&gt;</span>Sub step 1<span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;li&gt;</span>Sub step 2<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ol&gt;</span>
+  <span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Step Two<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="cmt">&lt;!-- Description list --&gt;</span>
+<span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>Item 1<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Description of Item 1<span class="tag">&lt;/dd&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>Item 2<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Description of Item 2<span class="tag">&lt;/dd&gt;</span>
+<span class="tag">&lt;/dl&gt;</span></code></pre>
+                    </div>
+
+                    <!-- Semantic HTML -->
+                    <div class="notes-block">
+                        <h4>🏗️ Semantic HTML Elements</h4>
+                        <ul>
+                            <li>Semantic elements: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+                                <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>,
+                                <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>
+                            </li>
+                            <li>They describe <strong>meaning</strong> to both browser and developer</li>
+                            <li>Improves <strong>accessibility</strong>, <strong>SEO</strong>, and code readability</li>
+                        </ul>
+                    </div>
+
+                    <!-- Code: Semantic -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;nav&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Blog Post<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Content here...<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+  <span class="tag">&lt;aside&gt;</span><span class="tag">&lt;h3&gt;</span>Sidebar<span class="tag">&lt;/h3&gt;</span><span class="tag">&lt;/aside&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span><span class="tag">&lt;p&gt;</span>&amp;copy; 2026<span class="tag">&lt;/p&gt;</span><span class="tag">&lt;/footer&gt;</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create an unordered list of your favourite foods</li>
+                            <li>Create an ordered list with <code>type="A"</code> and <code>start="3"</code></li>
+                            <li>Build a nested list showing a course outline with topics and sub-topics</li>
+                            <li>Create a description list of 3 programming terms and their definitions</li>
+                            <li>Refactor a page using only <code>&lt;div&gt;</code> to use proper semantic HTML5
+                                elements
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Section 7: Lecture 3 (continued) — Tables & Images -->
+                <section class="content-section" id="html-tables">
+                    <div class="section-header">
+                        <h2><span class="section-number">07</span> HTML Tables &amp; Images</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-tables"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 3 (continued)</strong> · Topics: Table structure, sections, merging cells,
+                        images,
+                        figure/figcaption
+                    </p>
+
+                    <!-- Table Basics -->
+                    <div class="notes-block">
+                        <h4>📊 HTML Tables</h4>
+                        <ul>
+                            <li>Used to display <strong>tabular data</strong> (not for page layout)</li>
+                            <li><code>&lt;table&gt;</code> → container · <code>&lt;tr&gt;</code> → row ·
+                                <code>&lt;td&gt;</code> → cell
+                            </li>
+                            <li>Tables have <strong>no borders by default</strong></li>
+                            <li>Modern borders use CSS: <code>style="border:1px solid black;"</code></li>
+                        </ul>
+                        <h4>📌 Table Headers <code>&lt;th&gt;</code></h4>
+                        <ul>
+                            <li>Defines header cells — <strong>bold and centered</strong> by default</li>
+                            <li>Improves accessibility for screen readers</li>
+                        </ul>
+                        <h4>🏷️ Table Caption</h4>
+                        <ul>
+                            <li><code>&lt;caption&gt;</code> gives a <strong>title</strong> to the table (appears above
+                                it)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Table Sections -->
+                    <div class="notes-block">
+                        <h4>📐 Table Sections</h4>
+                        <ul>
+                            <li><code>&lt;thead&gt;</code> → header section</li>
+                            <li><code>&lt;tbody&gt;</code> → body content</li>
+                            <li><code>&lt;tfoot&gt;</code> → footer section</li>
+                        </ul>
+                        <h4>🔀 Merging Cells</h4>
+                        <ul>
+                            <li><code>colspan="2"</code> — merges columns <strong>horizontally</strong></li>
+                            <li><code>rowspan="2"</code> — merges rows <strong>vertically</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- Code: Full Table -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Table with sections, caption &amp; merging --&gt;</span>
+<span class="tag">&lt;table&gt;</span>
+  <span class="tag">&lt;caption&gt;</span>Student Marks<span class="tag">&lt;/caption&gt;</span>
+  <span class="tag">&lt;thead&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Name<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Subject<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Marks<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/thead&gt;</span>
+  <span class="tag">&lt;tbody&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">rowspan</span>=<span class="val">"2"</span><span class="tag">&gt;</span>Nimal<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Math<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>85<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Science<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>90<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tbody&gt;</span>
+  <span class="tag">&lt;tfoot&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">colspan</span>=<span class="val">"2"</span><span class="tag">&gt;</span>Total<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>175<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tfoot&gt;</span>
+<span class="tag">&lt;/table&gt;</span></code></pre>
+                    </div>
+
+                    <!-- Images -->
+                    <div class="notes-block">
+                        <h4>🖼️ HTML Images</h4>
+                        <ul>
+                            <li><code>&lt;img&gt;</code> inserts images — it is a <strong>void element</strong> (no
+                                closing
+                                tag)</li>
+                            <li><code>src</code> — image source (relative path or absolute URL)</li>
+                            <li><code>alt</code> — alternative text (shown when image fails, used by screen readers)
+                            </li>
+                            <li><code>width</code> / <code>height</code> — set image dimensions</li>
+                        </ul>
+                        <h4>🔗 Images as Links</h4>
+                        <ul>
+                            <li>Wrap <code>&lt;img&gt;</code> inside <code>&lt;a&gt;</code> to make it clickable</li>
+                        </ul>
+                        <h4>🖼️ <code>&lt;figure&gt;</code> &amp; <code>&lt;figcaption&gt;</code></h4>
+                        <ul>
+                            <li>Group images with captions — use when image needs a caption or is referenced in text
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Code: Images -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Image with size --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"photo.jpg"</span> <span class="attr">alt</span>=<span class="val">"Portrait"</span> <span class="attr">width</span>=<span class="val">"200"</span> <span class="attr">height</span>=<span class="val">"150"</span><span class="tag">&gt;</span>
+
+<span class="cmt">&lt;!-- Image as a link --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"home.html"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"home.png"</span> <span class="attr">alt</span>=<span class="val">"Home page icon"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="cmt">&lt;!-- Figure with caption --&gt;</span>
+<span class="tag">&lt;figure&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"sunset.jpg"</span> <span class="attr">alt</span>=<span class="val">"Sunset over the beach"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;figcaption&gt;</span>Sunset at the west coast<span class="tag">&lt;/figcaption&gt;</span>
+<span class="tag">&lt;/figure&gt;</span></code></pre>
+                    </div>
+
+                    <!-- Big Picture -->
+                    <div class="notes-block">
+                        <h4>💡 Big Conceptual Picture</h4>
+                        <ul>
+                            <li>HTML is not about beauty — it's about <strong>meaning and structure</strong></li>
+                            <li><strong>Lists</strong> = structured groups of items</li>
+                            <li><strong>Tables</strong> = structured data in rows and columns</li>
+                            <li><strong>Images</strong> = visual content with meaning</li>
+                            <li>HTML = <strong>Skeleton</strong> · CSS = Skin &amp; clothing · JavaScript = Nervous
+                                impulses
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a student grades table with <code>thead</code>, <code>tbody</code>,
+                                <code>tfoot</code>, and use <code>colspan</code>/<code>rowspan</code>
+                            </li>
+                            <li>Add a <code>&lt;caption&gt;</code> to your table</li>
+                            <li>Insert an image with <code>src</code>, <code>alt</code>, <code>width</code>, and
+                                <code>height</code>
+                            </li>
+                            <li>Make an image clickable by wrapping it in <code>&lt;a&gt;</code></li>
+                            <li>Use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> to add a captioned
+                                image
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav" style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="html-lecture2.html" class="lecture-nav-btn prev">← Lecture 2</a>
+                    <a href="html-lecture4.html" class="lecture-nav-btn next">Lecture 4 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../html.html">All HTML Lectures</a> · <a href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

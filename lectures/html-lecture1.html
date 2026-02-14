@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about the Internet, World Wide Web, HTML basics, document structure, and how the web works.">
+    <title>Lecture 1 — Introduction to the Internet, Web &amp; HTML — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">HTML Lectures</div>
+                    <a href="html-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Internet, Web & HTML</a>
+                    <a href="html-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Elements & Attributes</a>
+                    <a href="html-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Lists, Tables & Images</a>
+                    <a href="html-lecture4.html" class="nav-link"><span class="nav-icon">4</span> Links & Forms</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#html-intro" class="nav-link"><span class="nav-icon">1</span> Introduction</a>
+                    <a href="#html-elements" class="nav-link"><span class="nav-icon">2</span> Elements &amp; Text</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">HTML — Lecture 1</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge html">🟠 HTML · Lecture 1</span>
+                    <h1>Introduction to the Internet, Web &amp; HTML</h1>
+                    <p>Learn about the Internet, World Wide Web, HTML basics, document structure, and how the web works.</p>
+                </div>
+
+                <!-- Section 1: Lecture 1 — Introduction to the Internet, Web & HTML -->
+                <section class="content-section" id="html-intro">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Introduction to the Internet, Web &amp; HTML</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-intro"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 1</strong> · Gayani Rupasinghe · University of Colombo School of Computing<br>
+                        Evaluation: Assignments – 30% | Final Exam – 70%
+                    </p>
+
+                    <!-- Internet Intro -->
+                    <div class="notes-block">
+                        <h4>🌐 What is the Internet?</h4>
+                        <ul>
+                            <li>A <strong>worldwide system</strong> of interconnected computer networks and electronic
+                                devices</li>
+                            <li>Communicates using protocols called <strong>TCP/IP</strong></li>
+                            <li>Allows access to information and communication globally</li>
+                        </ul>
+                        <h4>📜 History of the Internet</h4>
+                        <ul>
+                            <li><strong>1969:</strong> ARPANET project connected computers at universities and U.S.
+                                defense</li>
+                            <li><strong>1990s:</strong> ARPANET, NSFnet, and other networks formed the modern Internet
+                            </li>
+                        </ul>
+                        <h4>⚙️ How the Internet Works</h4>
+                        <ul>
+                            <li>Networks are connected through <strong>routers</strong> and <strong>switches</strong>
+                            </li>
+                            <li>Data is broken into small <strong>packets</strong> when travelling</li>
+                            <li>A <strong>router</strong> forwards packets <em>between</em> networks</li>
+                            <li>A <strong>switch</strong> connects devices <em>within</em> a single network</li>
+                        </ul>
+                        <h4>🔢 IP Address</h4>
+                        <ul>
+                            <li>Each device has a <strong>unique IP address</strong></li>
+                            <li>Packets travel independently and are reassembled at the destination</li>
+                            <li>Examples:
+                                <ul>
+                                    <li><strong>IPv4:</strong> <code>192.168.1.10</code></li>
+                                    <li><strong>IPv6:</strong> <code>2001:0db8:85a3::8a2e:0370:7334</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4>📡 Protocols &amp; ISP</h4>
+                        <ul>
+                            <li><strong>Protocols</strong> define communication rules</li>
+                            <li>An <strong>ISP</strong> (Internet Service Provider) connects users to the global network
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- World Wide Web -->
+                    <div class="notes-block">
+                        <h4>🌍 World Wide Web (WWW)</h4>
+                        <ul>
+                            <li>A system of interlinked web pages written in <strong>HTML</strong></li>
+                            <li>Accessed using <strong>web browsers</strong> over the Internet</li>
+                            <li>Built using: <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong>,
+                                <strong>HTTP</strong>
+                            </li>
+                        </ul>
+                        <h4>🛠️ Roles of Technologies</h4>
+                        <ul>
+                            <li><strong>HTML:</strong> Structure of web pages</li>
+                            <li><strong>CSS:</strong> Layout and design</li>
+                            <li><strong>JavaScript:</strong> Interactivity</li>
+                            <li>Pages are linked by <strong>hyperlinks</strong></li>
+                        </ul>
+                        <h4>🖥️ Web Components</h4>
+                        <ul>
+                            <li><strong>Web servers:</strong> Store and deliver pages</li>
+                            <li><strong>Browsers:</strong> Request and display pages</li>
+                            <li><strong>HTTP:</strong> Protocol used for communication</li>
+                        </ul>
+                        <h4>📅 History of Web Development</h4>
+                        <ul>
+                            <li><strong>1989:</strong> Tim Berners-Lee proposed the Web</li>
+                            <li><strong>1991:</strong> First website published</li>
+                            <li><strong>1993:</strong> Mosaic graphical browser</li>
+                            <li><strong>Today:</strong> Billions of interactive sites</li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Evolution -->
+                    <div class="notes-block">
+                        <h4>🔄 Evolution of the Web</h4>
+                        <p><strong>Web 1.0 (Read-only)</strong></p>
+                        <ul>
+                            <li>Static HTML pages — no user interaction</li>
+                            <li>Information publishing only</li>
+                        </ul>
+                        <p><strong>Web 2.0 (Read-write)</strong></p>
+                        <ul>
+                            <li>Interactive and participative — users create content</li>
+                            <li>Social media and dynamic pages</li>
+                            <li>Technologies: AJAX, JavaScript frameworks</li>
+                        </ul>
+                        <p><strong>Web 3.0 (Semantic Web)</strong></p>
+                        <ul>
+                            <li>Machines understand data meaning</li>
+                            <li>Metadata, linked data, AI and personalized recommendations</li>
+                        </ul>
+                        <p><strong>Web 4.0</strong></p>
+                        <ul>
+                            <li>Access anywhere via devices and IoT</li>
+                            <li>Cloud computing, real-time communication</li>
+                        </ul>
+                        <p><strong>Web 5.0</strong></p>
+                        <ul>
+                            <li>Emotionally aware and highly personalized web</li>
+                            <li>AI, machine learning, VR, brain-computer interfaces</li>
+                            <li>Immersive experiences</li>
+                        </ul>
+                    </div>
+
+                    <!-- Internet vs Web comparison table -->
+                    <div class="notes-block">
+                        <h4>🔀 Internet vs World Wide Web</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Internet</th>
+                                    <th style="text-align:left; padding:0.5rem;">World Wide Web</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Physical network infrastructure</td>
+                                    <td style="padding:0.5rem;">Service using that infrastructure</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Uses <strong>TCP/IP</strong></td>
+                                    <td style="padding:0.5rem;">Uses <strong>HTTP/HTTPS</strong></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Includes email, chat, FTP, video calls</td>
+                                    <td style="padding:0.5rem;">Includes web pages and web apps</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Connects <strong>computers</strong></td>
+                                    <td style="padding:0.5rem;">Connects <strong>information</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- URLs and DNS -->
+                    <div class="notes-block">
+                        <h4>🔗 URL (Uniform Resource Locator)</h4>
+                        <ul>
+                            <li>Identifies the <strong>location</strong> of a web resource</li>
+                            <li>Shown in the browser address bar</li>
+                            <li>Examples:
+                                <ul>
+                                    <li><code>https://www.amazon.com/books</code> (Commercial)</li>
+                                    <li><code>https://ucsc.cmb.ac.lk/about</code> (Academic)</li>
+                                </ul>
+                            </li>
+                            <li><strong>URL Structure:</strong> Protocol (scheme) → Subdomain → Second-level domain →
+                                Top-level domain → Path</li>
+                        </ul>
+                        <h4>📇 DNS (Domain Name System)</h4>
+                        <ul>
+                            <li>Converts <strong>domain names</strong> into <strong>IP addresses</strong></li>
+                            <li>Browser asks DNS for the IP before connecting to the server</li>
+                        </ul>
+                        <h4>🔄 How the Web Works (Client–Server Model)</h4>
+                        <ol>
+                            <li>User enters a URL</li>
+                            <li>Browser sends a request</li>
+                            <li>DNS translates domain to IP</li>
+                            <li>Browser connects to the server</li>
+                            <li>Server responds with the website</li>
+                            <li>Browser displays the page</li>
+                        </ol>
+                    </div>
+
+                    <!-- Static vs Dynamic -->
+                    <div class="notes-block">
+                        <h4>📄 Static vs Dynamic Web Pages</h4>
+                        <p><strong>Static Web Pages</strong></p>
+                        <ul>
+                            <li>Built using <strong>HTML and CSS</strong></li>
+                            <li>Same content for all users (e.g., news sites)</li>
+                        </ul>
+                        <p><strong>Dynamic Web Pages — Client-side</strong></p>
+                        <ul>
+                            <li>Use <strong>JavaScript / AJAX</strong></li>
+                            <li>Examples: form validation, interactive menus, games</li>
+                        </ul>
+                        <p><strong>Dynamic Web Pages — Server-side</strong></p>
+                        <ul>
+                            <li>Use <strong>PHP, ASP, JSP, C#, SQL</strong>, etc.</li>
+                            <li>Interact with databases — store, retrieve, update, or delete data</li>
+                        </ul>
+                    </div>
+
+                    <!-- What is HTML -->
+                    <div class="notes-block">
+                        <h4>📝 What is HTML?</h4>
+                        <ul>
+                            <li>HTML = <strong>HyperText Markup Language</strong></li>
+                            <li>Standard language for creating web page <strong>structure</strong></li>
+                            <li>Organizes text, images, and other content using <strong>markup tags</strong></li>
+                        </ul>
+                        <h4>📌 HTML Versions</h4>
+                        <ul>
+                            <li><strong>HTML 1.0</strong> (1993) – basic structure</li>
+                            <li><strong>HTML 4.01</strong> (1999) – more formatting</li>
+                            <li><strong>HTML5</strong> (2014) – modern, semantic, multimedia support</li>
+                        </ul>
+                        <h4>✨ HTML5 Features</h4>
+                        <ul>
+                            <li>Simple <code>&lt;!DOCTYPE html&gt;</code> declaration</li>
+                            <li>New semantic tags: <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>,
+                                <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>
+                            </li>
+                            <li>Audio, video, canvas support</li>
+                            <li>Improved forms</li>
+                        </ul>
+                    </div>
+
+                    <!-- Code example: Basic HTML -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Basic HTML Document Structure --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;title&gt;</span>My First Page<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Hello, world!<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>This is my first web page.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice Exercise</h4>
+                        <ol>
+                            <li>Use Notepad or VS Code to create a file, save it with a <code>.html</code> extension
+                                (e.g., <code>index.html</code>)</li>
+                            <li>Add the basic HTML document structure shown above</li>
+                            <li>Add a heading and a paragraph with your own content</li>
+                            <h4>🏋️ Practice</h4>
+                            <ol>
+                                <li>Create a page with all six heading levels and paragraphs</li>
+                                <li>Use <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code>,
+                                    <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code> to format text
+                                </li>
+                                <li>Add a <code>&lt;hr&gt;</code> divider and <code>&lt;br&gt;</code> line breaks</li>
+                                <li>Include HTML comments in your code</li>
+                                <li>Build a simple profile page like the real-world example above</li>
+                            </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav" style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <span></span>
+                    <a href="html-lecture2.html" class="lecture-nav-btn next">Lecture 2 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../html.html">All HTML Lectures</a> · <a href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

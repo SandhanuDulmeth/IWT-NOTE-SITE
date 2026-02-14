@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="JavaScript Lecture Notes — Variables, Functions, DOM, Events, Async with examples.">
+    <title>JavaScript — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/code.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#js-intro" class="nav-link"><span class="nav-icon">1</span> Introduction</a>
+                    <a href="#js-variables" class="nav-link"><span class="nav-icon">2</span> Variables</a>
+                    <a href="#js-functions" class="nav-link"><span class="nav-icon">3</span> Functions</a>
+                    <a href="#js-dom" class="nav-link"><span class="nav-icon">4</span> DOM</a>
+                    <a href="#js-events" class="nav-link"><span class="nav-icon">5</span> Events</a>
+                    <a href="#js-async" class="nav-link"><span class="nav-icon">6</span> Async</a>
+                    <a href="#js-practice" class="nav-link"><span class="nav-icon">7</span> Practice</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">JavaScript</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge js">🟡 JavaScript</span>
+                    <h1>JavaScript Programming</h1>
+                    <p>JavaScript adds interactivity to web pages. Learn variables, functions, DOM manipulation, event
+                        handling, and asynchronous programming.</p>
+                </div>
+
+                <!-- Section 1 -->
+                <section class="content-section" id="js-intro">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Introduction to JavaScript</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-intro"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li>JavaScript is a <strong>high-level, interpreted</strong> programming language</li>
+                            <li>Runs in the browser (client-side) and on servers (Node.js)</li>
+                            <li>Add to HTML: inline (<code>onclick</code>), internal (<code>&lt;script&gt;</code>), or
+                                external file</li>
+                            <li>JavaScript is <strong>dynamically typed</strong> — variables don't need type
+                                declarations</li>
+                            <li>Use <code>console.log()</code> for debugging</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Your first JavaScript program</span>
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Hello, World!"</span>);
+
+<span class="cmt">// Variables</span>
+<span class="kw">let</span> <span class="var">name</span> = <span class="str">"Student"</span>;
+<span class="kw">const</span> <span class="var">course</span> = <span class="str">"IWT"</span>;
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">`Welcome to </span><span class="op">${</span><span class="var">course</span><span class="op">}</span><span class="str">, </span><span class="op">${</span><span class="var">name</span><span class="op">}</span><span class="str">`</span>);</code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Add a <code>&lt;script&gt;</code> tag to an HTML page and log your name, age, and university
+                            to the console.</p>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section class="content-section" id="js-variables">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Variables &amp; Data Types</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-variables"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li><code>let</code> — block-scoped, reassignable</li>
+                            <li><code>const</code> — block-scoped, cannot be reassigned</li>
+                            <li><code>var</code> — function-scoped (avoid in modern JS)</li>
+                            <li><strong>Primitive types</strong>: String, Number, Boolean, null, undefined, Symbol,
+                                BigInt</li>
+                            <li><strong>Reference types</strong>: Object, Array, Function</li>
+                            <li><code>typeof</code> operator to check types</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Primitives</span>
+<span class="kw">let</span> <span class="var">age</span> = <span class="num">21</span>;
+<span class="kw">let</span> <span class="var">name</span> = <span class="str">"Alice"</span>;
+<span class="kw">let</span> <span class="var">isStudent</span> = <span class="kw">true</span>;
+<span class="kw">let</span> <span class="var">grade</span> = <span class="kw">null</span>;
+
+<span class="cmt">// Arrays & Objects</span>
+<span class="kw">const</span> <span class="var">colors</span> = [<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>];
+<span class="kw">const</span> <span class="var">student</span> = {
+  <span class="prop">name</span>: <span class="str">"Alice"</span>,
+  <span class="prop">age</span>: <span class="num">21</span>,
+  <span class="prop">courses</span>: [<span class="str">"IWT"</span>, <span class="str">"DSA"</span>]
+};
+
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="var">age</span>); <span class="cmt">// "number"</span></code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Create variables of each primitive type and an object representing a student with nested
+                            arrays.</p>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section class="content-section" id="js-functions">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Functions</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-functions"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li><strong>Function declaration</strong>: <code>function name() {}</code> — hoisted</li>
+                            <li><strong>Function expression</strong>: <code>const fn = function() {}</code></li>
+                            <li><strong>Arrow function</strong>: <code>const fn = () => {}</code> — concise, no own
+                                <code>this</code></li>
+                            <li>Parameters and default values: <code>function greet(name = "World")</code></li>
+                            <li>Return values with <code>return</code> keyword</li>
+                            <li>Scope: local (block/function) vs global</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Function declaration</span>
+<span class="kw">function</span> <span class="fn">greet</span>(<span class="var">name</span>) {
+  <span class="kw">return</span> <span class="str">`Hello, </span><span class="op">${</span><span class="var">name</span><span class="op">}</span><span class="str">!`</span>;
+}
+
+<span class="cmt">// Arrow function</span>
+<span class="kw">const</span> <span class="fn">add</span> = (<span class="var">a</span>, <span class="var">b</span>) <span class="op">=></span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>;
+
+<span class="cmt">// Default parameter</span>
+<span class="kw">const</span> <span class="fn">multiply</span> = (<span class="var">x</span>, <span class="var">y</span> = <span class="num">1</span>) <span class="op">=></span> <span class="var">x</span> <span class="op">*</span> <span class="var">y</span>;
+
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">greet</span>(<span class="str">"Alice"</span>));  <span class="cmt">// "Hello, Alice!"</span>
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>));       <span class="cmt">// 8</span></code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Write functions (declaration, expression, arrow) to calculate area of a circle, rectangle,
+                            and triangle.</p>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section class="content-section" id="js-dom">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> DOM Manipulation</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-dom"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li>DOM = <strong>Document Object Model</strong> — tree representation of the page</li>
+                            <li><code>document.getElementById()</code>, <code>.querySelector()</code>,
+                                <code>.querySelectorAll()</code></li>
+                            <li>Modify content: <code>.textContent</code>, <code>.innerHTML</code></li>
+                            <li>Modify styles: <code>.style.property</code>, <code>.classList.add/remove/toggle</code>
+                            </li>
+                            <li>Create/remove elements: <code>.createElement()</code>, <code>.appendChild()</code>,
+                                <code>.remove()</code></li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Select elements</span>
+<span class="kw">const</span> <span class="var">title</span> = <span class="var">document</span>.<span class="fn">querySelector</span>(<span class="str">'h1'</span>);
+<span class="kw">const</span> <span class="var">items</span> = <span class="var">document</span>.<span class="fn">querySelectorAll</span>(<span class="str">'.item'</span>);
+
+<span class="cmt">// Modify content & style</span>
+<span class="var">title</span>.<span class="prop">textContent</span> = <span class="str">'New Title'</span>;
+<span class="var">title</span>.<span class="prop">style</span>.<span class="prop">color</span> = <span class="str">'#E44D26'</span>;
+
+<span class="cmt">// Create & append a new element</span>
+<span class="kw">const</span> <span class="var">newItem</span> = <span class="var">document</span>.<span class="fn">createElement</span>(<span class="str">'li'</span>);
+<span class="var">newItem</span>.<span class="prop">textContent</span> = <span class="str">'New Item'</span>;
+<span class="var">document</span>.<span class="fn">querySelector</span>(<span class="str">'ul'</span>).<span class="fn">appendChild</span>(<span class="var">newItem</span>);</code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Build a dynamic to-do list: add items with an input field, toggle completion, and delete
+                            items — all using DOM methods.</p>
+                    </div>
+                </section>
+
+                <!-- Section 5 -->
+                <section class="content-section" id="js-events">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Event Handling</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-events"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li><code>addEventListener(event, handler)</code> is the preferred method</li>
+                            <li>Common events: <code>click</code>, <code>submit</code>, <code>keydown</code>,
+                                <code>input</code>, <code>mouseover</code>, <code>load</code></li>
+                            <li>The <strong>event object</strong> contains details (target, type, key, etc.)</li>
+                            <li><code>event.preventDefault()</code> stops default browser behavior</li>
+                            <li><strong>Event delegation</strong>: listen on parent, check <code>event.target</code>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Click event</span>
+<span class="var">document</span>.<span class="fn">querySelector</span>(<span class="str">'#myBtn'</span>)
+  .<span class="fn">addEventListener</span>(<span class="str">'click'</span>, (<span class="var">e</span>) <span class="op">=></span> {
+    <span class="fn">alert</span>(<span class="str">'Button clicked!'</span>);
+  });
+
+<span class="cmt">// Form submit with preventDefault</span>
+<span class="var">document</span>.<span class="fn">querySelector</span>(<span class="str">'form'</span>)
+  .<span class="fn">addEventListener</span>(<span class="str">'submit'</span>, (<span class="var">e</span>) <span class="op">=></span> {
+    <span class="var">e</span>.<span class="fn">preventDefault</span>();
+    <span class="kw">const</span> <span class="var">data</span> = <span class="kw">new</span> <span class="cls">FormData</span>(<span class="var">e</span>.<span class="prop">target</span>);
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="var">data</span>.<span class="fn">get</span>(<span class="str">'name'</span>));
+  });</code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Create a form that validates input on submit (prevent default), shows errors, and displays a
+                            success message.</p>
+                    </div>
+                </section>
+
+                <!-- Section 6 -->
+                <section class="content-section" id="js-async">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> Async &amp; Promises</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-async"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>📝 Lecture Notes</h4>
+                        <ul>
+                            <li>JavaScript is <strong>single-threaded</strong> but uses an <strong>event loop</strong>
+                            </li>
+                            <li><strong>Callbacks</strong>: functions passed as arguments, executed later</li>
+                            <li><strong>Promises</strong>: represent eventual completion or failure of async operation
+                            </li>
+                            <li><code>.then()</code>, <code>.catch()</code>, <code>.finally()</code> for chaining</li>
+                            <li><code>async/await</code>: syntactic sugar over Promises for cleaner code</li>
+                            <li><code>fetch()</code> for making HTTP requests</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">javascript</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Fetch API with async/await</span>
+<span class="kw">async function</span> <span class="fn">getUsers</span>() {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="var">res</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'https://jsonplaceholder.typicode.com/users'</span>);
+    <span class="kw">const</span> <span class="var">users</span> = <span class="kw">await</span> <span class="var">res</span>.<span class="fn">json</span>();
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="var">users</span>);
+  } <span class="kw">catch</span> (<span class="var">err</span>) {
+    <span class="fn">console</span>.<span class="fn">error</span>(<span class="str">'Error:'</span>, <span class="var">err</span>);
+  }
+}
+
+<span class="fn">getUsers</span>();</code></pre>
+                    </div>
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <p>Fetch data from a public API and display the results in a formatted list on the page using
+                            DOM manipulation.</p>
+                    </div>
+                </section>
+
+                <!-- Section 7 -->
+                <section class="content-section" id="js-practice">
+                    <div class="section-header">
+                        <h2><span class="section-number">07</span> Practice Exercises</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="js-practice"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <div class="notes-block">
+                        <h4>🎯 Comprehensive Exercises</h4>
+                        <ol>
+                            <li><strong>Calculator:</strong> Build a calculator with +, −, ×, ÷ using event listeners
+                                and DOM.</li>
+                            <li><strong>Quiz App:</strong> Multiple-choice quiz with scoring, timer, and result display.
+                            </li>
+                            <li><strong>Weather App:</strong> Fetch weather data from an API and display with dynamic
+                                UI.</li>
+                            <li><strong>Image Slider:</strong> Automatic slideshow with next/prev buttons and dot
+                                indicators.</li>
+                            <li><strong>Expense Tracker:</strong> Add/remove expenses, calculate total, store in
+                                localStorage.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="index.html">Back to Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/code-copy.js"></script>
+    <script src="js/code-runner.js"></script>
+</body>
+
+</html>

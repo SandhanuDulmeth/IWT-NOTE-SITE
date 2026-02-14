@@ -1,0 +1,482 @@
+/* =============================================
+   IWT NOTE SITE — Code Block & Syntax Styles
+   ============================================= */
+
+/* Inline Code */
+code:not([class]) {
+    background: var(--bg-inline-code);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: var(--font-code);
+    font-size: 0.88em;
+    font-weight: 500;
+}
+
+/* Code Block Container */
+.code-block {
+    background: var(--bg-code);
+    border-radius: var(--radius-md);
+    margin: var(--space-md) 0 var(--space-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+/* Code Header Bar */
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-code-header);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-lang {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.code-lang .dots {
+    display: flex;
+    gap: 6px;
+}
+
+.code-lang .dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.code-lang .dots span:nth-child(1) {
+    background: #ff5f57;
+}
+
+.code-lang .dots span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.code-lang .dots span:nth-child(3) {
+    background: #28c840;
+}
+
+.code-lang-label {
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    color: #7f849c;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Copy Button */
+.copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: #a6adc8;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #cdd6f4;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-btn.copied {
+    color: #a6e3a1;
+    border-color: rgba(166, 227, 161, 0.3);
+}
+
+/* Code Content */
+.code-block pre {
+    margin: 0;
+    padding: var(--space-lg);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.code-block pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.code-block pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.code-block pre::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+}
+
+.code-block code {
+    font-family: var(--font-code);
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    color: var(--text-code);
+    background: none;
+    padding: 0;
+}
+
+/* ---------- Syntax Highlighting (Catppuccin-inspired) ---------- */
+.code-block .kw {
+    color: #cba6f7;
+}
+
+/* Keywords: function, const, var, if, return */
+.code-block .str {
+    color: #a6e3a1;
+}
+
+/* Strings */
+.code-block .num {
+    color: #fab387;
+}
+
+/* Numbers */
+.code-block .cmt {
+    color: #6c7086;
+    font-style: italic;
+}
+
+/* Comments */
+.code-block .tag {
+    color: #f38ba8;
+}
+
+/* HTML tags */
+.code-block .attr {
+    color: #89b4fa;
+}
+
+/* Attributes */
+.code-block .val {
+    color: #a6e3a1;
+}
+
+/* Attribute values */
+.code-block .fn {
+    color: #89dceb;
+}
+
+/* Function names */
+.code-block .op {
+    color: #94e2d5;
+}
+
+/* Operators */
+.code-block .cls {
+    color: #f9e2af;
+}
+
+/* Class names */
+.code-block .prop {
+    color: #89b4fa;
+}
+
+/* Properties */
+.code-block .punc {
+    color: #a6adc8;
+}
+
+/* Punctuation */
+.code-block .var {
+    color: #cdd6f4;
+}
+
+/* Variables */
+.code-block .sel {
+    color: #f9e2af;
+}
+
+/* CSS selectors */
+.code-block .css-prop {
+    color: #89b4fa;
+}
+
+/* CSS property names */
+.code-block .css-val {
+    color: #a6e3a1;
+}
+
+/* CSS values */
+.code-block .php-var {
+    color: #cba6f7;
+}
+
+/* PHP variables */
+
+/* =============================================
+   Code Runner — Run Button & Output Panel
+   ============================================= */
+
+/* Run Button (matches .copy-btn style with green accent) */
+.run-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border: 1px solid rgba(166, 227, 161, 0.25);
+    border-radius: var(--radius-sm);
+    background: rgba(166, 227, 161, 0.08);
+    color: #a6e3a1;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-right: 6px;
+}
+
+.run-btn:hover {
+    background: rgba(166, 227, 161, 0.18);
+    color: #b8f0b0;
+    border-color: rgba(166, 227, 161, 0.45);
+}
+
+.run-btn:active {
+    transform: scale(0.96);
+}
+
+/* ---------- Output Panel ---------- */
+.output-panel {
+    display: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-code);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow: hidden;
+}
+
+.output-panel.active {
+    display: block;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 600px;
+    }
+}
+
+/* Output Header Bar */
+.output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px var(--space-md);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.output-title {
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    color: #7f849c;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.output-close-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: #a6adc8;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.output-close-btn:hover {
+    background: rgba(243, 139, 168, 0.12);
+    color: #f38ba8;
+    border-color: rgba(243, 139, 168, 0.3);
+}
+
+/* Output Content Area */
+.output-content {
+    padding: 0;
+    max-height: 450px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.output-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.output-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.output-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+}
+
+/* ---------- Live Preview (iframe for HTML/CSS) ---------- */
+.live-preview {
+    width: 100%;
+    min-height: 150px;
+    max-height: 500px;
+    border: none;
+    background: #ffffff;
+    display: block;
+}
+
+/* ---------- JavaScript Console Output ---------- */
+.console-output {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-code);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.console-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.console-line:last-child {
+    border-bottom: none;
+}
+
+.console-prefix {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.console-text {
+    color: var(--text-code);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Console log levels */
+.console-line.log .console-prefix {
+    color: #89b4fa;
+    background: rgba(137, 180, 250, 0.1);
+}
+
+.console-line.warn .console-prefix {
+    color: #f9e2af;
+    background: rgba(249, 226, 175, 0.1);
+}
+
+.console-line.warn .console-text {
+    color: #f9e2af;
+}
+
+.console-line.error .console-prefix {
+    color: #f38ba8;
+    background: rgba(243, 139, 168, 0.1);
+}
+
+.console-line.error .console-text {
+    color: #f38ba8;
+}
+
+.console-line.info .console-prefix {
+    color: #94e2d5;
+    background: rgba(148, 226, 213, 0.1);
+}
+
+.console-line.clear .console-prefix {
+    color: #6c7086;
+    background: rgba(108, 112, 134, 0.1);
+}
+
+/* Hidden iframe for JS execution */
+.js-sandbox {
+    width: 0;
+    height: 0;
+    border: none;
+    position: absolute;
+    visibility: hidden;
+}
+
+/* ---------- PHP Notice ---------- */
+.php-notice {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(249, 226, 175, 0.06);
+    border-left: 3px solid #f9e2af;
+    margin: var(--space-sm);
+    border-radius: var(--radius-sm);
+}
+
+.php-notice-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+.php-notice-body {
+    color: #cdd6f4;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.php-notice-body strong {
+    color: #f9e2af;
+}
+
+.php-notice-body p {
+    margin: 4px 0;
+    color: #a6adc8;
+}
+
+.php-notice-body code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--font-code);
+    font-size: 0.85em;
+    color: #89b4fa;
+}
+
+.php-notice-steps {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.php-notice-steps ol {
+    margin: 4px 0 0 var(--space-md);
+    padding: 0;
+    color: #a6adc8;
+}
+
+.php-notice-steps li {
+    margin: 2px 0;
+}

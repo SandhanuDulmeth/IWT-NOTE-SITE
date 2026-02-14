@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CSS Lecture 2 — CSS Preprocessors (Sass, Less, Stylus), Modern CSS features, CSS Variables, and Attribute Selectors.">
+    <title>Lecture 2 — CSS Preprocessors &amp; Modern CSS — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">CSS Lectures</div>
+                    <a href="css-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Introduction to CSS</a>
+                    <a href="css-lecture2.html" class="nav-link active"><span class="nav-icon">2</span> Preprocessors
+                        &amp; Modern CSS</a>
+                    <a href="css-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Layouts &amp;
+                        Responsive</a>
+                    <a href="css-lecture4.html" class="nav-link"><span class="nav-icon">4</span> HTML &amp; CSS
+                        Reference</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#css-limitations" class="nav-link"><span class="nav-icon">1</span> Limitations &amp;
+                        Preprocessors</a>
+                    <a href="#css-sass" class="nav-link"><span class="nav-icon">2</span> Sass</a>
+                    <a href="#css-others" class="nav-link"><span class="nav-icon">3</span> Less &amp; Stylus</a>
+                    <a href="#css-modern" class="nav-link"><span class="nav-icon">4</span> Modern CSS</a>
+                    <a href="#css-attribute" class="nav-link"><span class="nav-icon">5</span> Attribute Selectors</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">CSS — Lecture 2</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge css">🔵 CSS · Lecture 2</span>
+                    <h1>CSS Preprocessors &amp; Modern CSS</h1>
+                    <p>Limitations of traditional CSS, preprocessors (Sass, Less, Stylus), modern CSS features
+                        including CSS variables, and attribute selectors.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: Limitations & What are Preprocessors   -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-limitations">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Limitations &amp; Preprocessors</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-limitations"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 2</strong> · SCS 1311 · Topics: Traditional CSS problems, preprocessor concept
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>⚠️ Limitations of Traditional CSS</h4>
+                        <ul>
+                            <li>Large stylesheets were <strong>hard to maintain</strong></li>
+                            <li><strong>Code repetition</strong> was common</li>
+                            <li>Difficult to <strong>reuse values</strong> like colors or fonts</li>
+                            <li>No <strong>logic support</strong> (conditions, loops)</li>
+                            <li>Flat structure with <strong>poor organization</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔧 What is a CSS Preprocessor?</h4>
+                        <p>A <strong>CSS preprocessor</strong> is a scripting language that extends CSS.</p>
+                        <ol>
+                            <li>You write code in the preprocessor language</li>
+                            <li>It <strong>compiles</strong> into normal CSS</li>
+                            <li>Browser reads the compiled CSS</li>
+                        </ol>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>✨ Common Features of Preprocessors</h4>
+                        <ul>
+                            <li><strong>Variables</strong> — store reusable values</li>
+                            <li><strong>Nesting</strong> — reflect HTML structure in CSS</li>
+                            <li><strong>Mixins</strong> — reusable code blocks</li>
+                            <li><strong>Functions</strong> — dynamic calculations</li>
+                            <li><strong>Mathematical operations</strong></li>
+                            <li><strong>Better code organization</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏆 Popular CSS Preprocessors</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Preprocessor</th>
+                                    <th style="text-align:left; padding:0.5rem;">Variable Syntax</th>
+                                    <th style="text-align:left; padding:0.5rem;">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Sass</strong></td>
+                                    <td style="padding:0.5rem;"><code>$variable</code></td>
+                                    <td style="padding:0.5rem;">Most popular, feature-rich</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Less</strong></td>
+                                    <td style="padding:0.5rem;"><code>@variable</code></td>
+                                    <td style="padding:0.5rem;">Beginner-friendly, used in Bootstrap v3</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><strong>Stylus</strong></td>
+                                    <td style="padding:0.5rem;"><code>variable =</code></td>
+                                    <td style="padding:0.5rem;">Flexible syntax, less common today</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: Sass Preprocessor                      -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-sass">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Sass Preprocessor</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-sass"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <!-- Variables -->
+                    <div class="notes-block">
+                        <h4>🎨 Sass Variables</h4>
+                        <ul>
+                            <li>Used to store <strong>reusable values</strong></li>
+                            <li>Variables start with <code>$</code></li>
+                            <li>Defined once, reused many times</li>
+                            <li>Browser never sees the variable — Sass replaces it during <strong>compilation</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">scss → css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Sass (SCSS) */</span>
+<span class="sel">$main-color</span><span class="punc">:</span> <span class="css-val">#0066cc</span><span class="punc">;</span>
+
+<span class="sel">.message</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">$main-color</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Compiled CSS */</span>
+<span class="sel">.message</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">#0066cc</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <!-- Nesting -->
+                    <div class="notes-block">
+                        <h4>🪺 Sass Nesting</h4>
+                        <ul>
+                            <li>Nesting reflects the <strong>HTML structure</strong> inside CSS</li>
+                            <li>Rules are nested inside parent selectors</li>
+                            <li>Sass converts them into <strong>flat CSS</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">scss → css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Sass (SCSS) */</span>
+<span class="sel">nav</span> <span class="punc">{</span>
+  <span class="sel">ul</span> <span class="punc">{</span>
+    <span class="css-prop">list-style</span><span class="punc">:</span> <span class="css-val">none</span><span class="punc">;</span>
+  <span class="punc">}</span>
+  <span class="sel">li</span> <span class="punc">{</span>
+    <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">inline-block</span><span class="punc">;</span>
+  <span class="punc">}</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Compiled CSS */</span>
+<span class="sel">nav ul</span> <span class="punc">{</span> <span class="css-prop">list-style</span><span class="punc">:</span> <span class="css-val">none</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">nav li</span> <span class="punc">{</span> <span class="css-prop">display</span><span class="punc">:</span> <span class="css-val">inline-block</span><span class="punc">;</span> <span class="punc">}</span></code></pre>
+                    </div>
+
+                    <!-- Mixins -->
+                    <div class="notes-block">
+                        <h4>🔄 Sass Mixins</h4>
+                        <ul>
+                            <li>Mixins are <strong>reusable blocks</strong> of CSS</li>
+                            <li>Defined using <code>@mixin</code></li>
+                            <li>Used with <code>@include</code></li>
+                            <li>⚠️ Overuse may increase CSS output size</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">scss → css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Sass (SCSS) */</span>
+<span class="sel">@mixin box</span> <span class="punc">{</span>
+  <span class="css-prop">padding</span><span class="punc">:</span> <span class="css-val">10px</span><span class="punc">;</span>
+  <span class="css-prop">border</span><span class="punc">:</span> <span class="css-val">1px solid #ccc</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">.message</span> <span class="punc">{</span>
+  <span class="sel">@include box</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Compiled CSS */</span>
+<span class="sel">.message</span> <span class="punc">{</span>
+  <span class="css-prop">padding</span><span class="punc">:</span> <span class="css-val">10px</span><span class="punc">;</span>
+  <span class="css-prop">border</span><span class="punc">:</span> <span class="css-val">1px solid #ccc</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <!-- Inheritance -->
+                    <div class="notes-block">
+                        <h4>🧬 Sass Inheritance</h4>
+                        <ul>
+                            <li>Allows one selector to <strong>reuse styles</strong> from another</li>
+                            <li>Uses <code>@extend</code></li>
+                            <li>Sass <strong>merges selectors</strong></li>
+                            <li>Not true object-oriented inheritance</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">scss</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">.success</span> <span class="punc">{</span>
+  <span class="sel">@extend .message</span><span class="punc">;</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <!-- Imports -->
+                    <div class="notes-block">
+                        <h4>📥 Sass Imports</h4>
+                        <ul>
+                            <li>Split styles into <strong>multiple files</strong></li>
+                            <li>Combines them into <strong>one CSS file</strong> on compilation</li>
+                            <li>Browser loads only one CSS file</li>
+                            <li>Modern Sass prefers <code>@use</code> instead of <code>@import</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">scss</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">@import</span> <span class="css-val">"buttons"</span><span class="punc">;</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create Sass variables for primary color, font family, and spacing</li>
+                            <li>Write a nested Sass rule for a navigation with <code>ul</code>, <code>li</code>,
+                                <code>a</code>
+                            </li>
+                            <li>Create a mixin for a card component with padding, border, and shadow</li>
+                            <li>Use <code>@extend</code> to share base styles between <code>.btn</code> and
+                                <code>.btn-primary</code>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Less & Stylus                          -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-others">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Less &amp; Stylus</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-others"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💎 Less (Leaner Style Sheets)</h4>
+                        <ul>
+                            <li>Syntax <strong>close to CSS</strong> — beginner-friendly</li>
+                            <li>Variables use <code>@</code></li>
+                            <li>Used in older projects (e.g., <strong>Bootstrap v3</strong>)</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">less</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">@color</span><span class="punc">:</span> <span class="css-val">#333</span><span class="punc">;</span>
+
+<span class="sel">body</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">@color</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🖌️ Stylus</h4>
+                        <ul>
+                            <li>Very <strong>flexible syntax</strong></li>
+                            <li>Can omit braces, colons, semicolons</li>
+                            <li>Variables use <code>=</code></li>
+                            <li>Supports conditionals and logic</li>
+                            <li>Less common today</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">stylus</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code>color = #333
+
+body
+  color color</code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>✅ Advantages of Preprocessors</h4>
+                        <ul>
+                            <li>Cleaner, more <strong>maintainable</strong> code</li>
+                            <li>Better <strong>organization</strong></li>
+                            <li>Faster <strong>team development</strong></li>
+                            <li>Used in many <strong>frameworks</strong></li>
+                        </ul>
+
+                        <h4 style="margin-top:1rem;">❌ Disadvantages of Preprocessors</h4>
+                        <ul>
+                            <li>Need <strong>extra tools</strong></li>
+                            <li><strong>Compilation step</strong> required</li>
+                            <li>Learning curve</li>
+                            <li>Many features <strong>now exist in plain CSS</strong></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Modern CSS                             -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-modern">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Modern CSS</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-modern"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🚀 Why Preprocessors Are Less Needed Today</h4>
+                        <p>Modern CSS includes features that once <strong>required</strong> preprocessors:</p>
+                        <ul>
+                            <li><strong>CSS variables</strong> (Custom Properties)</li>
+                            <li><strong>Native nesting</strong></li>
+                            <li><code>calc()</code> and other <strong>functions</strong></li>
+                            <li>Better <strong>browser support</strong></li>
+                        </ul>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">
+                            Extra build steps, maintenance complexity, and a fragmented ecosystem make preprocessors
+                            less attractive when native CSS can do the job.
+                        </p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🎯 CSS Variables (Custom Properties)</h4>
+                        <ul>
+                            <li>Declared with <code>--</code> prefix</li>
+                            <li>Used with <code>var()</code> function</li>
+                            <li>Can be scoped to any selector (commonly on <code>:root</code>)</li>
+                            <li>Browser understands them natively — <strong>no compilation needed</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">:root</span> <span class="punc">{</span>
+  <span class="css-prop">--main-color</span><span class="punc">:</span> <span class="css-val">#333</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">p</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">var(--main-color)</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💡 Big Picture — Preprocessors vs Modern CSS</h4>
+                        <p>Preprocessors were like <strong>exoskeletons</strong> for CSS — external tools that gave it
+                            muscles, memory, and logic.</p>
+                        <p>Modern CSS is slowly evolving those features <strong>inside its own body</strong>, like an
+                            organism growing new organs. The ecosystem is shifting from <em>"compile before using"</em>
+                            to <em>"use directly in the browser."</em></p>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">
+                            Technology often does this: first we build tools around a language, then the language
+                            absorbs the best ideas and becomes stronger.
+                        </p>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Define CSS custom properties for <code>--primary</code>, <code>--secondary</code>, and
+                                <code>--font-size</code> on <code>:root</code>
+                            </li>
+                            <li>Use <code>var()</code> to apply those variables across multiple elements</li>
+                            <li>Compare writing the same component in Sass vs plain CSS variables</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: Attribute Selectors                    -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-attribute">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Attribute Selectors</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-attribute"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏷️ What Are Attribute Selectors?</h4>
+                        <p>Select elements <strong>based on their attributes</strong>. Useful when:</p>
+                        <ul>
+                            <li>No class or ID available</li>
+                            <li>Styling depends on attribute <strong>value</strong></li>
+                            <li>Targeting forms, links, metadata</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📋 Types of Attribute Selectors</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Selector</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                    <th style="text-align:left; padding:0.5rem;">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr]</code></td>
+                                    <td style="padding:0.5rem;">Has the attribute</td>
+                                    <td style="padding:0.5rem;"><code>input[required]</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr=val]</code></td>
+                                    <td style="padding:0.5rem;">Exact match</td>
+                                    <td style="padding:0.5rem;"><code>input[type="email"]</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr*=val]</code></td>
+                                    <td style="padding:0.5rem;">Contains value</td>
+                                    <td style="padding:0.5rem;"><code>a[href*="google"]</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr^=val]</code></td>
+                                    <td style="padding:0.5rem;">Starts with</td>
+                                    <td style="padding:0.5rem;"><code>a[href^="https"]</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr$=val]</code></td>
+                                    <td style="padding:0.5rem;">Ends with</td>
+                                    <td style="padding:0.5rem;"><code>a[href$=".pdf"]</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>[attr~=val]</code></td>
+                                    <td style="padding:0.5rem;">Word in list</td>
+                                    <td style="padding:0.5rem;"><code>p[class~="highlight"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>[attr|=val]</code></td>
+                                    <td style="padding:0.5rem;">Exact or hyphenated</td>
+                                    <td style="padding:0.5rem;"><code>p[lang|="en"]</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Has attribute */</span>
+<span class="sel">input[required]</span> <span class="punc">{</span>
+  <span class="css-prop">border</span><span class="punc">:</span> <span class="css-val">2px solid red</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Exact match */</span>
+<span class="sel">input[type="email"]</span> <span class="punc">{</span>
+  <span class="css-prop">background-color</span><span class="punc">:</span> <span class="css-val">#f0f8ff</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Contains */</span>
+<span class="sel">a[href*="google"]</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Starts with */</span>
+<span class="sel">a[href^="https"]</span> <span class="punc">{</span>
+  <span class="css-prop">font-weight</span><span class="punc">:</span> <span class="css-val">bold</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Ends with */</span>
+<span class="sel">a[href$=".pdf"]</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Word in space-separated list */</span>
+<span class="sel">p[class~="highlight"]</span> <span class="punc">{</span>
+  <span class="css-prop">background-color</span><span class="punc">:</span> <span class="css-val">yellow</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="cmt">/* Exact or hyphenated */</span>
+<span class="sel">p[lang|="en"]</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">blue</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Style all <code>input[required]</code> fields with a red border</li>
+                            <li>Use <code>[type="email"]</code> to give email fields a unique background</li>
+                            <li>Highlight all external links using <code>[href^="https"]</code></li>
+                            <li>Style PDF links differently using <code>[href$=".pdf"]</code></li>
+                            <li>Use <code>[lang|="en"]</code> to target English-language paragraphs</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="css-lecture1.html" class="lecture-nav-btn prev"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--border-color); text-decoration:none; font-weight:600; color:var(--text-primary);">←
+                        Lecture 1</a>
+                    <a href="css-lecture3.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-weight:600;">Lecture
+                        3 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../css.html">All CSS Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

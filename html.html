@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="HTML Lecture Notes — Learn HTML elements, attributes, forms, semantic markup, and tables with examples.">
+    <title>HTML — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/code.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="html.html" class="nav-link active" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">HTML Lectures</div>
+                    <a href="lectures/html-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Internet, Web
+                        &amp; HTML</a>
+                    <a href="lectures/html-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Elements
+                        &amp; Attributes</a>
+                    <a href="lectures/html-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Lists, Tables
+                        &amp; Images</a>
+                    <a href="lectures/html-lecture4.html" class="nav-link"><span class="nav-icon">4</span> Links &amp;
+                        Forms</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">HTML</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge html">🟠 HTML</span>
+                    <h1>HyperText Markup Language</h1>
+                    <p>HTML is the standard markup language for creating web pages. It describes the structure and
+                        content of a web page using tags and attributes. Select a lecture below to begin studying.</p>
+                </div>
+
+                <!-- Lecture Cards Grid -->
+                <h2 style="margin-bottom: var(--space-lg);">📖 Lectures</h2>
+                <div class="topics-grid">
+                    <!-- Lecture 1 -->
+                    <a href="lectures/html-lecture1.html" class="topic-card html">
+                        <div class="topic-card-icon">1</div>
+                        <h3>Internet, Web &amp; HTML</h3>
+                        <p>Internet basics, WWW, web evolution (1.0–5.0), URLs, DNS, client–server model, and HTML
+                            document structure.</p>
+                        <div class="topic-card-footer">
+                            <span class="topic-card-sections">Lecture 1</span>
+                            <span class="topic-card-arrow">→</span>
+                        </div>
+                    </a>
+
+                    <!-- Lecture 2 -->
+                    <a href="lectures/html-lecture2.html" class="topic-card html">
+                        <div class="topic-card-icon">2</div>
+                        <h3>Elements, Tags &amp; Attributes</h3>
+                        <p>Tags &amp; elements, text formatting, headings, block vs inline, and global/local/boolean
+                            attributes.</p>
+                        <div class="topic-card-footer">
+                            <span class="topic-card-sections">Lecture 2</span>
+                            <span class="topic-card-arrow">→</span>
+                        </div>
+                    </a>
+
+                    <!-- Lecture 3 -->
+                    <a href="lectures/html-lecture3.html" class="topic-card html">
+                        <div class="topic-card-icon">3</div>
+                        <h3>Lists, Tables &amp; Images</h3>
+                        <p>Unordered, ordered, nested &amp; description lists, table structure &amp; merging, images,
+                            figure/figcaption.</p>
+                        <div class="topic-card-footer">
+                            <span class="topic-card-sections">Lecture 3</span>
+                            <span class="topic-card-arrow">→</span>
+                        </div>
+                    </a>
+
+                    <!-- Lecture 4 -->
+                    <a href="lectures/html-lecture4.html" class="topic-card html">
+                        <div class="topic-card-icon">4</div>
+                        <h3>Links, Paths &amp; Forms</h3>
+                        <p>Hyperlinks, file paths, bookmarks, image maps, form elements, input types, and GET vs POST.
+                        </p>
+                        <div class="topic-card-footer">
+                            <span class="topic-card-sections">Lecture 4</span>
+                            <span class="topic-card-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="index.html">Back to Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/code-copy.js"></script>
+    <script src="js/code-runner.js"></script>
+</body>
+
+</html>

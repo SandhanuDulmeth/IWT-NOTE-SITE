@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CSS Lecture 1 — What is CSS, ways to apply CSS, syntax, selectors, combinators, and separation of concerns.">
+    <title>Lecture 1 — Introduction to CSS — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">CSS Lectures</div>
+                    <a href="css-lecture1.html" class="nav-link active"><span class="nav-icon">1</span> Introduction to
+                        CSS</a>
+                    <a href="css-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Preprocessors &amp;
+                        Modern CSS</a>
+                    <a href="css-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Layouts &amp;
+                        Responsive</a>
+                    <a href="css-lecture4.html" class="nav-link"><span class="nav-icon">4</span> HTML &amp; CSS
+                        Reference</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#css-what" class="nav-link"><span class="nav-icon">1</span> What is CSS</a>
+                    <a href="#css-apply" class="nav-link"><span class="nav-icon">2</span> Ways to Apply CSS</a>
+                    <a href="#css-syntax" class="nav-link"><span class="nav-icon">3</span> Syntax &amp; Selectors</a>
+                    <a href="#css-combinators" class="nav-link"><span class="nav-icon">4</span> Combinators</a>
+                    <a href="#css-divspan" class="nav-link"><span class="nav-icon">5</span> div vs span</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">CSS — Lecture 1</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge css">🔵 CSS · Lecture 1</span>
+                    <h1>Introduction to CSS</h1>
+                    <p>What CSS is, why we use it, how to apply it to HTML, CSS syntax, selectors, combinators, and the
+                        philosophy of separation of concerns.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: What is CSS & Why Use It               -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-what">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> What is CSS &amp; Why Use It</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-what"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 1</strong> · SCS 1311 · Topics: CSS definition, purposes, benefits
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>🎨 What is CSS?</h4>
+                        <ul>
+                            <li><strong>CSS (Cascading Style Sheets)</strong> — a stylesheet language used to describe
+                                the presentation of documents written in HTML or XML</li>
+                            <li>Styles HTML elements</li>
+                            <li>Controls: <strong>colors</strong>, <strong>fonts</strong>, <strong>spacing</strong>,
+                                <strong>layout</strong>
+                            </li>
+                            <li>Keeps <strong>content (HTML)</strong> and <strong>design (CSS)</strong> separate</li>
+                            <li>Recommended by <strong>W3C</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>✅ Why Use CSS?</h4>
+                        <ul>
+                            <li>Improves website <strong>appearance</strong></li>
+                            <li>Makes pages <strong>consistent</strong></li>
+                            <li>Easier <strong>maintenance</strong> and updates</li>
+                            <li>One CSS file can style <strong>multiple pages</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💡 Core Concept — Separation of Concerns</h4>
+                        <p>Think of HTML as the <strong>skeleton</strong> of a building and CSS as the <strong>paint,
+                                lighting, and interior design</strong>.</p>
+                        <ul>
+                            <li>Without CSS, the page works. With CSS, the page <em>feels alive</em>.</li>
+                            <li><strong>HTML</strong> = structure</li>
+                            <li><strong>CSS</strong> = presentation</li>
+                            <li><strong>JavaScript</strong> = behavior</li>
+                        </ul>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">
+                            That separation is one of the quiet philosophical victories of web engineering — like
+                            dividing physics into mechanics, electromagnetism, and thermodynamics so each can evolve
+                            without breaking the others.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: Ways to Apply CSS                      -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-apply">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Ways to Apply CSS</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-apply"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>1️⃣ Inline CSS</h4>
+                        <ul>
+                            <li>CSS written inside an HTML element using the <code>style</code> attribute</li>
+                            <li>Affects only <strong>that element</strong></li>
+                            <li>Used for quick tests or small changes</li>
+                            <li>Multiple styles separated with semicolons</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="val">"color: blue; font-size: 18px;"</span><span class="tag">&gt;</span>Hello<span class="tag">&lt;/p&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>2️⃣ Internal (Embedded) CSS</h4>
+                        <ul>
+                            <li>Written inside <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code></li>
+                            <li>Affects only <strong>one HTML page</strong></li>
+                            <li>Good for single-page styling</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+<span class="tag">&lt;style&gt;</span>
+<span class="sel">p</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span>
+  <span class="css-prop">font-size</span><span class="punc">:</span> <span class="css-val">18px</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Hello<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>3️⃣ External CSS</h4>
+                        <ul>
+                            <li>CSS stored in a <strong>separate <code>.css</code> file</strong></li>
+                            <li>Linked to HTML using <code>&lt;link&gt;</code></li>
+                            <li><strong>Reusable</strong> across multiple pages</li>
+                            <li>Easier maintenance — change one file, update all pages</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html + css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- HTML file --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"style.css"</span><span class="tag">&gt;</span>
+
+<span class="cmt">/* style.css */</span>
+<span class="sel">p</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📥 @import Method</h4>
+                        <ul>
+                            <li>Another way to include external CSS</li>
+                            <li>Written inside <code>&lt;style&gt;</code> or a CSS file</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;style&gt;</span>
+<span class="sel">@import</span> <span class="css-val">url("style.css")</span><span class="punc">;</span>
+<span class="tag">&lt;/style&gt;</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Style a paragraph using <strong>inline CSS</strong> (change color and font size)</li>
+                            <li>Create internal CSS in <code>&lt;style&gt;</code> to style all headings</li>
+                            <li>Create an external <code>style.css</code> file and link it to your HTML page</li>
+                            <li>Try the <code>@import</code> method to include a second CSS file</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: CSS Syntax & Selectors                 -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-syntax">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> CSS Syntax &amp; Selectors</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-syntax"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📝 CSS Syntax</h4>
+                        <p>Basic structure of a CSS rule:</p>
+                        <pre style="background: var(--code-bg); padding: 1rem; border-radius: 8px; margin: 0.75rem 0;"><code><span class="sel">selector</span> <span class="punc">{</span>
+  <span class="css-prop">property</span><span class="punc">:</span> <span class="css-val">value</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">h1</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">blue</span><span class="punc">;</span>
+  <span class="css-prop">font-size</span><span class="punc">:</span> <span class="css-val">24px</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🎯 CSS Selectors — Five Categories</h4>
+                        <ol>
+                            <li><strong>Simple selectors</strong> — element, class, ID, universal, group</li>
+                            <li><strong>Combinator selectors</strong> — descendant, child, adjacent sibling, general
+                                sibling</li>
+                            <li><strong>Pseudo-class selectors</strong> — <code>:hover</code>, <code>:focus</code>,
+                                <code>:nth-child()</code>
+                            </li>
+                            <li><strong>Pseudo-element selectors</strong> — <code>::before</code>,
+                                <code>::after</code>, <code>::first-line</code>
+                            </li>
+                            <li><strong>Attribute selectors</strong> — <code>[type="text"]</code>,
+                                <code>[href^="https"]</code>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔤 Simple Selectors</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Selector</th>
+                                    <th style="text-align:left; padding:0.5rem;">Syntax</th>
+                                    <th style="text-align:left; padding:0.5rem;">Selects</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Element</strong></td>
+                                    <td style="padding:0.5rem;"><code>h1</code></td>
+                                    <td style="padding:0.5rem;">All <code>&lt;h1&gt;</code> elements</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Class</strong></td>
+                                    <td style="padding:0.5rem;"><code>.name</code></td>
+                                    <td style="padding:0.5rem;">Elements with <code>class="name"</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>ID</strong></td>
+                                    <td style="padding:0.5rem;"><code>#name</code></td>
+                                    <td style="padding:0.5rem;">Element with unique <code>id="name"</code></td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Universal</strong></td>
+                                    <td style="padding:0.5rem;"><code>*</code></td>
+                                    <td style="padding:0.5rem;">All elements on the page</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><strong>Group</strong></td>
+                                    <td style="padding:0.5rem;"><code>h1, p</code></td>
+                                    <td style="padding:0.5rem;">Multiple selectors at once</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Element selector */</span>
+<span class="sel">h1</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* Class selector */</span>
+<span class="sel">.first-paragraph</span> <span class="punc">{</span> <span class="css-prop">background-color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* ID selector */</span>
+<span class="sel">#second-paragraph</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* Universal selector */</span>
+<span class="sel">*</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* Group selector */</span>
+<span class="sel">h1, p</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">blue</span><span class="punc">;</span> <span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Use an <strong>element selector</strong> to change all <code>&lt;p&gt;</code> text to
+                                green</li>
+                            <li>Create a class <code>.highlight</code> and apply it to two different elements</li>
+                            <li>Use an <strong>ID selector</strong> to uniquely style one heading</li>
+                            <li>Use the <strong>universal selector</strong> to set a default font family</li>
+                            <li>Group <code>h1</code>, <code>h2</code>, <code>h3</code> to share the same color</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Combinator Selectors                   -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-combinators">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Combinator Selectors</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-combinators"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔗 Combinator Selectors</h4>
+                        <p>Select elements based on their <strong>relationship</strong> to other elements.</p>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Combinator</th>
+                                    <th style="text-align:left; padding:0.5rem;">Symbol</th>
+                                    <th style="text-align:left; padding:0.5rem;">Selects</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Descendant</strong></td>
+                                    <td style="padding:0.5rem;"><code>space</code></td>
+                                    <td style="padding:0.5rem;">All nested elements (children, grandchildren, etc.)
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Child</strong></td>
+                                    <td style="padding:0.5rem;"><code>&gt;</code></td>
+                                    <td style="padding:0.5rem;">Only <strong>direct</strong> children</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><strong>Adjacent sibling</strong></td>
+                                    <td style="padding:0.5rem;"><code>+</code></td>
+                                    <td style="padding:0.5rem;">Element <strong>immediately after</strong> another</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><strong>General sibling</strong></td>
+                                    <td style="padding:0.5rem;"><code>~</code></td>
+                                    <td style="padding:0.5rem;">All siblings <strong>after</strong> an element</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">/* Descendant — all p inside div */</span>
+<span class="sel">div p</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">green</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* Child — only direct p children of div */</span>
+<span class="sel">div &gt; p</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">blue</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* Adjacent sibling — first p right after h2 */</span>
+<span class="sel">h2 + p</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span> <span class="punc">}</span>
+
+<span class="cmt">/* General sibling — all p after h2 */</span>
+<span class="sel">h2 ~ p</span> <span class="punc">{</span> <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">purple</span><span class="punc">;</span> <span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Use the <strong>descendant selector</strong> to style only paragraphs inside a specific
+                                <code>&lt;div&gt;</code>
+                            </li>
+                            <li>Use the <strong>child selector</strong> to style only direct children of a container
+                            </li>
+                            <li>Use <code>h2 + p</code> to style only the first paragraph after each heading</li>
+                            <li>Use <code>h2 ~ p</code> and compare the difference to the adjacent sibling</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: div vs span & Styling                  -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="css-divspan">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Styling div &amp; span</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="css-divspan"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📦 Styling a <code>&lt;div&gt;</code></h4>
+                        <ul>
+                            <li><code>&lt;div&gt;</code> is a <strong>block-level</strong> container</li>
+                            <li>Used to <strong>group elements</strong></li>
+                            <li>No visual effect by default — styled using CSS</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">div</span> <span class="punc">{</span>
+  <span class="css-prop">border</span><span class="punc">:</span> <span class="css-val">1px solid black</span><span class="punc">;</span>
+  <span class="css-prop">padding</span><span class="punc">:</span> <span class="css-val">10px</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏷️ The <code>&lt;span&gt;</code> Element</h4>
+                        <ul>
+                            <li><strong>Inline</strong> container — does not start a new line</li>
+                            <li>Used to style <strong>part of text</strong> within a block</li>
+                            <li>No visual effect by default</li>
+                            <li>Often used with classes</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html + css</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- HTML --&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="val">"highlight"</span><span class="tag">&gt;</span>important<span class="tag">&lt;/span&gt;</span> information.<span class="tag">&lt;/p&gt;</span>
+
+<span class="cmt">/* CSS */</span>
+<span class="sel">.highlight</span> <span class="punc">{</span>
+  <span class="css-prop">color</span><span class="punc">:</span> <span class="css-val">red</span><span class="punc">;</span>
+  <span class="css-prop">font-weight</span><span class="punc">:</span> <span class="css-val">bold</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚖️ <code>&lt;div&gt;</code> vs <code>&lt;span&gt;</code></h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Element</th>
+                                    <th style="text-align:left; padding:0.5rem;">Type</th>
+                                    <th style="text-align:left; padding:0.5rem;">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;div&gt;</code></td>
+                                    <td style="padding:0.5rem;">Block-level</td>
+                                    <td style="padding:0.5rem;">Groups sections</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;"><code>&lt;span&gt;</code></td>
+                                    <td style="padding:0.5rem;">Inline</td>
+                                    <td style="padding:0.5rem;">Styles part of text</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a <code>&lt;div&gt;</code> with a border, padding, and background color</li>
+                            <li>Use <code>&lt;span&gt;</code> with a class to highlight a keyword within a paragraph
+                            </li>
+                            <li>Build a card layout using <code>&lt;div&gt;</code> for the container and
+                                <code>&lt;span&gt;</code> for inline labels
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <span></span>
+                    <a href="css-lecture2.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--accent); color:white; text-decoration:none; font-weight:600;">Lecture
+                        2 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../css.html">All CSS Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+/* =============================================
+   IWT NOTE SITE — Theme Variables
+   ============================================= */
+
+/* ---------- Light Theme (Default) ---------- */
+[data-theme="light"] {
+    --bg-primary: #f8f9fc;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --bg-input: #f1f3f9;
+    --bg-hover: rgba(99, 102, 241, 0.06);
+    --bg-active: rgba(99, 102, 241, 0.08);
+    --bg-code: #1e1e2e;
+    --bg-code-header: #181825;
+    --bg-inline-code: #e8eaf0;
+
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a6a;
+    --text-muted: #8888a4;
+    --text-code: #cdd6f4;
+
+    --border: #e2e4ef;
+    --border-strong: #cccde0;
+
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-bg: rgba(99, 102, 241, 0.1);
+
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+}
+
+/* ---------- Dark Theme ---------- */
+[data-theme="dark"] {
+    --bg-primary: #0f0f1a;
+    --bg-sidebar: #161625;
+    --bg-card: #1a1a2e;
+    --bg-input: #222238;
+    --bg-hover: rgba(99, 102, 241, 0.1);
+    --bg-active: rgba(99, 102, 241, 0.15);
+    --bg-code: #11111b;
+    --bg-code-header: #0a0a15;
+    --bg-inline-code: #2a2a44;
+
+    --text-primary: #e4e4f0;
+    --text-secondary: #a0a0bf;
+    --text-muted: #6a6a88;
+    --text-code: #cdd6f4;
+
+    --border: #2a2a44;
+    --border-strong: #3a3a55;
+
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --accent-bg: rgba(129, 140, 248, 0.12);
+
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
+}
+
+/* Smooth transitions for theme switching */
+body,
+.sidebar,
+.top-bar,
+.notes-block,
+.topic-card,
+.progress-overview,
+.search-input,
+.theme-toggle-btn,
+.code-block,
+.code-header {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
