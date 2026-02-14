@@ -42,10 +42,6 @@
                         <span class="nav-icon">📝</span>
                         <span>Practicals</span>
                     </a>
-                    <a href="../practicals.html" class="nav-link" data-page="practicals.html">
-                        <span class="nav-icon">📝</span>
-                        <span>Practicals</span>
-                    </a>
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Topics</div>
@@ -70,7 +66,11 @@
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">On this page</div>
+                    <a href="#html-elements" class="nav-link"><span class="nav-icon">1</span> Elements &amp; Tags</a>
+                    <a href="#html-structure" class="nav-link"><span class="nav-icon">2</span> Structure</a>
                     <a href="#html-attributes" class="nav-link"><span class="nav-icon">3</span> Attributes</a>
+                    <a href="#html-formatting" class="nav-link"><span class="nav-icon">4</span> Formatting</a>
+                    <a href="#html-block-inline" class="nav-link"><span class="nav-icon">5</span> Block vs Inline</a>
                 </div>
             </nav>
             <div class="sidebar-footer">
@@ -98,146 +98,274 @@
                     <p>HTML elements, tags, text formatting, headings, paragraphs, and attribute types.</p>
                 </div>
 
-                <!-- Section 3: Lecture 2 (continued) — HTML Attributes -->
+                <!-- Section 1: Elements & Tags -->
+                <section class="content-section" id="html-elements">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Elements, Tags &amp; Markup</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-elements"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>❓ What is HTML?</h4>
+                        <ul>
+                            <li><strong>HTML</strong> stands for <strong>Hypertext Markup Language</strong>.</li>
+                            <li>It is the <strong>standard language</strong> used to create and design the
+                                <strong>structure
+                                    of a web page</strong>.</li>
+                            <li>It helps organized content, define structure, and create relationships between elements.
+                            </li>
+                            <li>HTML uses <strong>markup</strong> to annotate text, images, and other content.</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏷️ Tags and Elements</h4>
+                        <p><strong>Tags:</strong> Keywords inside angle brackets <code>&lt; &gt;</code>. They tell the
+                            browser how to display content.</p>
+                        <p><strong>Element:</strong> Consists of the Opening Tag + Content + Closing Tag.</p>
+                        <br>
+                        <h5>Syntax of a Tag</h5>
+                        <pre><code>&lt;tagname&gt;content&lt;/tagname&gt;</code></pre>
+
+                        <h5>Example Element</h5>
+                        <pre><code>&lt;p&gt;Hello World&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>Types of Tags/Elements</h4>
+
+                        <h5>1. Paired Elements</h5>
+                        <p>Have both an opening and a closing tag.</p>
+                        <ul>
+                            <li><code>&lt;p&gt;Text&lt;/p&gt;</code></li>
+                            <li><code>&lt;h1&gt;Heading&lt;/h1&gt;</code></li>
+                        </ul>
+
+                        <h5>2. Self-closing (Void) Elements</h5>
+                        <p>Have no closing tag and no content.</p>
+                        <ul>
+                            <li><code>&lt;br&gt;</code> (Line break)</li>
+                            <li><code>&lt;hr&gt;</code> (Horizontal rule)</li>
+                            <li><code>&lt;img&gt;</code> (Image)</li>
+                            <li><code>&lt;input&gt;</code> (Input field)</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔄 Nesting Elements</h4>
+                        <p>Elements can go inside each other. Proper nesting is crucial.</p>
+                        <p><strong>Correct:</strong>
+                            <code>&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; text.&lt;/p&gt;</code>
+                        </p>
+                        <p><strong>Incorrect:</strong>
+                            <code>&lt;p&gt;This is &lt;strong&gt;important&lt;/p&gt;&lt;/strong&gt;</code>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 2: Document Structure -->
+                <section class="content-section" id="html-structure">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> Document Structure</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-structure"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang-label">Basic HTML Structure</span>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+    &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🏗️ Roles of Each Section</h4>
+                        <ul>
+                            <li><code>&lt;!DOCTYPE html&gt;</code>: Declares the document type as
+                                <strong>HTML5</strong>.
+                                Prevents "quirks mode".</li>
+                            <li><code>&lt;html&gt;</code>: The root element containing the entire document.</li>
+                            <li><code>&lt;head&gt;</code>: Contains <strong>metadata</strong> (not visible on the page).
+                                Includes title, CSS links, fonts, etc.</li>
+                            <li><code>&lt;body&gt;</code>: Contains everything <strong>visible</strong> to the user
+                                (headings, text, images, etc.).</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>💬 HTML Comments</h4>
+                        <p>Notes inside code, not displayed in browsers. used for explanations or disabling code.</p>
+                        <pre><code>&lt;!-- This is a comment --&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Section 3: Attributes -->
                 <section class="content-section" id="html-attributes">
                     <div class="section-header">
                         <h2><span class="section-number">03</span> HTML Attributes</h2>
                         <label class="completion-toggle"><input type="checkbox" data-section="html-attributes"><span
                                 class="check-box">✓</span><span class="check-label">Done</span></label>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                        <strong>Lecture 2 (continued)</strong> · Topics: Attribute syntax, common attributes,
-                        global/local/boolean types
-                    </p>
 
-                    <!-- What are Attributes -->
                     <div class="notes-block">
                         <h4>📝 What Are Attributes?</h4>
                         <ul>
-                            <li>Provide <strong>extra information</strong> about an element</li>
-                            <li>Written inside the <strong>opening tag</strong></li>
+                            <li>Provide <strong>extra information</strong> about an element.</li>
+                            <li>Written inside the <strong>opening tag</strong>.</li>
                             <li>Format: <code>attribute="value"</code></li>
                         </ul>
                     </div>
 
-                    <!-- Image Attributes -->
                     <div class="notes-block">
-                        <h4>🖼️ Image Attributes</h4>
-                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
-                            <thead>
-                                <tr style="border-bottom:2px solid var(--border-color);">
-                                    <th style="text-align:left; padding:0.5rem;">Attribute</th>
-                                    <th style="text-align:left; padding:0.5rem;">Purpose</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom:1px solid var(--border-color);">
-                                    <td style="padding:0.5rem;"><code>src</code></td>
-                                    <td style="padding:0.5rem;">Image source (file path or URL)</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--border-color);">
-                                    <td style="padding:0.5rem;"><code>width</code></td>
-                                    <td style="padding:0.5rem;">Width of image</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--border-color);">
-                                    <td style="padding:0.5rem;"><code>height</code></td>
-                                    <td style="padding:0.5rem;">Height of image</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:0.5rem;"><code>alt</code></td>
-                                    <td style="padding:0.5rem;">Image description (accessibility)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h4>🔗 Link &amp; Input Attributes</h4>
-                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
-                            <thead>
-                                <tr style="border-bottom:2px solid var(--border-color);">
-                                    <th style="text-align:left; padding:0.5rem;">Attribute</th>
-                                    <th style="text-align:left; padding:0.5rem;">Purpose</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom:1px solid var(--border-color);">
-                                    <td style="padding:0.5rem;"><code>href</code></td>
-                                    <td style="padding:0.5rem;">Link target URL</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--border-color);">
-                                    <td style="padding:0.5rem;"><code>type</code></td>
-                                    <td style="padding:0.5rem;">Input type (text, password, email…)</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:0.5rem;"><code>value</code></td>
-                                    <td style="padding:0.5rem;">Input default value</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h4>Common Attributes</h4>
+                        <h5>For Images (<code>&lt;img&gt;</code>)</h5>
+                        <ul>
+                            <li><code>src</code>: Image source</li>
+                            <li><code>width</code> / <code>height</code>: Dimensions</li>
+                            <li><code>alt</code>: Description (for accessibility)</li>
+                        </ul>
+                        <pre><code>&lt;img src="cat.jpg" width="300" height="200" alt="A cute cat"&gt;</code></pre>
+
+                        <h5>For Links and Inputs</h5>
+                        <ul>
+                            <li><code>href</code>: Link target (for <code>&lt;a&gt;</code>)</li>
+                            <li><code>type</code>: Input type (text, password, etc.)</li>
+                            <li><code>value</code>: Default value</li>
+                        </ul>
                     </div>
 
-                    <!-- Types of Attributes -->
                     <div class="notes-block">
                         <h4>🔖 Types of Attributes</h4>
-                        <p><strong>1. Global Attributes</strong> — can be used on <em>any</em> element</p>
+                        <p><strong>1. Global Attributes</strong> (Any element): <code>id</code>, <code>class</code>,
+                            <code>title</code>.
+                        </p>
+                        <p><strong>2. Local Attributes</strong> (Specific elements): <code>src</code>,
+                            <code>href</code>.
+                        </p>
+                        <p><strong>3. Boolean Attributes</strong> (On/Off, no value): <code>disabled</code>,
+                            <code>required</code>, <code>autofocus</code>.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 4: Text Formatting -->
+                <section class="content-section" id="html-formatting">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Text Formatting</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-formatting"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>Headings &amp; Paragraphs</h4>
                         <ul>
-                            <li><code>id</code> — unique identifier (must be unique on page)</li>
-                            <li><code>class</code> — reusable group name for styling</li>
-                            <li><code>title</code> — tooltip text on hover</li>
-                        </ul>
-                        <p><strong>2. Local Attributes</strong> — specific to certain elements</p>
-                        <ul>
-                            <li><code>src</code>, <code>alt</code> (for <code>&lt;img&gt;</code>)</li>
-                            <li><code>href</code> (for <code>&lt;a&gt;</code>)</li>
-                        </ul>
-                        <p><strong>3. Boolean Attributes</strong> — present or absent, no value required</p>
-                        <ul>
-                            <li><code>disabled</code> — disables the element</li>
-                            <li><code>required</code> — makes input mandatory</li>
-                            <li><code>autofocus</code> — focuses element on page load</li>
+                            <li><strong>Headings:</strong> <code>&lt;h1&gt;</code> (most important) to
+                                <code>&lt;h6&gt;</code> (least important). Used for structure.
+                            </li>
+                            <li><strong>Paragraph:</strong> <code>&lt;p&gt;</code> defines a paragraph. Browser adds
+                                spacing.</li>
                         </ul>
                     </div>
 
-                    <!-- Code: Attributes Examples -->
-                    <div class="code-block">
-                        <div class="code-header">
-                            <div class="code-lang">
-                                <div class="dots"><span></span><span></span><span></span></div><span
-                                    class="code-lang-label">html</span>
-                            </div>
-                            <button class="copy-btn">📋 Copy</button>
-                        </div>
-                        <pre><code><span class="cmt">&lt;!-- Image with attributes --&gt;</span>
-<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"cat.jpg"</span> <span class="attr">width</span>=<span class="val">"300"</span> <span class="attr">height</span>=<span class="val">"200"</span> <span class="attr">alt</span>=<span class="val">"A cute cat"</span><span class="tag">&gt;</span>
-
-<span class="cmt">&lt;!-- Link --&gt;</span>
-<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://example.com"</span><span class="tag">&gt;</span>Go<span class="tag">&lt;/a&gt;</span>
-
-<span class="cmt">&lt;!-- Input types --&gt;</span>
-<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"password"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">value</span>=<span class="val">"Hello"</span><span class="tag">&gt;</span>
-
-<span class="cmt">&lt;!-- Boolean attributes --&gt;</span>
-<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">required</span> <span class="attr">autofocus</span><span class="tag">&gt;</span>
-<span class="tag">&lt;button</span> <span class="attr">disabled</span><span class="tag">&gt;</span>Can't click<span class="tag">&lt;/button&gt;</span>
-
-<span class="cmt">&lt;!-- Global attributes --&gt;</span>
-<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"main"</span> <span class="attr">class</span>=<span class="val">"container"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p</span> <span class="attr">title</span>=<span class="val">"Tooltip text"</span><span class="tag">&gt;</span>Hover me<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/div&gt;</span></code></pre>
+                    <div class="notes-block">
+                        <h4>Breaks &amp; Rules</h4>
+                        <ul>
+                            <li><code>&lt;br&gt;</code>: Single line break.</li>
+                            <li><code>&lt;hr&gt;</code>: Horizontal rule (thematic break).</li>
+                        </ul>
                     </div>
 
-                    <div class="exercise-block">
-                        <h4>🏋️ Practice</h4>
-                        <ol>
-                            <li>Add an image with <code>src</code>, <code>alt</code>, <code>width</code>, and
-                                <code>height</code> attributes
-                            </li>
-                            <li>Create links using <code>href</code> to external websites</li>
-                            <li>Build a form with <code>required</code>, <code>disabled</code>, and
-                                <code>autofocus</code> boolean attributes
-                            </li>
-                            <li>Use <code>id</code>, <code>class</code>, and <code>title</code> global attributes on
-                                various elements</li>
-                        </ol>
+                    <div class="notes-block">
+                        <h4>Inline Text Formatting (Semantic)</h4>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Tag</th>
+                                    <th style="text-align:left; padding:0.5rem;">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;strong&gt;</code></td>
+                                    <td style="padding:0.5rem;">Strong importance (Bold)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;em&gt;</code></td>
+                                    <td style="padding:0.5rem;">Emphasis (Italic)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;u&gt;</code></td>
+                                    <td style="padding:0.5rem;">Underline</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;mark&gt;</code></td>
+                                    <td style="padding:0.5rem;">Highlight</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;sup&gt;</code></td>
+                                    <td style="padding:0.5rem;">Superscript (x<sup>2</sup>)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;"><code>&lt;sub&gt;</code></td>
+                                    <td style="padding:0.5rem;">Subscript (H<sub>2</sub>O)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>Generic Inline Container</h4>
+                        <p><code>&lt;span&gt;</code> is a non-semantic inline container used for styling parts of text.
+                        </p>
+                        <pre><code>&lt;p&gt;This is &lt;span class="highlight"&gt;special&lt;/span&gt; text.&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Section 5: Block vs Inline -->
+                <section class="content-section" id="html-block-inline">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Block vs Inline Elements</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="html-block-inline"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Block Elements</th>
+                                    <th style="text-align:left; padding:0.5rem;">Inline Elements</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Start on a <strong>new line</strong></td>
+                                    <td style="padding:0.5rem;">Do <strong>not</strong> start on a new line</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Take <strong>full width</strong> available</td>
+                                    <td style="padding:0.5rem;">Take only <strong>needed space</strong></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Used for <strong>structure</strong> (e.g., div, p, h1)
+                                    </td>
+                                    <td style="padding:0.5rem;">Used inside <strong>text</strong> (e.g., span, a,
+                                        strong)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
