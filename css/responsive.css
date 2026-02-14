@@ -99,6 +99,42 @@
     .code-block code {
         font-size: var(--font-size-xs);
     }
+
+
+
+    /* Practicals Page Responsive (Tablet/Mobile) */
+    .practicals-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .filter-buttons {
+        justify-content: center;
+    }
+
+    .practical-search input {
+        width: 100%;
+    }
+
+    .practical-header {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .practical-title-group h3 {
+        font-size: var(--font-size-md);
+    }
+
+    .practical-actions {
+        flex-wrap: wrap;
+    }
+
+    .btn-download,
+    .btn-view-answer {
+        flex: 1;
+        justify-content: center;
+    }
 }
 
 /* ---------- Small Mobile (≤ 480px) ---------- */
@@ -158,5 +194,25 @@
     .run-btn {
         padding: 3px 8px;
         font-size: 0.7rem;
+    }
+
+    .run-btn {
+        padding: 3px 8px;
+        font-size: 0.7rem;
+    }
+
+    /* Practicals Page Small Mobile */
+    .practical-item {
+        padding: var(--space-md);
+    }
+
+    .practical-actions {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .btn-download,
+    .btn-view-answer {
+        width: 100%;
     }
 }

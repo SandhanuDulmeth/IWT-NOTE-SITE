@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IWT Practicals — Hands-on exercises for HTML, CSS, JavaScript, and PHP.">
+    <title>IWT Practicals — Practice & Learn</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/code.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="page-wrapper">
+        <!-- ========== SIDEBAR ========== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div>
+                        <span class="logo-badge">v1.0</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Search -->
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="index.html" class="nav-link" data-page="index.html">
+                        <span class="nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                    <a href="practicals.html" class="nav-link active" data-page="practicals.html">
+                        <span class="nav-icon">📝</span>
+                        <span>Practicals</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="html.html" class="nav-link" data-page="html.html">
+                        <span class="nav-dot html"></span>
+                        <span>HTML</span>
+                        <span class="completion-check">✓</span>
+                    </a>
+                    <a href="css.html" class="nav-link" data-page="css.html">
+                        <span class="nav-dot css"></span>
+                        <span>CSS</span>
+                        <span class="completion-check">✓</span>
+                    </a>
+                    <a href="javascript.html" class="nav-link" data-page="javascript.html">
+                        <span class="nav-dot js"></span>
+                        <span>JavaScript</span>
+                        <span class="completion-check">✓</span>
+                    </a>
+                    <a href="php.html" class="nav-link" data-page="php.html">
+                        <span class="nav-dot php"></span>
+                        <span>PHP</span>
+                        <span class="completion-check">✓</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle">
+                    <span>🌙</span> Dark Mode
+                </button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label">
+                        <span>Progress</span>
+                        <span id="mini-progress-label">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="main-content">
+            <!-- Top Bar (mobile) -->
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <span class="top-bar-title">Practicals</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge" style="background: var(--bg-hover); color: var(--text-primary);">💻
+                        Hand-on Practice</span>
+                    <h1>Practical Exercises</h1>
+                    <p>Apply your knowledge with these coding challenges. Download the PDF instructions and check your
+                        solutions.</p>
+                </div>
+
+                <!-- Filters & Search -->
+                <div class="practicals-controls">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="html">HTML</button>
+                        <button class="filter-btn" data-filter="css">CSS</button>
+                        <button class="filter-btn" data-filter="js">JavaScript</button>
+                        <button class="filter-btn" data-filter="php">PHP</button>
+                    </div>
+                    <div class="practical-search">
+                        <input type="text" id="practical-search-input" placeholder="Search exercises...">
+                    </div>
+                </div>
+
+                <div class="practicals-list" id="practicals-list">
+                    <!-- Practical Items will be injected here by JS -->
+                    <!-- Example Static Item for Structure -->
+                    <div class="practical-item html" data-id="html-1">
+                        <div class="practical-header">
+                            <div class="practical-title-group">
+                                <span class="practical-tag html">HTML</span>
+                                <h3>Practical 1: Basic HTML Structure</h3>
+                            </div>
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="practical-check" data-id="html-1">
+                                <div class="check-box">✓</div>
+                            </label>
+                        </div>
+                        <div class="practical-actions">
+                            <a href="practicals/pdfs/html-practical-1.pdf" class="btn-download" download>
+                                <span>📥</span> Download PDF
+                            </a>
+                            <button class="btn-view-answer" onclick="toggleAnswer('html-1')">
+                                <span>👁️</span> View Answer
+                            </button>
+                        </div>
+                        <div class="practical-answer" id="answer-html-1">
+                            <div class="answer-content">
+                                <p>Here is the basic structure of an HTML document:</p>
+                                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a Heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="practical-item css" data-id="css-1">
+                        <div class="practical-header">
+                            <div class="practical-title-group">
+                                <span class="practical-tag css">CSS</span>
+                                <h3>Practical 1: Introduction to CSS</h3>
+                            </div>
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="practical-check" data-id="css-1">
+                                <div class="check-box">✓</div>
+                            </label>
+                        </div>
+                        <div class="practical-actions">
+                            <a href="practicals/pdfs/css-practical-1.pdf" class="btn-download" download>
+                                <span>📥</span> Download PDF
+                            </a>
+                            <button class="btn-view-answer" onclick="toggleAnswer('css-1')">
+                                <span>👁️</span> View Answer
+                            </button>
+                        </div>
+                        <div class="practical-answer" id="answer-css-1">
+                            <div class="answer-content">
+                                <p>To style an element by class, use the <code>.</code> selector:</p>
+                                <pre><code class="language-css">.my-class {
+    color: red;
+    font-size: 16px;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHP Practical 1 -->
+                    <div class="practical-item php" data-id="php-1">
+                        <div class="practical-header">
+                            <div class="practical-title-group">
+                                <span class="practical-tag php">PHP</span>
+                                <h3>Practical 1: PHP Basics & Logic</h3>
+                            </div>
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="practical-check" data-id="php-1">
+                                <div class="check-box">✓</div>
+                            </label>
+                        </div>
+                        <div class="practical-actions">
+                            <a href="practicals/pdfs/Practical Sheet 01.pdf" class="btn-download" download>
+                                <span>📥</span> Download PDF
+                            </a>
+                            <button class="btn-view-answer" onclick="toggleAnswer('php-1')">
+                                <span>👁️</span> View Answer
+                            </button>
+                            <a href="practicals/answers/Practical Sheet 01-answers.pdf" class="btn-view-answer"
+                                target="_blank">
+                                <span>📄</span> Answer PDF
+                            </a>
+                        </div>
+                        <div class="practical-answer" id="answer-php-1">
+                            <div class="answer-content">
+                                <h4>1. Basic Conditions</h4>
+                                <pre><code class="language-php">&lt;?php
+// 1. Check if a number is positive, negative, or zero
+$number = -5;
+if ($number > 0) {
+    echo "$number is a positive number.\n";
+} elseif ($number < 0) {
+    echo "$number is a negative number.\n";
+} else {
+    echo "The number is zero.\n";
+}
+
+// 2. Check if a year is a leap year
+$year = 2024;
+if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+    echo "$year is a leap year.\n";
+} else {
+    echo "$year is not a leap year.\n";
+}
+
+// 3. Switch Case for Days
+$dayNumber = 3;
+switch ($dayNumber) {
+    case 1: echo "Monday\n"; break;
+    case 2: echo "Tuesday\n"; break;
+    case 3: echo "Wednesday\n"; break;
+    case 4: echo "Thursday\n"; break;
+    case 5: echo "Friday\n"; break;
+    case 6: echo "Saturday\n"; break;
+    case 7: echo "Sunday\n"; break;
+    default: echo "Invalid day number!\n";
+}
+?&gt;</code></pre>
+
+                                <h4>2. Loops and Logic</h4>
+                                <pre><code class="language-php">&lt;?php
+// 4. Print numbers 1-10
+for ($i = 1; $i <= 10; $i++) echo "$i ";
+
+// 5. Prime Numbers
+for ($i = 2; $i <= 100; $i++) {
+    $isPrime = true;
+    for ($j = 2; $j < $i; $j++) {
+        if ($i % $j == 0) { $isPrime = false; break; }
+    }
+    if ($isPrime) echo "$i ";
+}
+
+// 7. First number divisible by 7
+for ($i = 1; $i <= 100; $i++) {
+    if ($i % 7 == 0) { echo "Found: $i"; break; }
+}
+?&gt;</code></pre>
+
+                                <h4>3. Arrays & Functions</h4>
+                                <pre><code class="language-php">&lt;?php
+// 10. Largest number in array
+$numbers = [12, 45, 7, 89, 23];
+$largest = $numbers[0];
+foreach ($numbers as $num) if ($num > $largest) $largest = $num;
+echo "Largest: $largest";
+
+// 11. Palindrome Check
+$word = "radar";
+if ($word == strrev($word)) echo "$word is a palindrome.";
+
+// 15. Reverse Array manually
+$arr = [10, 20, 30, 40];
+for ($i = count($arr) - 1; $i >= 0; $i--) echo $arr[$i] . " ";
+?&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · Built for learning web development</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/practicals.js"></script>
+</body>
+
+</html>
