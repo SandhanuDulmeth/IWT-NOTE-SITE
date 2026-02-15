@@ -841,6 +841,7 @@ img {
   cursor: pointer;
   font-size: var(--font-size-sm);
   color: var(--text-muted);
+  -webkit-user-select: none;
   user-select: none;
   white-space: nowrap;
   flex-shrink: 0;
@@ -900,6 +901,30 @@ img {
 .notes-block li {
   margin-bottom: var(--space-sm);
   line-height: 1.6;
+}
+
+/* Lecture Table — replaces inline styles on content tables */
+.lecture-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+}
+
+.lecture-table thead tr {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.lecture-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.lecture-table th {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.lecture-table td {
+  padding: 0.5rem;
 }
 
 /* Exercise Block */

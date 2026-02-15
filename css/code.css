@@ -450,59 +450,253 @@ code:not([class]) {
     visibility: hidden;
 }
 
-/* ---------- PHP Notice ---------- */
-.php-notice {
-    display: flex;
-    gap: var(--space-md);
-    padding: var(--space-md) var(--space-lg);
-    background: rgba(249, 226, 175, 0.06);
-    border-left: 3px solid #f9e2af;
+/* ---------- Emoji Icon Fix ---------- */
+.emoji-icon {
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    display: inline-block;
+}
+
+/* ---------- PHP Info Box ---------- */
+.php-info-box {
+    border: 2px solid #8b5cf6;
+    border-radius: 8px;
+    background: #2d1b4e;
+    padding: 1.5rem;
     margin: var(--space-sm);
-    border-radius: var(--radius-sm);
 }
 
-.php-notice-icon {
+[data-theme="light"] .php-info-box {
+    background: #faf5ff;
+    border-color: #8b5cf6;
+}
+
+.php-info-box .info-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: #a78bfa;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #4c1d95;
+}
+
+[data-theme="light"] .php-info-box .info-header {
+    color: #7c3aed;
+    border-bottom-color: #e9d5ff;
+}
+
+.php-info-box .info-header .emoji-icon {
     font-size: 1.5rem;
-    flex-shrink: 0;
-    line-height: 1.4;
 }
 
-.php-notice-body {
-    color: #cdd6f4;
+.php-info-box .info-content p {
+    margin-bottom: 1rem;
+    color: #d1d5db;
+    line-height: 1.6;
     font-size: var(--font-size-sm);
+}
+
+[data-theme="light"] .php-info-box .info-content p {
+    color: #6b7280;
+}
+
+/* PHP Code Display */
+.php-code-display {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+[data-theme="light"] .php-code-display {
+    background: white;
+    border-color: #e5e7eb;
+}
+
+.php-code-display .code-header-label {
+    background: #374151;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #d1d5db;
+    border-bottom: 1px solid #4b5563;
+}
+
+[data-theme="light"] .php-code-display .code-header-label {
+    background: #f3f4f6;
+    color: #4b5563;
+    border-bottom-color: #e5e7eb;
+}
+
+.php-code-display pre {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    background: transparent;
+}
+
+.php-code-display code {
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+    color: #f9fafb;
+}
+
+[data-theme="light"] .php-code-display code {
+    color: #1f2937;
+}
+
+/* How to Run Section */
+.expected-output {
+    background: #1e3a5f;
+    border: 1px solid #1e40af;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+[data-theme="light"] .expected-output {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.expected-output summary {
+    font-weight: 600;
+    color: #93c5fd;
+    user-select: none;
+    list-style: none;
+}
+
+.expected-output summary::-webkit-details-marker {
+    display: none;
+}
+
+[data-theme="light"] .expected-output summary {
+    color: #1e40af;
+}
+
+.expected-output ol {
+    margin-top: 0.75rem;
+    padding-left: 1.5rem;
+    line-height: 1.8;
+    color: #d1d5db;
+    font-size: var(--font-size-sm);
+}
+
+[data-theme="light"] .expected-output ol {
+    color: #374151;
+}
+
+.expected-output code {
+    background: #0f172a;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    color: #f87171;
+}
+
+[data-theme="light"] .expected-output code {
+    background: white;
+    color: #dc2626;
+}
+
+.expected-output a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.expected-output a:hover {
+    text-decoration: underline;
+}
+
+[data-theme="light"] .expected-output a {
+    color: #2563eb;
+}
+
+/* Simulated Output */
+.simulate-output {
+    background: #052e16;
+    border: 1px solid #166534;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+[data-theme="light"] .simulate-output {
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+
+.simulate-output .output-header-label {
+    font-weight: 600;
+    color: #86efac;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+[data-theme="light"] .simulate-output .output-header-label {
+    color: #15803d;
+}
+
+.simulated-result {
+    background: #1f2937;
+    border: 1px solid #4b5563;
+    border-radius: 4px;
+    padding: 1rem;
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+}
+
+[data-theme="light"] .simulated-result {
+    background: white;
+    border-color: #d1d5db;
+}
+
+.simulated-result .output-text {
+    color: #f9fafb;
     line-height: 1.6;
 }
 
-.php-notice-body strong {
-    color: #f9e2af;
+[data-theme="light"] .simulated-result .output-text {
+    color: #1f2937;
 }
 
-.php-notice-body p {
-    margin: 4px 0;
-    color: #a6adc8;
+.simulated-result .output-text.muted {
+    color: #9ca3af;
+    font-style: italic;
 }
 
-.php-notice-body code {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-family: var(--font-code);
-    font-size: 0.85em;
-    color: #89b4fa;
+[data-theme="light"] .simulated-result .output-text.muted {
+    color: #6b7280;
 }
 
-.php-notice-steps {
-    margin-top: var(--space-sm);
-    padding-top: var(--space-sm);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+/* Try Online Button */
+.try-online-btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s;
 }
 
-.php-notice-steps ol {
-    margin: 4px 0 0 var(--space-md);
-    padding: 0;
-    color: #a6adc8;
+.try-online-btn:hover {
+    background: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
-.php-notice-steps li {
-    margin: 2px 0;
+.try-online-btn:active {
+    transform: translateY(0);
 }

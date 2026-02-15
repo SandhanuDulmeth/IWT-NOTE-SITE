@@ -2,6 +2,9 @@
    IWT NOTE SITE — Live Code Runner / Preview
    ============================================= */
 
+// Track the current JS console message handler so we can remove it before adding a new one
+let _activeJSMessageHandler = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     initCodeRunner();
 });
@@ -74,19 +77,24 @@ function createOutputPanel() {
 
     const title = document.createElement('span');
     title.className = 'output-title';
-    title.textContent = '📺 Output';
+    title.innerHTML = '<span class="emoji-icon">&#x1F4FA;</span> Output';
 
     const closeBtn = document.createElement('button');
     closeBtn.className = 'output-close-btn';
     closeBtn.innerHTML = '✕ Close';
     closeBtn.addEventListener('click', () => {
         panel.classList.remove('active');
+        // Clean up JS message listener if active
+        if (_activeJSMessageHandler) {
+            window.removeEventListener('message', _activeJSMessageHandler);
+            _activeJSMessageHandler = null;
+        }
         // Clean up iframe to free resources
         const iframe = panel.querySelector('iframe');
         if (iframe) iframe.remove();
         const consoleDiv = panel.querySelector('.console-output');
         if (consoleDiv) consoleDiv.innerHTML = '';
-        const notice = panel.querySelector('.php-notice');
+        const notice = panel.querySelector('.php-info-box');
         if (notice) notice.remove();
         const label = panel.querySelector('.output-label');
         if (label) label.remove();
@@ -125,7 +133,7 @@ function executeCode(lang, codeEl, outputPanel) {
             runJS(code, content);
             break;
         case 'php':
-            showPHPNotice(content);
+            runPHPCode(code, content);
             break;
     }
 
@@ -331,7 +339,7 @@ function getSmartCSSTemplate(cssCode) {
     // ── Responsive images (Lecture 3, example 7) ────────────────
     if (hasImage) {
         bodyContent += `
-    <img src="https://via.placeholder.com/300x200/4fc3f7/ffffff?text=Sample+Image" alt="Sample image" style="display:block; margin:10px 0;">`;
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%234fc3f7'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-size='18'%3ESample Image%3C/text%3E%3C/svg%3E" alt="Sample image" style="display:block; margin:10px 0;">`;
     }
 
     // ── Always include base elements for general CSS ────────────
@@ -380,7 +388,7 @@ function runCSS(code, container) {
     // Add informational label
     const label = document.createElement('div');
     label.className = 'output-label';
-    label.textContent = '💡 Preview with matching HTML elements';
+    label.innerHTML = '<span class="emoji-icon">&#x1F4A1;</span> Preview with matching HTML elements';
     container.appendChild(label);
 
     // Create iframe with the smart template
@@ -411,6 +419,11 @@ function runJS(code, container) {
     container.appendChild(consoleDiv);
 
     // Listen for messages from the iframe
+    // Remove any previous handler to prevent listener stacking on repeated runs
+    if (_activeJSMessageHandler) {
+        window.removeEventListener('message', _activeJSMessageHandler);
+    }
+
     const messageHandler = (event) => {
         if (!event.data || event.data.type !== 'console') return;
 
@@ -440,6 +453,7 @@ function runJS(code, container) {
     };
 
     window.addEventListener('message', messageHandler);
+    _activeJSMessageHandler = messageHandler;
 
     // Build iframe with overridden console methods
     const iframeCode = `<!DOCTYPE html>
@@ -501,11 +515,6 @@ try {
             consoleDiv.appendChild(emptyLine);
         }
     }, 1000);
-
-    // Clean up message listener after 10 seconds
-    setTimeout(() => {
-        window.removeEventListener('message', messageHandler);
-    }, 10000);
 }
 
 /**
@@ -516,26 +525,105 @@ function escapeScriptContent(code) {
 }
 
 /**
- * PHP Notice — inform user that PHP requires a server
+ * Helper: Escape HTML for safe display
  */
-function showPHPNotice(container) {
-    const notice = document.createElement('div');
-    notice.className = 'php-notice';
-    notice.innerHTML = `
-        <div class="php-notice-icon">⚠️</div>
-        <div class="php-notice-body">
-            <strong>PHP requires a server environment</strong>
-            <p>PHP code cannot run in the browser. To execute this code, you need a local server like <strong>XAMPP</strong>, <strong>WAMP</strong>, or <strong>MAMP</strong>.</p>
-            <div class="php-notice-steps">
-                <p><strong>Quick steps:</strong></p>
+function escapeHTML(html) {
+    const div = document.createElement('div');
+    div.textContent = html;
+    return div.innerHTML;
+}
+
+/**
+ * Helper: Try to simulate simple PHP output
+ */
+function simulatePHPOutput(phpCode) {
+    const code = phpCode.trim();
+
+    // Detect simple echo statements
+    const echoMatch = code.match(/echo\s+["'](.+?)["']/);
+    if (echoMatch) {
+        return `<div class="output-text">${escapeHTML(echoMatch[1])}</div>`;
+    }
+
+    // Detect print statements
+    const printMatch = code.match(/print\s+["'](.+?)["']/);
+    if (printMatch) {
+        return `<div class="output-text">${escapeHTML(printMatch[1])}</div>`;
+    }
+
+    // Detect simple variable echo
+    const varEchoMatch = code.match(/echo\s+\$(\w+)/);
+    if (varEchoMatch) {
+        // Try to find variable assignment
+        const varMatch = code.match(new RegExp(`\\$${varEchoMatch[1]}\\s*=\\s*["'](.+?)["']`));
+        if (varMatch) {
+            return `<div class="output-text">${escapeHTML(varMatch[1])}</div>`;
+        }
+    }
+
+    // Detect phpinfo()
+    if (code.includes('phpinfo()')) {
+        return `<div class="output-text"><em>Would display PHP configuration information</em></div>`;
+    }
+
+    // Default message
+    return `<div class="output-text muted">
+        <em>Output depends on server environment and cannot be simulated accurately.</em><br>
+        <em>Run this code on a PHP server to see actual results.</em>
+    </div>`;
+}
+
+/**
+ * PHP Code Display Handler — shows code, simulated output, and run instructions
+ */
+function runPHPCode(phpCode, container) {
+    const infoBox = document.createElement('div');
+    infoBox.className = 'php-info-box';
+    infoBox.innerHTML = `
+        <div class="info-header">
+            <span class="emoji-icon">&#x2139;&#xFE0F;</span>
+            <strong>PHP Requires a Server</strong>
+        </div>
+        <div class="info-content">
+            <p>PHP code cannot run directly in the browser. It needs a server environment (Apache/Nginx with PHP installed).</p>
+
+            <div class="php-code-display">
+                <div class="code-header-label"><span class="emoji-icon">&#x1F4DD;</span> Your PHP Code:</div>
+                <pre><code>${escapeHTML(phpCode)}</code></pre>
+            </div>
+
+            <details class="expected-output">
+                <summary><span class="emoji-icon">&#x1F4A1;</span> How to run this code</summary>
                 <ol>
-                    <li>Install XAMPP from <code>apachefriends.org</code></li>
-                    <li>Save this code as a <code>.php</code> file in the <code>htdocs</code> folder</li>
-                    <li>Start Apache from the XAMPP Control Panel</li>
-                    <li>Open <code>localhost/yourfile.php</code> in a browser</li>
+                    <li><strong>Local Server:</strong> Use XAMPP, WAMP, or MAMP</li>
+                    <li><strong>Command Line:</strong> <code>php filename.php</code></li>
+                    <li><strong>Online:</strong> Use <a href="https://www.w3schools.com/php/phptryit.asp" target="_blank" rel="noopener">W3Schools PHP Try-it</a> or <a href="https://onlinephp.io/" target="_blank" rel="noopener">OnlinePHP.io</a></li>
                 </ol>
+            </details>
+
+            <div class="simulate-output">
+                <div class="output-header-label"><span class="emoji-icon">&#x1F52E;</span> Simulated Output (if code runs successfully):</div>
+                <div class="simulated-result">
+                    ${simulatePHPOutput(phpCode)}
+                </div>
             </div>
         </div>
     `;
-    container.appendChild(notice);
+
+    // Add try-online button
+    const actionBtn = document.createElement('button');
+    actionBtn.className = 'try-online-btn';
+    actionBtn.innerHTML = '<span class="emoji-icon">&#x1F680;</span> Try This Code Online';
+    actionBtn.onclick = () => {
+        navigator.clipboard.writeText(phpCode).then(() => {
+            window.open('https://onlinephp.io/', '_blank');
+            actionBtn.innerHTML = '<span class="emoji-icon">&#x2705;</span> Copied! Opening editor...';
+            setTimeout(() => {
+                actionBtn.innerHTML = '<span class="emoji-icon">&#x1F680;</span> Try This Code Online';
+            }, 2000);
+        });
+    };
+    infoBox.appendChild(actionBtn);
+
+    container.appendChild(infoBox);
 }

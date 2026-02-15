@@ -103,7 +103,6 @@
     .code-block pre {
         padding: var(--space-md);
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .code-block code {
@@ -114,7 +113,6 @@
     .notes-block table {
         display: block;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
         max-width: 100%;
     }
 
@@ -228,7 +226,6 @@
         font-size: 11px;
         padding: 0.75rem;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .code-header {

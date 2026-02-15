@@ -40,12 +40,20 @@ function showCopied(btn) {
 }
 
 function fallbackCopy(text) {
+    // Last-resort fallback for environments where navigator.clipboard is unavailable
+    // (e.g., non-HTTPS contexts in older browsers)
     const textarea = document.createElement('textarea');
     textarea.value = text;
+    textarea.setAttribute('readonly', '');
     textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
     textarea.select();
-    document.execCommand('copy');
+    try {
+        document.execCommand('copy'); // deprecated but only fallback path
+    } catch {
+        // silently fail — nothing else we can do
+    }
     document.body.removeChild(textarea);
 }

@@ -8,6 +8,12 @@
     content="IWT Note Site — A comprehensive web development course covering HTML, CSS, JavaScript, and PHP with lectures, code examples, and exercises.">
   <title>IWT Note Site — Web Development Course</title>
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="IWT Note Site — Web Development Course">
+  <meta property="og:description" content="A comprehensive web development course covering HTML, CSS, JavaScript, and PHP with lectures, code examples, and exercises.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/favicon.svg">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/code.css">
@@ -127,7 +133,7 @@
             <div class="progress-fill" id="progress-fill"></div>
           </div>
           <div class="progress-stats">
-            <span><strong id="completed-count">0</strong> of <strong id="total-count">28</strong> sections
+            <span><strong id="completed-count">0</strong> of <strong id="total-count">50</strong> sections
               completed</span>
           </div>
         </section>
@@ -141,7 +147,7 @@
             <h3>HTML</h3>
             <p>Learn the building blocks of web pages — elements, attributes, forms, semantic markup, and more.</p>
             <div class="topic-card-footer">
-              <span class="topic-card-sections" id="html-card-progress">0/7 completed</span>
+              <span class="topic-card-sections" id="html-card-progress">0/11 completed</span>
               <span class="topic-card-arrow">→</span>
             </div>
           </a>
@@ -152,7 +158,7 @@
             <h3>CSS</h3>
             <p>Style your websites with selectors, the box model, Flexbox, Grid, animations, and responsive design.</p>
             <div class="topic-card-footer">
-              <span class="topic-card-sections" id="css-card-progress">0/7 completed</span>
+              <span class="topic-card-sections" id="css-card-progress">0/19 completed</span>
               <span class="topic-card-arrow">→</span>
             </div>
           </a>
@@ -174,7 +180,7 @@
             <h3>PHP</h3>
             <p>Build server-side applications with PHP — variables, functions, form handling, and MySQL integration.</p>
             <div class="topic-card-footer">
-              <span class="topic-card-sections" id="php-card-progress">0/7 completed</span>
+              <span class="topic-card-sections" id="php-card-progress">0/13 completed</span>
               <span class="topic-card-arrow">→</span>
             </div>
           </a>
@@ -307,7 +313,7 @@ list.addEventListener('click', (e) => {
                 <span>Preview</span>
                 <button class="refresh-btn">⟳ Refresh</button>
               </div>
-              <iframe class="preview-frame" sandbox="allow-scripts"></iframe>
+              <iframe class="preview-frame" sandbox="allow-scripts" title="Live code preview"></iframe>
               <div class="editor-console" style="display:none;">
                 <div class="editor-console-header">Console</div>
                 <div class="editor-console-body"></div>

@@ -137,6 +137,7 @@
     line-height: 1.7;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     overflow: hidden;
+    -webkit-user-select: none;
     user-select: none;
     flex-shrink: 0;
 }
@@ -157,8 +158,8 @@
     border: none;
     resize: none;
     outline: none;
-    tab-size: 2;
     -moz-tab-size: 2;
+    tab-size: 2;
     overflow: auto;
     /* Both x and y */
     white-space: pre;
@@ -280,6 +281,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
 }
 

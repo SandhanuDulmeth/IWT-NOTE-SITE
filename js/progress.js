@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const STORAGE_KEY = 'iwt-progress';
 
-/* Total sections per topic */
+/* Total sections per topic — must match data-section attributes in lecture HTML */
 const TOPIC_SECTIONS = {
-    html: ['html-intro', 'html-elements', 'html-attributes', 'html-forms', 'html-semantic', 'html-tables', 'html-practice'],
-    css: ['css-intro', 'css-selectors', 'css-boxmodel', 'css-flexbox', 'css-grid', 'css-animations', 'css-practice'],
+    html: ['html-intro', 'html-elements', 'html-structure', 'html-attributes', 'html-formatting', 'html-block-inline', 'html-semantic', 'html-tables', 'html-links', 'html-forms', 'html-tags'],
+    css: ['css-what', 'css-apply', 'css-syntax', 'css-combinators', 'css-divspan', 'css-limitations', 'css-sass', 'css-others', 'css-modern', 'css-attribute', 'css-display', 'css-flexbox', 'css-flex-props', 'css-flex-layout', 'css-responsive', 'css-media', 'css-visual', 'css-spacing', 'css-layout'],
     js: ['js-intro', 'js-variables', 'js-functions', 'js-dom', 'js-events', 'js-async', 'js-practice'],
-    php: ['php-intro', 'php-variables', 'php-control', 'php-functions', 'php-forms', 'php-mysql', 'php-practice']
+    php: ['php-intro', 'php-setup', 'php-syntax', 'php-variables', 'php-operators', 'php-control', 'php-loops', 'php-indexed', 'php-assoc', 'php-multi', 'php-arr-funcs', 'php-arr-ops', 'php-functions']
 };
 
 function getProgress() {
