@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/code.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/live-editor.css">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <a href="../index.html" class="sidebar-logo">
                     <div class="logo-icon">&lt;/&gt;</div>
                     <div>
-                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.1</span>
                     </div>
                 </a>
             </div>
@@ -42,10 +43,8 @@
                         <span class="nav-icon">📝</span>
                         <span>Practicals</span>
                     </a>
-                    <a href="../practicals.html" class="nav-link" data-page="practicals.html">
-                        <span class="nav-icon">📝</span>
-                        <span>Practicals</span>
-                    </a>
+
+
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Topics</div>
@@ -211,7 +210,8 @@
 <span class="cmt">&lt;!-- File paths --&gt;</span>
 <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"pages/contact.html"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>       <span class="cmt">&lt;!-- relative --&gt;</span>
 <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/pages/contact.html"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>      <span class="cmt">&lt;!-- root-relative --&gt;</span>
-<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"../images/logo.png"</span><span class="tag">&gt;</span>            <span class="cmt">&lt;!-- parent folder --&gt;</span>
+<span class="cmt">&lt;!-- Reference to parent folder (WE USE favicon.svg HERE AS IT EXISTS) --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"../images/favicon.svg"</span> <span class="attr">width</span>=<span class="val">"50"</span><span class="tag">&gt;</span>
 
 <span class="cmt">&lt;!-- Bookmark target --&gt;</span>
 <span class="tag">&lt;h2</span> <span class="attr">id</span>=<span class="val">"contact"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/h2&gt;</span>
@@ -220,10 +220,10 @@
 <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"about.html#team"</span><span class="tag">&gt;</span>Our Team<span class="tag">&lt;/a&gt;</span>
 
 <span class="cmt">&lt;!-- Image map --&gt;</span>
-<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"park.jpg"</span> <span class="attr">usemap</span>=<span class="val">"#parkmap"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"https://placehold.co/400x300?text=Park+Map"</span> <span class="attr">usemap</span>=<span class="val">"#parkmap"</span><span class="tag">&gt;</span>
 <span class="tag">&lt;map</span> <span class="attr">name</span>=<span class="val">"parkmap"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;area</span> <span class="attr">shape</span>=<span class="val">"rect"</span> <span class="attr">coords</span>=<span class="val">"60,60,180,150"</span> <span class="attr">href</span>=<span class="val">"playground.html"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;area</span> <span class="attr">shape</span>=<span class="val">"circle"</span> <span class="attr">coords</span>=<span class="val">"300,200,50"</span> <span class="attr">href</span>=<span class="val">"fountain.html"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;area</span> <span class="attr">shape</span>=<span class="val">"rect"</span> <span class="attr">coords</span>=<span class="val">"60,60,180,150"</span> <span class="attr">href</span>=<span class="val">"playground.html"</span> <span class="attr">alt</span>=<span class="val">"Playground"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;area</span> <span class="attr">shape</span>=<span class="val">"circle"</span> <span class="attr">coords</span>=<span class="val">"300,200,50"</span> <span class="attr">href</span>=<span class="val">"fountain.html"</span> <span class="attr">alt</span>=<span class="val">"Fountain"</span><span class="tag">&gt;</span>
 <span class="tag">&lt;/map&gt;</span></code></pre>
                     </div>
 
@@ -309,7 +309,33 @@
                                         (<code>on</code>/<code>off</code>)</td>
                                 </tr>
                             </tbody>
+
                         </table>
+                    </div>
+
+                    <!-- Examples of Form Attributes -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <span class="code-lang-label">Attribute Examples</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Open response in a new tab --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="val">"/search"</span> <span class="attr">target</span>=<span class="val">"_blank"</span><span class="tag">&gt;</span>
+
+<span class="cmt">&lt;!-- Turn off autocomplete for sensitive data --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="val">"/login"</span> <span class="attr">autocomplete</span>=<span class="val">"off"</span><span class="tag">&gt;</span>
+
+<span class="cmt">&lt;!-- Required for file uploads --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">enctype</span>=<span class="val">"multipart/form-data"</span> <span class="attr">method</span>=<span class="val">"post"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"file"</span> <span class="attr">name</span>=<span class="val">"doc"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/form&gt;</span>
+
+<span class="cmt">&lt;!-- Submit without validating data --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">novalidate</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span> <span class="attr">name</span>=<span class="val">"email"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
                     </div>
 
                     <!-- Form Elements -->
@@ -484,34 +510,38 @@
     <span class="tag">&lt;legend&gt;</span>Personal Info<span class="tag">&lt;/legend&gt;</span>
 
     <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"name"</span><span class="tag">&gt;</span>Name:<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">id</span>=<span class="val">"name"</span> <span class="attr">name</span>=<span class="val">"name"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">id</span>=<span class="val">"name"</span> <span class="attr">name</span>=<span class="val">"name"</span> <span class="attr">required</span><span class="tag">&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
     <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"email"</span><span class="tag">&gt;</span>Email:<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span> <span class="attr">id</span>=<span class="val">"email"</span> <span class="attr">name</span>=<span class="val">"email"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span> <span class="attr">id</span>=<span class="val">"email"</span> <span class="attr">name</span>=<span class="val">"email"</span> <span class="attr">required</span><span class="tag">&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
     <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"dob"</span><span class="tag">&gt;</span>Date of Birth:<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"date"</span> <span class="attr">id</span>=<span class="val">"dob"</span> <span class="attr">name</span>=<span class="val">"dob"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;/fieldset&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"date"</span> <span class="attr">id</span>=<span class="val">"dob"</span> <span class="attr">name</span>=<span class="val">"dob"</span><span class="tag">&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
+  <span class="tag">&lt;/fieldset&gt;</span><span class="tag">&lt;br&gt;</span>
 
   <span class="cmt">&lt;!-- Radio buttons --&gt;</span>
+  <span class="tag">&lt;label&gt;</span>Gender:<span class="tag">&lt;/label&gt;</span>
   <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"radio"</span> <span class="attr">name</span>=<span class="val">"gender"</span> <span class="attr">value</span>=<span class="val">"male"</span><span class="tag">&gt;</span> Male
-  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"radio"</span> <span class="attr">name</span>=<span class="val">"gender"</span> <span class="attr">value</span>=<span class="val">"female"</span><span class="tag">&gt;</span> Female
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"radio"</span> <span class="attr">name</span>=<span class="val">"gender"</span> <span class="attr">value</span>=<span class="val">"female"</span><span class="tag">&gt;</span> Female<span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
   <span class="cmt">&lt;!-- Dropdown --&gt;</span>
+  <span class="tag">&lt;label&gt;</span>City:<span class="tag">&lt;/label&gt;</span>
   <span class="tag">&lt;select</span> <span class="attr">name</span>=<span class="val">"city"</span><span class="tag">&gt;</span>
     <span class="tag">&lt;optgroup</span> <span class="attr">label</span>=<span class="val">"Western"</span><span class="tag">&gt;</span>
       <span class="tag">&lt;option&gt;</span>Colombo<span class="tag">&lt;/option&gt;</span>
     <span class="tag">&lt;/optgroup&gt;</span>
-  <span class="tag">&lt;/select&gt;</span>
+  <span class="tag">&lt;/select&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
   <span class="cmt">&lt;!-- Datalist --&gt;</span>
+  <span class="tag">&lt;label&gt;</span>Preferred City:<span class="tag">&lt;/label&gt;</span>
   <span class="tag">&lt;input</span> <span class="attr">list</span>=<span class="val">"cities"</span><span class="tag">&gt;</span>
   <span class="tag">&lt;datalist</span> <span class="attr">id</span>=<span class="val">"cities"</span><span class="tag">&gt;</span>
     <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="val">"Colombo"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;/datalist&gt;</span>
+  <span class="tag">&lt;/datalist&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
   <span class="cmt">&lt;!-- Textarea --&gt;</span>
-  <span class="tag">&lt;textarea</span> <span class="attr">rows</span>=<span class="val">"5"</span> <span class="attr">cols</span>=<span class="val">"30"</span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+  <span class="tag">&lt;label&gt;</span>Message:<span class="tag">&lt;/label&gt;</span><span class="tag">&lt;br&gt;</span>
+  <span class="tag">&lt;textarea</span> <span class="attr">rows</span>=<span class="val">"5"</span> <span class="attr">cols</span>=<span class="val">"30"</span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span><span class="tag">&lt;br&gt;&lt;br&gt;</span>
 
   <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
   <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"reset"</span><span class="tag">&gt;</span>Reset<span class="tag">&lt;/button&gt;</span>
@@ -551,6 +581,7 @@
     <script src="../js/progress.js"></script>
     <script src="../js/code-copy.js"></script>
     <script src="../js/code-runner.js"></script>
+    <script src="../js/live-editor.js"></script>
 </body>
 
 </html>

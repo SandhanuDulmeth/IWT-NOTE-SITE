@@ -20,15 +20,21 @@
 /* ---------- Mobile (≤ 768px) ---------- */
 @media (max-width: 768px) {
 
-    /* Show top bar, hide sidebar by default */
+    /* ---- Top bar & sidebar ---- */
     .top-bar {
         display: flex;
     }
 
     .sidebar {
-        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 280px;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
         box-shadow: var(--shadow-lg);
+        transition: transform 0.3s ease;
     }
 
     .sidebar.open {
@@ -37,9 +43,10 @@
 
     .main-content {
         margin-left: 0;
+        width: 100%;
     }
 
-    /* Content */
+    /* ---- Content ---- */
     .content-area {
         padding: var(--space-lg) var(--space-md);
     }
@@ -56,19 +63,20 @@
         font-size: var(--font-size-md);
     }
 
-    /* Grid */
+    /* ---- Grids ---- */
     .topics-grid {
         grid-template-columns: 1fr;
         gap: var(--space-md);
     }
 
-    /* Section header */
+    /* ---- Section header ---- */
     .section-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--space-sm);
     }
 
-    /* Typography */
+    /* ---- Typography ---- */
     h1 {
         font-size: var(--font-size-2xl);
     }
@@ -85,24 +93,51 @@
         font-size: var(--font-size-2xl);
     }
 
-    /* Progress stats */
+    /* ---- Progress stats ---- */
     .progress-stats {
         flex-wrap: wrap;
         gap: var(--space-sm);
     }
 
-    /* Code blocks */
+    /* ---- Code blocks ---- */
     .code-block pre {
         padding: var(--space-md);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .code-block code {
         font-size: var(--font-size-xs);
     }
 
+    /* ---- Tables inside notes ---- */
+    .notes-block table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+    }
 
+    /* ---- Lecture navigation ---- */
+    .lecture-nav {
+        flex-direction: column !important;
+        gap: 0.75rem;
+        text-align: center;
+    }
 
-    /* Practicals Page Responsive (Tablet/Mobile) */
+    .lecture-nav-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* ---- Lecture cards grid ---- */
+    .lecture-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    /* ---- Practicals ---- */
     .practicals-controls {
         flex-direction: column;
         align-items: stretch;
@@ -139,6 +174,25 @@
 
 /* ---------- Small Mobile (≤ 480px) ---------- */
 @media (max-width: 480px) {
+
+    /* ---- Base font scale ---- */
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    /* ---- Content area ---- */
     .content-area {
         padding: var(--space-md) var(--space-sm);
     }
@@ -147,16 +201,14 @@
         font-size: 1.75rem;
     }
 
+    /* ---- Notes & exercise blocks ---- */
     .notes-block,
     .exercise-block {
         padding: var(--space-md);
     }
 
+    /* ---- Topic cards ---- */
     .topic-card {
-        padding: var(--space-lg);
-    }
-
-    .progress-overview {
         padding: var(--space-lg);
     }
 
@@ -166,24 +218,31 @@
         font-size: 20px;
     }
 
+    /* ---- Progress ---- */
+    .progress-overview {
+        padding: var(--space-lg);
+    }
+
+    /* ---- Code blocks ---- */
+    .code-block pre {
+        font-size: 11px;
+        padding: 0.75rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .code-header {
         flex-wrap: wrap;
         gap: var(--space-sm);
     }
 
-    /* Code Runner responsive */
+    /* ---- Code runner ---- */
     .live-preview {
         min-height: 120px;
     }
 
     .output-content {
         max-height: 300px;
-    }
-
-    .php-notice {
-        flex-direction: column;
-        gap: var(--space-sm);
-        padding: var(--space-sm) var(--space-md);
     }
 
     .console-output {
@@ -196,12 +255,48 @@
         font-size: 0.7rem;
     }
 
-    .run-btn {
-        padding: 3px 8px;
-        font-size: 0.7rem;
+    .php-notice {
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
     }
 
-    /* Practicals Page Small Mobile */
+    /* ---- Buttons — 44px min tap targets ---- */
+    button,
+    .btn,
+    .copy-btn,
+    .lecture-nav-btn {
+        min-height: 44px;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .hamburger-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ---- Search input (16px prevents iOS zoom) ---- */
+    .search-input {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    /* ---- Lecture navigation ---- */
+    .lecture-nav {
+        flex-direction: column !important;
+        gap: 0.5rem;
+        padding: 1rem !important;
+    }
+
+    .lecture-nav-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* ---- Practicals small mobile ---- */
     .practical-item {
         padding: var(--space-md);
     }

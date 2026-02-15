@@ -1,0 +1,370 @@
+/* =============================================
+   IWT NOTE SITE — Live Code Editor Styles
+   ============================================= */
+
+/* ---------- Editor Container ---------- */
+.live-editor-container {
+    position: relative;
+    z-index: 10;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin: var(--space-xl) 0;
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------- Editor Header ---------- */
+.editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-code-header);
+    border-bottom: 1px solid var(--border);
+}
+
+.editor-header h3 {
+    margin: 0;
+    font-size: var(--font-size-md);
+    color: var(--text-code);
+    font-weight: 600;
+}
+
+.editor-controls {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.editor-controls button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: #a6adc8;
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.editor-controls .reset-btn:hover {
+    background: rgba(249, 226, 175, 0.12);
+    color: #f9e2af;
+    border-color: rgba(249, 226, 175, 0.3);
+}
+
+.editor-controls .fullscreen-btn:hover {
+    background: rgba(137, 180, 250, 0.12);
+    color: #89b4fa;
+    border-color: rgba(137, 180, 250, 0.3);
+}
+
+/* ---------- Editor Layout (Split View) ---------- */
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 450px;
+}
+
+/* ---------- Code Panel ---------- */
+.code-panel {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    background: var(--bg-code);
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* Tabs */
+.editor-tabs {
+    display: flex;
+    background: var(--bg-code-header);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.editor-tab {
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #6c7086;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.editor-tab:hover {
+    color: #a6adc8;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.editor-tab.active {
+    color: var(--text-code);
+    border-bottom-color: var(--accent);
+    background: var(--bg-code);
+}
+
+/* Textarea editor */
+.code-wrapper {
+    display: flex;
+    position: relative;
+    flex: 1;
+    min-height: 350px;
+    background: var(--bg-code);
+}
+
+.code-wrapper.hidden {
+    display: none;
+}
+
+.line-numbers {
+    width: 40px;
+    text-align: right;
+    padding: var(--space-lg) 6px var(--space-lg) 0;
+    background: var(--bg-code-header);
+    color: #6c7086;
+    font-family: var(--font-code);
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.code-editor {
+    flex: 1;
+    width: 100%;
+    /* min-height removed here as wrapper handles it */
+    padding: var(--space-lg);
+    padding-left: 10px;
+    /* Reduced left padding */
+    font-family: var(--font-code);
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    background: transparent;
+    /* Transparent so wrapper bg shows */
+    color: var(--text-code);
+    border: none;
+    resize: none;
+    outline: none;
+    tab-size: 2;
+    -moz-tab-size: 2;
+    overflow: auto;
+    /* Both x and y */
+    white-space: pre;
+    /* Force no wrap */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    cursor: text;
+    position: relative;
+    z-index: 5;
+    pointer-events: all;
+}
+
+.code-editor::placeholder {
+    color: #45475a;
+}
+
+.code-editor::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.code-editor::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.code-editor::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+}
+
+/* ---------- Preview Panel ---------- */
+.preview-panel {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px var(--space-md);
+    background: #f1f3f9;
+    border-bottom: 1px solid #e2e4ef;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    color: #6c7086;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .preview-header {
+    background: var(--bg-input);
+    border-bottom-color: var(--border);
+    color: var(--text-muted);
+}
+
+.refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: #6c7086;
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+[data-theme="dark"] .refresh-btn {
+    border-color: var(--border);
+    color: #6c7086;
+}
+
+[data-theme="dark"] .refresh-btn:hover {
+    border-color: var(--accent);
+}
+
+/* Preview iframe */
+.preview-frame {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: #ffffff;
+    display: block;
+}
+
+/* Console output area */
+.editor-console {
+    border-top: 1px solid #e2e4ef;
+    background: var(--bg-code);
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.editor-console-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px var(--space-md);
+    background: var(--bg-code-header);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    color: #6c7086;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.editor-console-body {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-code);
+    font-size: var(--font-size-xs);
+    line-height: 1.6;
+    color: var(--text-code);
+}
+
+.editor-console-body .log-line {
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.editor-console-body .log-line:last-child {
+    border-bottom: none;
+}
+
+.editor-console-body .log-error {
+    color: #f38ba8;
+}
+
+.editor-console-body .log-warn {
+    color: #f9e2af;
+}
+
+/* ---------- Fullscreen Mode ---------- */
+.live-editor-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+}
+
+.live-editor-container.fullscreen .editor-layout {
+    height: calc(100vh - 52px);
+}
+
+.live-editor-container.fullscreen .fullscreen-btn {
+    color: #f38ba8;
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 768px) {
+    .editor-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 300px;
+    }
+
+    .code-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .editor-header {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: flex-start;
+    }
+
+    .editor-header h3 {
+        font-size: var(--font-size-sm);
+    }
+
+    .live-editor-container.fullscreen .editor-layout {
+        height: calc(100vh - 80px);
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .editor-tab {
+        padding: 8px 12px;
+        font-size: 0.65rem;
+    }
+
+    .code-editor {
+        padding: var(--space-md);
+        font-size: 12px;
+    }
+}

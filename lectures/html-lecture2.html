@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/code.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/live-editor.css">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <a href="../index.html" class="sidebar-logo">
                     <div class="logo-icon">&lt;/&gt;</div>
                     <div>
-                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.1</span>
                     </div>
                 </a>
             </div>
@@ -112,7 +113,8 @@
                             <li><strong>HTML</strong> stands for <strong>Hypertext Markup Language</strong>.</li>
                             <li>It is the <strong>standard language</strong> used to create and design the
                                 <strong>structure
-                                    of a web page</strong>.</li>
+                                    of a web page</strong>.
+                            </li>
                             <li>It helps organized content, define structure, and create relationships between elements.
                             </li>
                             <li>HTML uses <strong>markup</strong> to annotate text, images, and other content.</li>
@@ -194,7 +196,8 @@
                         <ul>
                             <li><code>&lt;!DOCTYPE html&gt;</code>: Declares the document type as
                                 <strong>HTML5</strong>.
-                                Prevents "quirks mode".</li>
+                                Prevents "quirks mode".
+                            </li>
                             <li><code>&lt;html&gt;</code>: The root element containing the entire document.</li>
                             <li><code>&lt;head&gt;</code>: Contains <strong>metadata</strong> (not visible on the page).
                                 Includes title, CSS links, fonts, etc.</li>
@@ -236,12 +239,20 @@
                             <li><code>alt</code>: Description (for accessibility)</li>
                         </ul>
                         <pre><code>&lt;img src="cat.jpg" width="300" height="200" alt="A cute cat"&gt;</code></pre>
-
-                        <h5>For Links and Inputs</h5>
+                        <br>
+                        <h5>For Links (<code>&lt;a&gt;</code>)</h5>
                         <ul>
-                            <li><code>href</code>: Link target (for <code>&lt;a&gt;</code>)</li>
-                            <li><code>type</code>: Input type (text, password, etc.)</li>
+                            <li><code>href</code>: Link target URL</li>
+                            <li><code>target</code>: Where to open (e.g., "_blank" for new tab)</li>
+                            <li><code>title</code>: Tooltip text</li>
+                        </ul>
+                        <pre><code>&lt;a href="https://example.com" target="_blank" title="Visit Example"&gt;Click here&lt;/a&gt;</code></pre>
+                        <br>
+                        <h5>For Inputs</h5>
+                        <ul>
+                            <li><code>type</code>: Input type (text, password, email, etc.)</li>
                             <li><code>value</code>: Default value</li>
+                            <li><code>placeholder</code>: Hint text</li>
                         </ul>
                     </div>
 
@@ -389,6 +400,7 @@
     <script src="../js/progress.js"></script>
     <script src="../js/code-copy.js"></script>
     <script src="../js/code-runner.js"></script>
+    <script src="../js/live-editor.js"></script>
 </body>
 
 </html>

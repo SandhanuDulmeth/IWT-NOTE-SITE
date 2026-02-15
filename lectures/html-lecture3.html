@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/code.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/live-editor.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
                 <a href="../index.html" class="sidebar-logo">
                     <div class="logo-icon">&lt;/&gt;</div>
                     <div>
-                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.0</span>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.1</span>
                     </div>
                 </a>
             </div>
@@ -43,10 +44,8 @@
                         <span class="nav-icon">📝</span>
                         <span>Practicals</span>
                     </a>
-                    <a href="../practicals.html" class="nav-link" data-page="practicals.html">
-                        <span class="nav-icon">📝</span>
-                        <span>Practicals</span>
-                    </a>
+
+
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Topics</div>
@@ -355,7 +354,7 @@
                             <button class="copy-btn">📋 Copy</button>
                         </div>
                         <pre><code><span class="cmt">&lt;!-- Table with sections, caption &amp; merging --&gt;</span>
-<span class="tag">&lt;table&gt;</span>
+<span class="tag">&lt;table</span> <span class="attr">border</span>=<span class="val">"1"</span><span class="tag"></span>&gt;</span>
   <span class="tag">&lt;caption&gt;</span>Student Marks<span class="tag">&lt;/caption&gt;</span>
   <span class="tag">&lt;thead&gt;</span>
     <span class="tag">&lt;tr&gt;</span>
@@ -431,6 +430,43 @@
 <span class="tag">&lt;/figure&gt;</span></code></pre>
                     </div>
 
+                    <!-- Result Block -->
+                    <div class="code-block"
+                        style="margin-top: 1rem; border: 1px solid var(--border); background: var(--bg-card);">
+                        <div class="code-header"
+                            style="background: var(--bg-hover); border-bottom: 1px solid var(--border);">
+                            <span class="code-lang-label" style="color: var(--text-primary); font-weight: 600;">👀
+                                Result</span>
+                        </div>
+                        <div style="padding: 1.5rem;">
+                            <!-- Image with size -->
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Image with
+                                size:</p>
+                            <img src="https://placehold.co/200x150?text=Portrait" alt="Portrait" width="200"
+                                height="150" style="margin-bottom: 1.5rem; border-radius: 4px;">
+
+                            <!-- Image as a link -->
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Image as a
+                                link (try clicking):</p>
+                            <a href="../index.html">
+                                <img src="https://placehold.co/48x48?text=Home" alt="Home page icon"
+                                    style="margin-bottom: 1.5rem; border-radius: 4px;">
+                            </a>
+
+                            <!-- Figure with caption -->
+                            <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Figure with
+                                caption:</p>
+                            <figure
+                                style="margin: 0; padding: 1rem; background: var(--bg-input); border-radius: 8px; display: inline-block;">
+                                <img src="https://placehold.co/400x300?text=Sunset" alt="Sunset over the beach"
+                                    style="border-radius: 4px; max-width: 100%; height: auto;">
+                                <figcaption
+                                    style="margin-top: 0.5rem; color: var(--text-secondary); font-style: italic; text-align: center;">
+                                    Sunset at the west coast</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
                     <!-- Big Picture -->
                     <div class="notes-block">
                         <h4>💡 Big Conceptual Picture</h4>
@@ -463,6 +499,7 @@
                     </div>
                 </section>
 
+
                 <!-- Lecture Navigation -->
                 <div class="lecture-nav"
                     style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
@@ -483,6 +520,7 @@
     <script src="../js/progress.js"></script>
     <script src="../js/code-copy.js"></script>
     <script src="../js/code-runner.js"></script>
+    <script src="../js/live-editor.js"></script>
 </body>
 
 </html>
