@@ -344,6 +344,31 @@ code:not([class]) {
     display: block;
 }
 
+/* ---------- CSS Output Specific Styles ---------- */
+.output-label {
+    background: #FFF3CD;
+    color: #856404;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+[data-theme="dark"] .output-label {
+    background: #664d03;
+    color: #fff3cd;
+}
+
+/* Taller iframe for CSS demos */
+.css-preview {
+    min-height: 400px;
+    max-height: 600px;
+    border: 1px solid var(--border);
+    background: white;
+}
+
 /* ---------- JavaScript Console Output ---------- */
 .console-output {
     padding: var(--space-sm) var(--space-md);

@@ -49,7 +49,10 @@ function initCodeRunner() {
 function detectLanguage(label) {
     // "html + css" or "html" → treat as HTML (iframe handles embedded styles)
     if (label.includes('html')) return 'html';
-    // Pure CSS (no "html" in label)
+    // Exclude preprocessor labels — scss/sass/less/stylus are NOT runnable CSS
+    if (label.includes('scss') || label.includes('sass') ||
+        label.includes('less') || label.includes('stylus')) return null;
+    // Pure CSS (no "html" in label, not a preprocessor)
     if (label.includes('css')) return 'css';
     // JavaScript
     if (label.includes('javascript') || label.includes('js')) return 'js';
@@ -85,6 +88,8 @@ function createOutputPanel() {
         if (consoleDiv) consoleDiv.innerHTML = '';
         const notice = panel.querySelector('.php-notice');
         if (notice) notice.remove();
+        const label = panel.querySelector('.output-label');
+        if (label) label.remove();
     });
 
     panelHeader.appendChild(title);
@@ -151,65 +156,247 @@ function runHTML(code, container) {
 }
 
 /**
- * CSS Runner — wrap CSS in a sample HTML template to visualize
+ * Build a context-aware HTML template based on what the CSS targets.
+ * Detects lecture-specific classes, flexbox, grid, positioning, and more
+ * to provide matching HTML elements for meaningful CSS preview.
  */
-function runCSS(code, container) {
-    const template = `<!DOCTYPE html>
+function getSmartCSSTemplate(cssCode) {
+    const code = cssCode.toLowerCase();
+
+    // ── Core layout detections ──────────────────────────────────
+    const hasFlexbox = code.includes('display: flex') || code.includes('display:flex');
+    const hasGrid = code.includes('display: grid') || code.includes('display:grid');
+    const hasTable = code.includes('table') || code.includes('td') || code.includes('th');
+    const hasForm = code.includes('input') || code.includes('button') || code.includes('form');
+    const hasList = code.includes('ul') || code.includes('li') || code.includes('ol');
+    const hasImage = code.includes('img');
+
+    // ── Lecture-specific class / structure detections ────────────
+    const hasBoxClass = code.includes('.box');
+    const hasWrapperClass = code.includes('.wrapper');
+    const hasContainerClass = code.includes('.container');
+    const hasPageLayout = code.includes('main') && code.includes('aside');
+    const hasPosition = code.includes('position:') || code.includes('z-index');
+    const hasOverflow = code.includes('overflow:');
+    const hasBadgeClass = code.includes('.badge');
+    const hasHover = code.includes(':hover');
+    const hasCombinators = code.includes('div p') || code.includes('div > p')
+        || code.includes('div + p') || code.includes('div ~ p');
+
+    // Start building body content
+    let bodyContent = '';
+
+    // ── Page layout with main + aside (Lecture 3, example 6) ────
+    if (hasPageLayout) {
+        bodyContent += `
+    <div class="page" style="margin-bottom:20px;">
+      <main>
+        <h2>Main Content Area</h2>
+        <p>This is the main content section. It takes up most of the space.</p>
+      </main>
+      <aside>
+        <h3>Sidebar</h3>
+        <p>Sidebar content here.</p>
+      </aside>
+    </div>`;
+    }
+
+    // ── Flexbox wrapper class (Lecture 3, example 1) ────────────
+    if (hasWrapperClass) {
+        bodyContent += `
+    <div class="wrapper" style="margin-bottom:20px;">
+      <div style="padding:10px; background:#e3f2fd;">Item 1</div>
+      <div style="padding:10px; background:#bbdefb;">Item 2</div>
+      <div style="padding:10px; background:#90caf9;">Item 3</div>
+      <div style="padding:10px; background:#64b5f6;">Item 4</div>
+    </div>`;
+    }
+
+    // ── Flexbox / Grid with .container (Lecture 3, examples 2–5) ─
+    if (hasContainerClass && (hasFlexbox || hasGrid)) {
+        bodyContent += `
+    <div class="container" style="margin-bottom:20px;">
+      <div class="item" style="padding:15px; background:#e8f5e9;">Item 1</div>
+      <div class="item" style="padding:15px; background:#c8e6c9;">Item 2</div>
+      <div class="item" style="padding:15px; background:#a5d6a7;">Item 3</div>
+      <div class="item" style="padding:15px; background:#81c784;">Item 4</div>
+      <div class="item" style="padding:15px; background:#66bb6a;">Item 5</div>
+    </div>`;
+    } else if (hasFlexbox || hasGrid) {
+        // Generic flex/grid container when no .container class
+        bodyContent += `
+    <div class="container" style="margin-bottom:20px;">
+      <div class="item" style="padding:15px; background:#e8f5e9;">Item 1</div>
+      <div class="item" style="padding:15px; background:#c8e6c9;">Item 2</div>
+      <div class="item" style="padding:15px; background:#a5d6a7;">Item 3</div>
+      <div class="item" style="padding:15px; background:#81c784;">Item 4</div>
+      <div class="item" style="padding:15px; background:#66bb6a;">Item 5</div>
+    </div>`;
+    }
+
+    // ── Media-query .box children (Lecture 3, example 8) ─────────
+    if (hasBoxClass && (hasFlexbox || hasGrid || hasContainerClass)) {
+        bodyContent += `
+    <div class="container" style="margin-bottom:20px;">
+      <div class="box" style="padding:15px; background:#fff3e0;">Box 1 — Sample Content</div>
+      <div class="box" style="padding:15px; background:#ffe0b2;">Box 2 — Another Box</div>
+      <div class="box" style="padding:15px; background:#ffcc80;">Box 3 — Third Box</div>
+    </div>`;
+    } else if (hasBoxClass) {
+        // Standalone .box elements (Lecture 4, spacing examples)
+        bodyContent += `
+    <div class="box" style="background:#e0e0e0; margin-bottom:10px;">Box 1 — Sample Content</div>
+    <div class="box" style="background:#bdbdbd; margin-bottom:10px;">Box 2 — Another Box</div>
+    <div class="box" style="background:#9e9e9e; margin-bottom:10px;">Box 3 — Third Box</div>`;
+    }
+
+    // ── Position / z-index / badge (Lecture 4, examples 12–13) ──
+    if (hasPosition || hasBadgeClass) {
+        bodyContent += `
+    <div style="position:relative; width:220px; height:160px; background:#e0e0e0; margin:20px 0; border:1px solid #999;">
+      <span class="badge" style="background:#f44336; color:#fff; padding:4px 8px; font-size:0.8rem;">Badge</span>
+      <div class="box1" style="width:100px; height:80px; background:lightblue; display:flex; align-items:center; justify-content:center;">Box 1</div>
+      <div class="box2" style="width:100px; height:80px; background:lightcoral; display:flex; align-items:center; justify-content:center;">Box 2</div>
+    </div>`;
+    }
+
+    // ── Overflow example (Lecture 4, example 14) ────────────────
+    if (hasOverflow) {
+        bodyContent += `
+    <div class="box" style="width:200px; height:100px; background:#f0f0f0; border:2px solid #333; margin:15px 0; padding:10px;">
+      This is a very long text that will overflow the container.
+      It has more content than the box can display at once.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>`;
+    }
+
+    // ── Hover / link effects (Lecture 4, example 15) ────────────
+    if (hasHover) {
+        bodyContent += `
+    <p style="margin:15px 0 5px;">Hover over these links to see effects:</p>
+    <a href="#" style="margin-right:10px;">Link One</a>
+    <a href="#" style="margin-right:10px;">Link Two</a>
+    <a href="#">Link Three</a>`;
+    }
+
+    // ── Nested divs for CSS combinators (Lecture 1, example 2) ──
+    if (hasCombinators) {
+        bodyContent += `
+    <div style="border:2px dashed #999; padding:15px; margin:15px 0; background:#fafafa;">
+      <p>Direct child paragraph (div &gt; p)</p>
+      <div style="padding:10px; background:#f0f0f0; margin:5px 0;">
+        <p>Nested paragraph — descendant (div p)</p>
+      </div>
+    </div>
+    <p>Adjacent sibling paragraph (div + p)</p>
+    <p>General sibling paragraph (div ~ p)</p>`;
+    }
+
+    // ── Table (if detected) ─────────────────────────────────────
+    if (hasTable) {
+        bodyContent += `
+    <table style="border-collapse:collapse; margin:20px 0; width:100%;">
+      <thead>
+        <tr><th style="padding:8px; border:1px solid #ccc;">Header 1</th><th style="padding:8px; border:1px solid #ccc;">Header 2</th><th style="padding:8px; border:1px solid #ccc;">Header 3</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:8px; border:1px solid #ccc;">Data 1</td><td style="padding:8px; border:1px solid #ccc;">Data 2</td><td style="padding:8px; border:1px solid #ccc;">Data 3</td></tr>
+        <tr><td style="padding:8px; border:1px solid #ccc;">Data 4</td><td style="padding:8px; border:1px solid #ccc;">Data 5</td><td style="padding:8px; border:1px solid #ccc;">Data 6</td></tr>
+      </tbody>
+    </table>`;
+    }
+
+    // ── Forms / attribute selectors (Lecture 2, example 2) ───────
+    if (hasForm) {
+        bodyContent += `
+    <form style="margin:20px 0;">
+      <input type="text" placeholder="Text input" style="display:block; margin:5px 0; padding:6px;">
+      <input type="email" placeholder="Email input" style="display:block; margin:5px 0; padding:6px;">
+      <input type="password" placeholder="Password" style="display:block; margin:5px 0; padding:6px;">
+      <button type="button" class="btn" style="margin-top:8px; padding:8px 16px;">Submit Button</button>
+    </form>`;
+    }
+
+    // ── Lists ───────────────────────────────────────────────────
+    if (hasList) {
+        bodyContent += `
+    <ul style="margin:15px 0 15px 20px;">
+      <li>List item one</li>
+      <li>List item two</li>
+      <li>List item three</li>
+    </ul>`;
+    }
+
+    // ── Responsive images (Lecture 3, example 7) ────────────────
+    if (hasImage) {
+        bodyContent += `
+    <img src="https://via.placeholder.com/300x200/4fc3f7/ffffff?text=Sample+Image" alt="Sample image" style="display:block; margin:10px 0;">`;
+    }
+
+    // ── Always include base elements for general CSS ────────────
+    bodyContent += `
+    <h1 id="main-title">Heading 1</h1>
+    <h2>Heading 2</h2>
+    <p class="intro">This is an introductory paragraph with some sample text for styling.</p>
+    <p>Another paragraph with <span class="highlight">highlighted text</span> and <a href="https://example.com">a link</a>.</p>
+    <div style="margin:15px 0;">
+      <span>Regular span</span>
+      <span class="highlight" style="margin-left:8px;">Highlighted span</span>
+    </div>
+    <button style="margin:10px 5px 10px 0;">Button 1</button>
+    <button class="btn">Button 2</button>`;
+
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding: 20px;
-            margin: 0;
-        }
-        /* User CSS below */
-        ${code}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset for consistency */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+    }
+    /* User CSS below */
+    ${cssCode}
+  </style>
 </head>
 <body>
-    <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <p>This is a paragraph with some <strong>bold text</strong>, <em>italic text</em>, and a <a href="#">hyperlink</a>.</p>
-    <ul>
-        <li>Unordered list item 1</li>
-        <li>Unordered list item 2</li>
-        <li>Unordered list item 3</li>
-    </ul>
-    <ol>
-        <li>Ordered list item 1</li>
-        <li>Ordered list item 2</li>
-    </ol>
-    <div class="box" style="margin: 10px 0;">
-        <p>A &lt;div&gt; element with class "box"</p>
-    </div>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <tr><th>Header 1</th><th>Header 2</th></tr>
-        <tr><td>Cell 1</td><td>Cell 2</td></tr>
-        <tr><td>Cell 3</td><td>Cell 4</td></tr>
-    </table>
-    <br>
-    <button>Button Element</button>
-    <input type="text" placeholder="Input field" style="margin-left: 8px;">
+  <div class="demo-container">${bodyContent}
+  </div>
 </body>
 </html>`;
+}
 
+/**
+ * CSS Runner — wrap CSS in a smart HTML template to visualize
+ */
+function runCSS(code, container) {
+    const smartTemplate = getSmartCSSTemplate(code);
+
+    // Add informational label
+    const label = document.createElement('div');
+    label.className = 'output-label';
+    label.textContent = '💡 Preview with matching HTML elements';
+    container.appendChild(label);
+
+    // Create iframe with the smart template
     const iframe = document.createElement('iframe');
-    iframe.className = 'live-preview';
-    iframe.sandbox = 'allow-scripts';
-    iframe.srcdoc = template;
+    iframe.className = 'live-preview css-preview';
+    iframe.sandbox = 'allow-same-origin';
+    iframe.srcdoc = smartTemplate;
     container.appendChild(iframe);
 
     iframe.addEventListener('load', () => {
         try {
             const doc = iframe.contentDocument || iframe.contentWindow.document;
             const height = doc.documentElement.scrollHeight;
-            iframe.style.height = Math.min(Math.max(height + 20, 100), 500) + 'px';
+            iframe.style.height = Math.min(Math.max(height + 20, 200), 600) + 'px';
         } catch (e) {
-            iframe.style.height = '300px';
+            iframe.style.height = '400px';
         }
     });
 }
