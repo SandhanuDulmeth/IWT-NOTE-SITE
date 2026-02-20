@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PHP Lecture 4 — Database CRUD, Prepared Statements, Security, SQL Joins, and Sessions.">
+    <title>Lecture 4 — MySQL CRUD & Security — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/live-editor.css">
+    <link rel="stylesheet" href="../css/text-to-speech.css">
+</head>
+
+<body class="php-page php-section">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.1</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                    <a href="../practicals.html" class="nav-link" data-page="practicals.html">
+                        <span class="nav-icon">📝</span>
+                        <span>Practicals</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">PHP Lectures</div>
+                    <a href="php-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Introduction to PHP</a>
+                    <a href="php-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Arrays &amp;
+                        Functions</a>
+                    <a href="php-lecture3.html" class="nav-link"><span class="nav-icon">3</span> Forms &amp; MySQL</a>
+                    <a href="php-lecture4.html" class="nav-link active"><span class="nav-icon">4</span> MySQL CRUD &amp;
+                        Security</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#php-conn-insert" class="nav-link"><span class="nav-icon">1</span> DB Connection &amp;
+                        INSERT</a>
+                    <a href="#php-exec-sql" class="nav-link"><span class="nav-icon">2</span> SQL Execution Methods</a>
+                    <a href="#php-security" class="nav-link"><span class="nav-icon">3</span> Security &amp; Prev.
+                        SqlInj</a>
+                    <a href="#php-crud" class="nav-link"><span class="nav-icon">4</span> READ, UPDATE &amp; DELETE</a>
+                    <a href="#php-joins" class="nav-link"><span class="nav-icon">5</span> SQL Joins</a>
+                    <a href="#php-auth" class="nav-link"><span class="nav-icon">6</span> Password &amp; Sessions</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">PHP — Lecture 4</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge php">🟣 PHP · Lecture 4</span>
+                    <h1>MySQL CRUD &amp; Security</h1>
+                    <p>Executing SQL, prepared statements, preventing SQL injection, basic CRUD operations, table joins,
+                        password security, and user sessions.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: DB Connection & INSERT                   -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-conn-insert">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> Database Connection &amp; INSERT</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-conn-insert"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 4</strong> · SCS 1311 · Topics: connection.php, INSERT (Create)
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>🔗 Including <code>connection.php</code></h4>
+                        <p>Place database connection code in a dedicated file like <code>config/connection.php</code>
+                            and use <code>include</code> or <code>require</code> to load it. This allows
+                            <code>$conn</code> to be used in any script.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Include Connection</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="kw">include</span> <span class="val">'config/connection.php'</span><span class="punc">;</span> <span class="cmt">// brings in $conn</span>
+
+<span class="cmt">// Your PHP logic goes here</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>➕ INSERT (Create)</h4>
+                        <p>To insert records into a database table, we use the <code>INSERT INTO</code> statement.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">sql — INSERT Statements</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">-- Basic Syntax</span>
+<span class="kw">INSERT INTO</span> <span class="sel">table_name</span> <span class="punc">(</span><span class="sel">column1</span><span class="punc">,</span> <span class="sel">column2</span><span class="punc">,</span> <span class="sel">column3</span><span class="punc">)</span>
+<span class="kw">VALUES</span> <span class="punc">(</span><span class="sel">value1</span><span class="punc">,</span> <span class="sel">value2</span><span class="punc">,</span> <span class="sel">value3</span><span class="punc">);</span>
+
+<span class="cmt">-- Example</span>
+<span class="kw">INSERT INTO</span> <span class="sel">students</span> <span class="punc">(</span><span class="sel">name</span><span class="punc">,</span> <span class="sel">email</span><span class="punc">,</span> <span class="sel">age</span><span class="punc">)</span>
+<span class="kw">VALUES</span> <span class="punc">(</span><span class="val">'John Doe'</span><span class="punc">,</span> <span class="val">'john@email.com'</span><span class="punc">,</span> <span class="css-val">20</span><span class="punc">);</span>
+
+<span class="cmt">-- Insert Multiple Rows</span>
+<span class="kw">INSERT INTO</span> <span class="sel">students</span> <span class="punc">(</span><span class="sel">name</span><span class="punc">,</span> <span class="sel">email</span><span class="punc">,</span> <span class="sel">age</span><span class="punc">)</span>
+<span class="kw">VALUES</span> 
+<span class="punc">(</span><span class="val">'Alice Smith'</span><span class="punc">,</span> <span class="val">'alice@email.com'</span><span class="punc">,</span> <span class="css-val">22</span><span class="punc">),</span>
+<span class="punc">(</span><span class="val">'Bob Johnson'</span><span class="punc">,</span> <span class="val">'bob@email.com'</span><span class="punc">,</span> <span class="css-val">21</span><span class="punc">),</span>
+<span class="punc">(</span><span class="val">'Carol White'</span><span class="punc">,</span> <span class="val">'carol@email.com'</span><span class="punc">,</span> <span class="css-val">23</span><span class="punc">);</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: SQL Execution Methods                  -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-exec-sql">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> SQL Execution Methods</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-exec-sql"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚙️ Executing SQL Queries Using PHP</h4>
+                        <p>Three approaches we can take to construct and execute SQL:</p>
+                        <ol>
+                            <li><strong>Hardcoded values</strong> (Secure but static)</li>
+                            <li><strong>Variables inside SQL string</strong> (Dynamic but vulnerable)</li>
+                            <li><strong>Prepared statements</strong> (Recommended — Dynamic and secure)</li>
+                        </ol>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Approach 1 &amp; 2</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="cmt">// Approach 1: Hardcoded Values (Secure but static)</span>
+<span class="sel">$sql_hardcoded</span> <span class="punc">=</span> <span class="val">"INSERT INTO students (name, email, age) 
+                  VALUES ('Kamal Perera', 'kamal@yahoo.com', 25)"</span><span class="punc">;</span>
+<span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">query</span><span class="punc">(</span><span class="sel">$sql_hardcoded</span><span class="punc">);</span>
+
+<span class="cmt">// Approach 2: Variables inside SQL string (Dangerous!)</span>
+<span class="sel">$name</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"name"</span><span class="punc">];</span>
+<span class="sel">$email</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"email"</span><span class="punc">];</span>
+<span class="sel">$age</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"age"</span><span class="punc">];</span>
+
+<span class="cmt">// Strings must have ' ', Numbers do not need quotes</span>
+<span class="sel">$sql_dynamic</span> <span class="punc">=</span> <span class="val">"INSERT INTO students (name, email, age) 
+                VALUES ('</span><span class="tag">$name</span><span class="val">', '</span><span class="tag">$email</span><span class="val">', </span><span class="tag">$age</span><span class="val">)"</span><span class="punc">;</span>
+<span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">query</span><span class="punc">(</span><span class="sel">$sql_dynamic</span><span class="punc">);</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Security & Prepared Statements         -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-security">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Security &amp; Prepared Statements</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-security"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block" style="border-left-color: #e74c3c;">
+                        <h4>🚨 SQL Injection!</h4>
+                        <p>SQL Injection happens when user input changes the SQL structure. It allows malicious users to
+                            manipulate the query.</p>
+                        <p>Example malicious input:<br><code>John'); DROP TABLE students; --</code></p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">sql — Injured Query</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">-- If we plug the malicious input into:</span>
+<span class="cmt">-- INSERT INTO students (name) VALUES ('$name');</span>
+
+<span class="kw">INSERT INTO</span> <span class="sel">students</span> <span class="punc">(</span><span class="sel">name</span><span class="punc">)</span> <span class="kw">VALUES</span> <span class="punc">(</span><span class="val">'John'</span><span class="punc">);</span>
+<span class="kw">DROP TABLE</span> <span class="sel">students</span><span class="punc">;</span> <span class="cmt">--')</span></code></pre>
+                        <p style="padding: 10px; font-size: 0.9em; background: rgba(231, 76, 60, 0.1);">
+                            <strong>Consequences:</strong> Delete tables, modify records, steal data.</p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🛡️ Approach 3: Prepared Statements (Recommended)</h4>
+                        <ul>
+                            <li>Precompiled SQL template that uses placeholders (<code>?</code>)</li>
+                            <li>Values are sent <strong>separately</strong> from the structure</li>
+                            <li><strong>Prevents SQL injection:</strong> malicious input is treated as literal text,
+                                never executable code</li>
+                            <li>Offers better performance for repeated queries and provides cleaner code</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Parameter Binding</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span>
+    <span class="val">"INSERT INTO students (name, email, age) VALUES (?, ?, ?)"</span>
+<span class="punc">);</span>
+
+<span class="cmt">// Determine types: s (string), i (integer), d (double), b (binary)</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"ssi"</span><span class="punc">,</span> <span class="sel">$name</span><span class="punc">,</span> <span class="sel">$email</span><span class="punc">,</span> <span class="sel">$age</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">execute</span><span class="punc">();</span></code></pre>
+                    </div>
+
+                    <div class="code-block" style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 0.5rem;">📝 Example: HTML Form and Prepared Statement Logic</h4>
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — insert_student.php</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="kw">include</span> <span class="val">'config/connection.php'</span><span class="punc">;</span>
+
+<span class="sel">$name</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"name"</span><span class="punc">];</span>
+<span class="sel">$email</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"email"</span><span class="punc">];</span>
+<span class="sel">$age</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"age"</span><span class="punc">];</span>
+
+<span class="cmt">// Prepare statement</span>
+<span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span><span class="val">"INSERT INTO students (name, email, age) VALUES (?, ?, ?)"</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"ssi"</span><span class="punc">,</span> <span class="sel">$name</span><span class="punc">,</span> <span class="sel">$email</span><span class="punc">,</span> <span class="sel">$age</span><span class="punc">);</span>
+
+<span class="cmt">// Execute and check</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">execute</span><span class="punc">()) {</span>
+    <span class="kw">echo</span> <span class="val">"Record inserted successfully (safe)"</span><span class="punc">;</span>
+<span class="punc">}</span> <span class="kw">else</span> <span class="punc">{</span>
+    <span class="kw">echo</span> <span class="val">"Error: "</span> <span class="punc">.</span> <span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="sel">error</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">close</span><span class="punc">();</span>
+<span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">close</span><span class="punc">();</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: CRUD Operations (SELECT, UPDATE, DELETE) -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-crud">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> READ, UPDATE &amp; DELETE</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-crud"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>📖 READ – SELECT</h4>
+                        <p>Retrieve records from the database table. Use the <code>WHERE</code> clause to filter, and
+                            <code>ORDER BY</code> to sort.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — SELECT Queries</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Basic SELECT</span>
+<span class="sel">$sql</span> <span class="punc">=</span> <span class="val">"SELECT * FROM students"</span><span class="punc">;</span>
+<span class="sel">$result</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">query</span><span class="punc">(</span><span class="sel">$sql</span><span class="punc">);</span>
+<span class="kw">while</span><span class="punc">(</span><span class="sel">$row</span> <span class="punc">=</span> <span class="sel">$result</span><span class="punc">-&gt;</span><span class="kw">fetch_assoc</span><span class="punc">()) {</span>
+    <span class="kw">echo</span> <span class="sel">$row</span><span class="punc">[</span><span class="val">"name"</span><span class="punc">];</span>
+<span class="punc">}</span>
+
+<span class="cmt">// SELECT using Prepared Statement filtering with WHERE</span>
+<span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span><span class="val">"SELECT * FROM students WHERE age > ? OR name = ?"</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"is"</span><span class="punc">,</span> <span class="sel">$age</span><span class="punc">,</span> <span class="sel">$name</span><span class="punc">);</span>
+<span class="sel">$age</span> <span class="punc">=</span> <span class="css-val">18</span><span class="punc">;</span>
+<span class="sel">$name</span> <span class="punc">=</span> <span class="val">"Kamal"</span><span class="punc">;</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">execute</span><span class="punc">();</span>
+
+<span class="sel">$result</span> <span class="punc">=</span> <span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">get_result</span><span class="punc">();</span> <span class="cmt">// Read the results</span>
+
+<span class="cmt">/* ORDER BY examples:</span>
+<span class="cmt">SELECT * FROM students ORDER BY name ASC;</span>
+<span class="cmt">SELECT * FROM students ORDER BY age DESC;</span>
+<span class="cmt">*/</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>✏️ UPDATE &amp; 🗑️ DELETE</h4>
+                        <p>Modify or remove existing records. ⚠️ <strong>Always use a WHERE clause</strong>, otherwise
+                            you might update or delete the entire table!</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — UPDATE &amp; DELETE</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// UPDATE record (Prepared)</span>
+<span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span><span class="val">"UPDATE students SET age = ? WHERE id = ?"</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"ii"</span><span class="punc">,</span> <span class="sel">$age</span><span class="punc">,</span> <span class="sel">$id</span><span class="punc">);</span>
+
+<span class="cmt">// DELETE record (Prepared)</span>
+<span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span><span class="val">"DELETE FROM students WHERE id = ?"</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"i"</span><span class="punc">,</span> <span class="sel">$id</span><span class="punc">);</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: SQL Joins                              -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-joins">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> SQL Joins</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-joins"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔗 SQL Joins</h4>
+                        <p>JOIN combines tables based on related columns.</p>
+                        <ul>
+                            <li><code>INNER JOIN</code> — shows matched data only</li>
+                            <li><code>LEFT JOIN</code> / <code>RIGHT JOIN</code> — includes unmatched sets too</li>
+                            <li><code>FULL JOIN</code> — includes everything (not naturally supported in MySQL)</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">sql — INNER JOIN</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">-- Show student details with their marks</span>
+<span class="kw">SELECT</span> <span class="sel">students</span><span class="punc">.</span><span class="sel">id</span><span class="punc">,</span> <span class="sel">students</span><span class="punc">.</span><span class="sel">name</span><span class="punc">,</span> <span class="sel">students</span><span class="punc">.</span><span class="sel">email</span><span class="punc">,</span> <span class="sel">marks</span><span class="punc">.</span><span class="sel">subject</span><span class="punc">,</span> <span class="sel">marks</span><span class="punc">.</span><span class="sel">mark</span>
+<span class="kw">FROM</span> <span class="sel">students</span>
+<span class="kw">INNER JOIN</span> <span class="sel">marks</span>
+<span class="kw">ON</span> <span class="sel">students</span><span class="punc">.</span><span class="sel">id</span> <span class="punc">=</span> <span class="sel">marks</span><span class="punc">.</span><span class="sel">student_id</span><span class="punc">;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 6: Password Security & Sessions           -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-auth">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> Password Security &amp; Sessions</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-auth"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔐 Password Security</h4>
+                        <p><strong>Never store plain text passwords!</strong> Always hash them using
+                            <code>password_hash()</code>, and verify them using <code>password_verify()</code>.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Password Hash &amp; Verify</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// Hashing before Insert</span>
+<span class="sel">$hashed_password</span> <span class="punc">=</span> <span class="kw">password_hash</span><span class="punc">(</span><span class="sel">$password</span><span class="punc">,</span> <span class="kw">PASSWORD_DEFAULT</span><span class="punc">);</span>
+
+<span class="sel">$stmt</span> <span class="punc">=</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">prepare</span><span class="punc">(</span><span class="val">"INSERT INTO users (username, password) VALUES (?, ?)"</span><span class="punc">);</span>
+<span class="sel">$stmt</span><span class="punc">-&gt;</span><span class="kw">bind_param</span><span class="punc">(</span><span class="val">"ss"</span><span class="punc">,</span> <span class="sel">$username</span><span class="punc">,</span> <span class="sel">$hashed_password</span><span class="punc">);</span>
+
+
+<span class="cmt">// Verifying Password at Login</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="kw">password_verify</span><span class="punc">(</span><span class="sel">$password</span><span class="punc">,</span> <span class="sel">$user</span><span class="punc">[</span><span class="val">"password"</span><span class="punc">])) {</span>
+    <span class="kw">echo</span> <span class="val">"Login successful"</span><span class="punc">;</span>
+<span class="punc">}</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🍪 Sessions (Authentication)</h4>
+                        <p>HTTP is stateless: The server does not remember previous requests. Sessions allow us to store
+                            user-specific data and maintain login state.</p>
+                        <ul>
+                            <li><code>session_start()</code> must be at the <strong>top of the file before any
+                                    HTML</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Sessions</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="cmt">// 1. Start Session (must be AT TOP of document)</span>
+<span class="kw">session_start</span><span class="punc">();</span>
+
+<span class="cmt">// 2. Store Data</span>
+<span class="sel">$_SESSION</span><span class="punc">[</span><span class="val">"username"</span><span class="punc">]</span> <span class="punc">=</span> <span class="val">"Amal"</span><span class="punc">;</span>
+
+<span class="cmt">// 3. Destroy Session (Logout)</span>
+<span class="kw">session_start</span><span class="punc">();</span>
+<span class="kw">session_unset</span><span class="punc">();</span>
+<span class="kw">session_destroy</span><span class="punc">();</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="php-lecture3.html" class="lecture-nav-btn prev"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--border-color); text-decoration:none; font-weight:600; color:var(--text-primary);">←
+                        Lecture 3</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../php.html">All PHP Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <!-- TTS Control Panel -->
+    <div class="tts-panel" id="tts-panel">
+        <button class="tts-toggle-btn" id="tts-toggle" aria-label="Text to Speech">🔊 Listen</button>
+        <div class="tts-controls hidden" id="tts-controls">
+            <div class="tts-header">
+                <h4>🎧 Audio Player</h4>
+                <button class="tts-close" id="tts-close">✕</button>
+            </div>
+            <div class="tts-playback">
+                <button class="tts-btn" id="tts-prev" title="Previous Section">⏮</button>
+                <button class="tts-btn primary" id="tts-play">▶️ Play</button>
+                <button class="tts-btn hidden" id="tts-pause">⏸ Pause</button>
+                <button class="tts-btn" id="tts-stop" title="Stop">⏹</button>
+                <button class="tts-btn" id="tts-next" title="Next Section">⏭</button>
+            </div>
+            <div class="tts-progress">
+                <div class="progress-text">Ready to play…</div>
+            </div>
+            <div class="tts-setting">
+                <label>Speed:</label>
+                <div class="speed-controls">
+                    <button class="speed-btn" data-speed="0.75">0.75x</button>
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="1.25">1.25x</button>
+                    <button class="speed-btn" data-speed="1.5">1.5x</button>
+                </div>
+            </div>
+            <div class="tts-setting">
+                <label for="voice-select">Voice:</label>
+                <select id="voice-select" class="voice-dropdown">
+                    <option>Loading voices…</option>
+                </select>
+            </div>
+            <button class="tts-btn secondary" id="tts-read-selection">📝 Read Selected Text</button>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+    <script src="../js/live-editor.js"></script>
+    <script src="../js/text-to-speech.js"></script>
+</body>
+
+</html>

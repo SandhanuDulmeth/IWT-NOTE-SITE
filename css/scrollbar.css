@@ -1,0 +1,128 @@
+/* ============================================
+   CUSTOM SCROLLBAR STYLES
+   ============================================ */
+
+/* --- Default Scrollbar (Chrome, Edge, Safari) --- */
+
+/* Width */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    /* Light mode default */
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.2s ease;
+}
+
+/* Thumb Hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+/* --- Dark Mode Default --- */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-color: transparent;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+    border-color: transparent;
+}
+
+
+/* --- Firefox Scrollbar --- */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+[data-theme="dark"] * {
+    scrollbar-color: #4b5563 transparent;
+}
+
+
+/* ============================================
+   TOPIC-SPECIFIC SCROLLBARS
+   ============================================ */
+
+/* 1. HTML (Orange) */
+.html-section ::-webkit-scrollbar-thumb,
+body.html-section ::-webkit-scrollbar-thumb {
+    background: var(--color-html, #E44D26);
+}
+
+.html-section ::-webkit-scrollbar-thumb:hover,
+body.html-section ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-html-light, #f4845f);
+}
+
+.html-section,
+body.html-section {
+    scrollbar-color: var(--color-html, #E44D26) transparent;
+}
+
+
+/* 2. CSS (Blue) */
+.css-section ::-webkit-scrollbar-thumb,
+body.css-section ::-webkit-scrollbar-thumb {
+    background: var(--color-css, #264DE4);
+}
+
+.css-section ::-webkit-scrollbar-thumb:hover,
+body.css-section ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-css-light, #5c7cfa);
+}
+
+.css-section,
+body.css-section {
+    scrollbar-color: var(--color-css, #264DE4) transparent;
+}
+
+
+/* 3. Javascript (Yellow) */
+.js-section ::-webkit-scrollbar-thumb,
+body.js-section ::-webkit-scrollbar-thumb {
+    background: var(--color-js, #F7DF1E);
+}
+
+.js-section ::-webkit-scrollbar-thumb:hover,
+body.js-section ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-js-dark, #c9a800);
+}
+
+.js-section,
+body.js-section {
+    scrollbar-color: var(--color-js, #F7DF1E) transparent;
+}
+
+
+/* 4. PHP (Purple) */
+.php-section ::-webkit-scrollbar-thumb,
+body.php-section ::-webkit-scrollbar-thumb {
+    background: var(--color-php, #777BB4);
+}
+
+.php-section ::-webkit-scrollbar-thumb:hover,
+body.php-section ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-php-light, #9b9ed4);
+}
+
+.php-section,
+body.php-section {
+    scrollbar-color: var(--color-php, #777BB4) transparent;
+}

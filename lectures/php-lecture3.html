@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PHP Lecture 3 — HTML Forms, PHP Superglobals, Validation, and MySQL Database Integration.">
+    <title>Lecture 3 — Forms & MySQL — IWT Note Site</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/live-editor.css">
+    <link rel="stylesheet" href="../css/text-to-speech.css">
+</head>
+
+<body class="php-page php-section">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <div class="logo-icon">&lt;/&gt;</div>
+                    <div>
+                        <div class="logo-text">IWT Notes</div><span class="logo-badge">v1.1</span>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search topics…"
+                        autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="../index.html" class="nav-link" data-page="index.html"><span
+                            class="nav-icon">🏠</span><span>Home</span></a>
+                    <a href="../practicals.html" class="nav-link" data-page="practicals.html">
+                        <span class="nav-icon">📝</span>
+                        <span>Practicals</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Topics</div>
+                    <a href="../html.html" class="nav-link" data-page="html.html"><span
+                            class="nav-dot html"></span><span>HTML</span><span class="completion-check">✓</span></a>
+                    <a href="../css.html" class="nav-link" data-page="css.html"><span
+                            class="nav-dot css"></span><span>CSS</span><span class="completion-check">✓</span></a>
+                    <a href="../javascript.html" class="nav-link" data-page="javascript.html"><span
+                            class="nav-dot js"></span><span>JavaScript</span><span class="completion-check">✓</span></a>
+                    <a href="../php.html" class="nav-link" data-page="php.html"><span
+                            class="nav-dot php"></span><span>PHP</span><span class="completion-check">✓</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">PHP Lectures</div>
+                    <a href="php-lecture1.html" class="nav-link"><span class="nav-icon">1</span> Introduction to PHP</a>
+                    <a href="php-lecture2.html" class="nav-link"><span class="nav-icon">2</span> Arrays &amp;
+                        Functions</a>
+                    <a href="php-lecture3.html" class="nav-link active"><span class="nav-icon">3</span> Forms &amp;
+                        MySQL</a>
+                    <a href="php-lecture4.html" class="nav-link"><span class="nav-icon">4</span> MySQL CRUD &amp;
+                        Security</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">On this page</div>
+                    <a href="#php-forms" class="nav-link"><span class="nav-icon">1</span> HTML Forms &amp; Flow</a>
+                    <a href="#php-methods" class="nav-link"><span class="nav-icon">2</span> PHP Methods</a>
+                    <a href="#php-handling" class="nav-link"><span class="nav-icon">3</span> Handling Data</a>
+                    <a href="#php-validation" class="nav-link"><span class="nav-icon">4</span> Form Validation</a>
+                    <a href="#php-databases" class="nav-link"><span class="nav-icon">5</span> Intro to Databases</a>
+                    <a href="#php-mysql" class="nav-link"><span class="nav-icon">6</span> MySQL Integration</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
+                <div class="progress-mini">
+                    <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="mini-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+                <span class="top-bar-title">PHP — Lecture 3</span>
+                <button class="top-bar-theme-btn" id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+            </div>
+            <div class="content-area">
+                <div class="topic-header">
+                    <span class="topic-badge php">🟣 PHP · Lecture 3</span>
+                    <h1>Forms, Validation &amp; MySQL</h1>
+                    <p>Understanding HTML forms and PHP flow, PHP Superglobals, GET/POST methods, form validation, and
+                        connecting PHP to MySQL databases.</p>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 1: HTML Forms & PHP Flow                  -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-forms">
+                    <div class="section-header">
+                        <h2><span class="section-number">01</span> HTML Forms &amp; PHP Flow</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-forms"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <strong>Lecture 3</strong> · SCS 1311 · Topics: forms, flow, superglobals
+                    </p>
+
+                    <div class="notes-block">
+                        <h4>📝 What is an HTML Form?</h4>
+                        <ul>
+                            <li>An HTML form <strong>collects user input</strong>.</li>
+                            <li>When submitted, <strong>data is sent to the server</strong>.</li>
+                            <li><strong>PHP receives and processes</strong> this data.</li>
+                            <li>The server <strong>sends a response</strong> back to the user.</li>
+                        </ul>
+                        <p style="margin-top:1rem; font-weight:600; text-align:center;">
+                            User → HTML Form → PHP Script → Response
+                        </p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🌐 PHP Superglobals</h4>
+                        <p>Superglobals are <strong>built-in PHP arrays</strong> that are accessible anywhere in a
+                            script without needing to declare them global.</p>
+                        <h4 style="margin-top:1rem;">📌 Common Superglobals:</h4>
+                        <ul>
+                            <li><code>$_GET</code> — for URL parameters</li>
+                            <li><code>$_POST</code> — for HTTP POST data</li>
+                            <li><code>$_REQUEST</code> — contains both GET, POST, and COOKIE data</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 2: PHP Methods                            -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-methods">
+                    <div class="section-header">
+                        <h2><span class="section-number">02</span> PHP Methods</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-methods"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔍 GET Method</h4>
+                        <ul>
+                            <li>Data sent through <strong>URL (query string)</strong>.</li>
+                            <li>Visible in browser address bar (<code>?name=value</code>).</li>
+                            <li>Can be <strong>bookmarked or shared</strong>.</li>
+                            <li><strong>Not suitable</strong> for sensitive information.</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔒 POST Method</h4>
+                        <ul>
+                            <li>Data sent in <strong>HTTP request body</strong>.</li>
+                            <li><strong>Not visible</strong> in URL.</li>
+                            <li>Cannot be bookmarked.</li>
+                            <li>Suitable for: <strong>Sensitive data</strong> (passwords) and <strong>Large
+                                    submissions</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — $_GET and $_POST</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// $_GET collects values sent with method="get"</span>
+<span class="sel">$_GET</span><span class="punc">[</span><span class="val">'username'</span><span class="punc">];</span>  <span class="cmt">// Keys are form field names</span>
+
+<span class="cmt">// $_POST collects values sent with method="post"</span>
+<span class="sel">$_POST</span><span class="punc">[</span><span class="val">'username'</span><span class="punc">];</span>  <span class="cmt">// Values are user inputs</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 3: Handling Data                          -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-handling">
+                    <div class="section-header">
+                        <h2><span class="section-number">03</span> Handling Data</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-handling"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html — Basic HTML Form</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;form</span> <span class="attr">method</span><span class="punc">=</span><span class="val">"post"</span> <span class="attr">action</span><span class="punc">=</span><span class="val">""</span><span class="tag">&gt;</span>
+ <span class="tag">&lt;label</span> <span class="attr">for</span><span class="punc">=</span><span class="val">"sport"</span><span class="tag">&gt;</span>Enter your favorite sport:<span class="tag">&lt;/label&gt;</span><span class="tag">&lt;br&gt;</span><span class="tag">&lt;br&gt;</span>
+
+ <span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"text"</span> <span class="attr">id</span><span class="punc">=</span><span class="val">"sport"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sport"</span><span class="tag">&gt;</span><span class="tag">&lt;br&gt;</span><span class="tag">&lt;br&gt;</span>
+
+ <span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"submit"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"submit"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"Submit"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>⚙️ Understanding the <code>action</code> Attribute</h4>
+                        <ul>
+                            <li><code>action=""</code> → submits back to the <strong>same PHP file</strong></li>
+                            <li><code>action="process.php"</code> → sends data to <strong>another file</strong></li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">📌 Why use an explicit action (different file)?</h4>
+                        <p>Provides clear application flow, is better for large projects, and allows for easier
+                            maintenance (Separate Processing File Pattern).</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Same-Page Form Handling Example</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">// File: index.php</span>
+<span class="tag">&lt;?php</span>
+<span class="sel">$sport</span> <span class="punc">=</span> <span class="val">""</span><span class="punc">;</span>
+
+<span class="cmt">// Check if form is submitted via POST</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="kw">isset</span><span class="punc">(</span><span class="sel">$_POST</span><span class="punc">[</span><span class="val">"submit"</span><span class="punc">])) {</span>
+  <span class="sel">$sport</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">];</span>  <span class="cmt">// Retrieve value</span>
+<span class="punc">}</span>
+<span class="tag">?&gt;</span>
+
+<span class="cmt">&lt;!-- Form HTML goes here --&gt;</span>
+
+<span class="tag">&lt;?php</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$sport</span> <span class="punc">!=</span> <span class="val">""</span><span class="punc">) {</span>
+  <span class="kw">echo</span> <span class="val">"Your favorite sport is: "</span> <span class="punc">.</span> <span class="sel">$sport</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">html/php — Other Form Elements (Radio &amp; Checkbox)</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">&lt;!-- Radio Buttons --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"radio"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sport"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"Soccer"</span><span class="tag">&gt;</span> Soccer
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"radio"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sport"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"Cricket"</span><span class="tag">&gt;</span> Cricket
+
+<span class="tag">&lt;?php</span>
+  <span class="cmt">// Access radio button value</span>
+  <span class="kw">echo</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">];</span>
+<span class="tag">?&gt;</span>
+
+<span class="cmt">&lt;!-- Checkboxes (returns array) --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"checkbox"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sports[]"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"Soccer"</span><span class="tag">&gt;</span> Soccer
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"checkbox"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sports[]"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"Cricket"</span><span class="tag">&gt;</span> Cricket
+
+<span class="tag">&lt;?php</span>
+  <span class="cmt">// Access checkbox array</span>
+  <span class="sel">$sports</span> <span class="punc">=</span> <span class="sel">$_POST</span><span class="punc">[</span><span class="val">"sports"</span><span class="punc">];</span>
+  <span class="kw">foreach</span> <span class="punc">(</span><span class="sel">$sports</span> <span class="kw">as</span> <span class="sel">$sport</span><span class="punc">) {</span>
+    <span class="kw">echo</span> <span class="sel">$sport</span> <span class="punc">.</span> <span class="val">"&lt;br&gt;"</span><span class="punc">;</span>
+  <span class="punc">}</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 4: Form Validation & Security             -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-validation">
+                    <div class="section-header">
+                        <h2><span class="section-number">04</span> Form Validation &amp; Sanitization</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-validation"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🛡️ Why Validation?</h4>
+                        <ul>
+                            <li>Prevent <strong>empty/wrong data</strong>.</li>
+                            <li>Prevent errors and application crashes.</li>
+                            <li>Improve <strong>User Experience (UX)</strong>.</li>
+                            <li><strong>Essential for security</strong> to stop malicious data.</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — Validation &amp; Retaining Input</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="sel">$error</span> <span class="punc">=</span> <span class="val">""</span><span class="punc">;</span>
+<span class="sel">$sport</span> <span class="punc">=</span> <span class="val">""</span><span class="punc">;</span>
+
+<span class="kw">if</span> <span class="punc">(</span><span class="kw">isset</span><span class="punc">(</span><span class="sel">$_POST</span><span class="punc">[</span><span class="val">"submit"</span><span class="punc">])) {</span>
+  <span class="cmt">// Using empty() to check empty input</span>
+  <span class="kw">if</span> <span class="punc">(</span><span class="kw">empty</span><span class="punc">(</span><span class="sel">$_POST</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">])) {</span>
+    <span class="sel">$error</span> <span class="punc">=</span> <span class="val">"Sport is required"</span><span class="punc">;</span>
+  <span class="punc">}</span> <span class="kw">else</span> <span class="punc">{</span>
+    <span class="cmt">// Sanitization to prevent HTML injection and prevent scripts</span>
+    <span class="sel">$sport</span> <span class="punc">=</span> <span class="kw">htmlspecialchars</span><span class="punc">(</span><span class="sel">$_POST</span><span class="punc">[</span><span class="val">"sport"</span><span class="punc">]);</span>
+  <span class="punc">}</span>
+<span class="punc">}</span>
+<span class="tag">?&gt;</span>
+
+<span class="cmt">&lt;!-- Displaying Validation Errors --&gt;</span>
+<span class="tag">&lt;span</span> <span class="attr">style</span><span class="punc">=</span><span class="val">"color:red;"</span><span class="tag">&gt;</span><span class="tag">&lt;?php</span> <span class="kw">echo</span> <span class="sel">$error</span><span class="punc">;</span> <span class="tag">?&gt;</span><span class="tag">&lt;/span&gt;</span>
+
+<span class="cmt">&lt;!-- Retaining Input Values (prevents retyping after submit) --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span><span class="punc">=</span><span class="val">"text"</span> <span class="attr">name</span><span class="punc">=</span><span class="val">"sport"</span> <span class="attr">value</span><span class="punc">=</span><span class="val">"</span><span class="tag">&lt;?php</span> <span class="kw">echo</span> <span class="sel">$sport</span><span class="punc">;</span> <span class="tag">?&gt;</span><span class="val">"</span><span class="tag">&gt;</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 5: Intro to Databases                     -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-databases">
+                    <div class="section-header">
+                        <h2><span class="section-number">05</span> Introduction to Databases</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-databases"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>❓ Why Do We Need a Database?</h4>
+                        <p>When PHP finishes running:</p>
+                        <ul>
+                            <li>Variables disappear</li>
+                            <li>Data is not saved</li>
+                            <li>Sessions are temporary</li>
+                            <li>Files are not structured for large storage</li>
+                        </ul>
+                        <h4 style="margin-top:1rem;">💾 Databases solve this by letting us:</h4>
+                        <p>Store users, login details, file names, retrieve data later, and update/delete records
+                            easily.</p>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🐬 What is MySQL?</h4>
+                        <ul>
+                            <li>A <strong>Relational Database Management System (RDBMS)</strong></li>
+                            <li>Uses <strong>SQL (Structured Query Language)</strong></li>
+                            <li>Stores data in tables containing <strong>rows &amp; columns</strong></li>
+                            <li>PHP interacts with MySQL via SQL queries</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔑 SQL Key Concepts</h4>
+                        <ul>
+                            <li><strong>Database</strong>: container for tables.</li>
+                            <li><strong>Table</strong>: collection of related data entries.</li>
+                            <li><strong>Row</strong>: a single record in a table.</li>
+                            <li><strong>Column</strong>: a specific field (e.g., age, name).</li>
+                            <li><strong>Primary Key</strong>: unique identifier for each row.</li>
+                        </ul>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🔠 MySQL Data Types</h4>
+                        <ul>
+                            <li><strong>Numeric</strong>: <code>INT</code>, <code>DECIMAL(10,2)</code>,
+                                <code>FLOAT</code>
+                            </li>
+                            <li><strong>String</strong>: <code>VARCHAR(255)</code>, <code>TEXT</code></li>
+                            <li><strong>Date/Time</strong>: <code>DATE</code>, <code>DATETIME</code>,
+                                <code>TIMESTAMP</code>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- Section 6: MySQL Integration                      -->
+                <!-- ═══════════════════════════════════════════════════ -->
+                <section class="content-section" id="php-mysql">
+                    <div class="section-header">
+                        <h2><span class="section-number">06</span> MySQL Integration</h2>
+                        <label class="completion-toggle"><input type="checkbox" data-section="php-mysql"><span
+                                class="check-box">✓</span><span class="check-label">Done</span></label>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">sql — Creating Database &amp; Table</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="cmt">-- Creating Database</span>
+<span class="kw">CREATE</span> <span class="kw">DATABASE</span> <span class="val">school_db</span><span class="punc">;</span>
+
+<span class="cmt">-- Creating Table</span>
+<span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="sel">students</span> <span class="punc">(</span>
+ <span class="sel">id</span> <span class="kw">INT AUTO_INCREMENT PRIMARY KEY</span><span class="punc">,</span>
+ <span class="sel">name</span> <span class="kw">VARCHAR</span><span class="punc">(</span><span class="css-val">100</span><span class="punc">)</span> <span class="kw">NOT NULL</span><span class="punc">,</span>
+ <span class="sel">email</span> <span class="kw">VARCHAR</span><span class="punc">(</span><span class="css-val">100</span><span class="punc">)</span> <span class="kw">UNIQUE NOT NULL</span><span class="punc">,</span>
+ <span class="sel">age</span> <span class="kw">INT</span><span class="punc">,</span>
+ <span class="sel">created_at</span> <span class="kw">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+<span class="punc">);</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🌐 Connecting PHP to MySQL</h4>
+                        <p>Three common methods are: 1) MySQLi (Procedural), 2) <strong>MySQLi (OOP)</strong>, and 3)
+                            PDO (PHP Data Objects).</p>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-lang">
+                                <div class="dots"><span></span><span></span><span></span></div><span
+                                    class="code-lang-label">php — MySQLi OOP Connection</span>
+                            </div>
+                            <button class="copy-btn">📋 Copy</button>
+                        </div>
+                        <pre><code><span class="tag">&lt;?php</span>
+<span class="sel">$servername</span> <span class="punc">=</span> <span class="val">"localhost"</span><span class="punc">;</span>
+<span class="sel">$username</span> <span class="punc">=</span> <span class="val">"root"</span><span class="punc">;</span>
+<span class="sel">$password</span> <span class="punc">=</span> <span class="val">""</span><span class="punc">;</span>
+<span class="sel">$database</span> <span class="punc">=</span> <span class="val">"school_db"</span><span class="punc">;</span>
+
+<span class="cmt">// Create connection</span>
+<span class="sel">$conn</span> <span class="punc">=</span> <span class="kw">new mysqli</span><span class="punc">(</span><span class="sel">$servername</span><span class="punc">,</span> <span class="sel">$username</span><span class="punc">,</span> <span class="sel">$password</span><span class="punc">,</span> <span class="sel">$database</span><span class="punc">);</span>
+
+<span class="cmt">// Check connection</span>
+<span class="kw">if</span> <span class="punc">(</span><span class="sel">$conn</span><span class="punc">-&gt;</span><span class="sel">connect_error</span><span class="punc">) {</span>
+  <span class="kw">die</span><span class="punc">(</span><span class="val">"Connection failed: "</span> <span class="punc">.</span> <span class="sel">$conn</span><span class="punc">-&gt;</span><span class="sel">connect_error</span><span class="punc">);</span>
+<span class="punc">}</span>
+
+<span class="kw">echo</span> <span class="val">"Connected Successfully"</span><span class="punc">;</span>
+
+<span class="cmt">// Good practice: Only keep connection code in a dedicated file (db.php)</span>
+<span class="cmt">// Closing the connection</span>
+<span class="sel">$conn</span><span class="punc">-&gt;</span><span class="kw">close</span><span class="punc">();</span>
+<span class="tag">?&gt;</span></code></pre>
+                    </div>
+
+                    <div class="notes-block">
+                        <h4>🧩 Important MySQLi Concepts</h4>
+                        <ul>
+                            <li><code>mysqli</code> → built-in PHP class</li>
+                            <li><code>$conn</code> → connection object</li>
+                            <li><code>$conn-&gt;connect_error</code> → stores error if failed</li>
+                            <li><code>die()</code> → stops script execution</li>
+                            <li><code>$conn-&gt;query()</code> → run queries</li>
+                            <li><code>$result-&gt;fetch_assoc()</code> → fetch data array</li>
+                            <li><code>$conn-&gt;close()</code> → prevents connection limits and frees resources</li>
+                        </ul>
+                    </div>
+
+                    <div class="exercise-block">
+                        <h4>🏋️ Practice</h4>
+                        <ol>
+                            <li>Create a form to accept student details (name, email, age).</li>
+                            <li>Create a <code>db.php</code> file to connect to a MySQL database named
+                                <code>school_db</code>.
+                            </li>
+                            <li>Include the connection file on the form processing page.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Lecture Navigation -->
+                <div class="lecture-nav"
+                    style="display:flex; justify-content:space-between; align-items:center; margin:2rem 0; padding:1.5rem; border-radius:12px; background:var(--card-bg); border:1px solid var(--border-color);">
+                    <a href="php-lecture2.html" class="lecture-nav-btn prev"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--border-color); text-decoration:none; font-weight:600; color:var(--text-primary);">←
+                        Lecture 2</a>
+                    <a href="php-lecture4.html" class="lecture-nav-btn next"
+                        style="padding:0.5rem 1.25rem; border-radius:8px; background:var(--primary-color); border:1px solid var(--primary-color); text-decoration:none; font-weight:600; color:white;">Lecture
+                        4 →</a>
+                </div>
+
+                <footer class="site-footer">
+                    <p>IWT Note Site &copy; 2026 · <a href="../php.html">All PHP Lectures</a> · <a
+                            href="../index.html">Home</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <!-- TTS Control Panel -->
+    <div class="tts-panel" id="tts-panel">
+        <button class="tts-toggle-btn" id="tts-toggle" aria-label="Text to Speech">🔊 Listen</button>
+        <div class="tts-controls hidden" id="tts-controls">
+            <div class="tts-header">
+                <h4>🎧 Audio Player</h4>
+                <button class="tts-close" id="tts-close">✕</button>
+            </div>
+            <div class="tts-playback">
+                <button class="tts-btn" id="tts-prev" title="Previous Section">⏮</button>
+                <button class="tts-btn primary" id="tts-play">▶️ Play</button>
+                <button class="tts-btn hidden" id="tts-pause">⏸ Pause</button>
+                <button class="tts-btn" id="tts-stop" title="Stop">⏹</button>
+                <button class="tts-btn" id="tts-next" title="Next Section">⏭</button>
+            </div>
+            <div class="tts-progress">
+                <div class="progress-text">Ready to play…</div>
+            </div>
+            <div class="tts-setting">
+                <label>Speed:</label>
+                <div class="speed-controls">
+                    <button class="speed-btn" data-speed="0.75">0.75x</button>
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="1.25">1.25x</button>
+                    <button class="speed-btn" data-speed="1.5">1.5x</button>
+                </div>
+            </div>
+            <div class="tts-setting">
+                <label for="voice-select">Voice:</label>
+                <select id="voice-select" class="voice-dropdown">
+                    <option>Loading voices…</option>
+                </select>
+            </div>
+            <button class="tts-btn secondary" id="tts-read-selection">📝 Read Selected Text</button>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/code-copy.js"></script>
+    <script src="../js/code-runner.js"></script>
+    <script src="../js/live-editor.js"></script>
+    <script src="../js/text-to-speech.js"></script>
+</body>
+
+</html>
