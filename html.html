@@ -14,10 +14,16 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/favicon.svg">
     <meta name="twitter:card" content="summary">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/code.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/firebase-auth.css">
 </head>
 
 <body class="html-page html-section">
@@ -74,6 +80,7 @@
                 </div>
             </nav>
             <div class="sidebar-footer">
+                <div id="firebase-auth-container"></div>
                 <button class="theme-toggle-btn" id="theme-toggle"><span>🌙</span> Dark Mode</button>
                 <div class="progress-mini">
                     <div class="progress-mini-label"><span>Progress</span><span id="mini-progress-label">0%</span></div>
@@ -163,6 +170,8 @@
     <script src="js/progress.js"></script>
     <script src="js/code-copy.js"></script>
     <script src="js/code-runner.js"></script>
+    <script src="js/firebase-auth.js"></script>
+    <script src="js/auth-guard.js"></script>
 </body>
 
 </html>

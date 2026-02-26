@@ -1,0 +1,586 @@
+/* =============================================
+   IWT NOTE SITE — Firebase Authentication Styles
+   ============================================= */
+
+/* ---------- Auth Container ---------- */
+#firebase-auth-container {
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-md);
+}
+
+/* ---------- Google Sign-In Button ---------- */
+.firebase-signin-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: 10px var(--space-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.firebase-signin-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(66, 133, 244, 0.08),
+            rgba(234, 67, 53, 0.08),
+            rgba(251, 188, 4, 0.08),
+            rgba(52, 168, 83, 0.08));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.firebase-signin-btn:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.firebase-signin-btn:hover::before {
+    opacity: 1;
+}
+
+.firebase-signin-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Google "G" logo */
+.firebase-signin-btn .google-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.firebase-signin-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+/* ---------- Loading Spinner ---------- */
+.firebase-auth-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+}
+
+.firebase-auth-spinner {
+    width: 22px;
+    height: 22px;
+    border: 2.5px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: firebase-spin 0.7s linear infinite;
+}
+
+@keyframes firebase-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- User Profile Card ---------- */
+.firebase-user-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.firebase-user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.firebase-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    flex-shrink: 0;
+    transition: border-color var(--transition-fast);
+}
+
+/* Default avatar when no photo */
+.firebase-user-avatar-default {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.firebase-user-details {
+    flex: 1;
+    min-width: 0;
+    /* enable text truncation */
+}
+
+.firebase-user-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.firebase-user-email {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------- Sign-Out Button ---------- */
+.firebase-signout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    width: 100%;
+    padding: 8px var(--space-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.firebase-signout-btn:hover {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: var(--error);
+    color: var(--error);
+}
+
+.firebase-signout-btn:active {
+    transform: scale(0.98);
+}
+
+.firebase-signout-btn .signout-icon {
+    font-size: var(--font-size-sm);
+}
+
+/* ---------- Auth Status Dot ---------- */
+.firebase-auth-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    padding: 0 var(--space-xs);
+}
+
+.firebase-auth-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+    animation: firebase-pulse 2s ease-in-out infinite;
+}
+
+@keyframes firebase-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ---------- Error Toast ---------- */
+.firebase-auth-error {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--error);
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+    animation: firebase-fadeIn 0.3s ease;
+}
+
+@keyframes firebase-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Animations ---------- */
+.firebase-fade-in {
+    animation: firebase-fadeIn 0.3s ease;
+}
+
+/* ---------- Dark Theme Adjustments ---------- */
+[data-theme="dark"] .firebase-signin-btn {
+    background: var(--bg-input);
+}
+
+[data-theme="dark"] .firebase-signin-btn:hover {
+    background: var(--bg-hover);
+}
+
+[data-theme="dark"] .firebase-user-info {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .firebase-signout-btn:hover {
+    background: rgba(248, 113, 113, 0.1);
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 768px) {
+    #firebase-auth-container {
+        padding: var(--space-sm) 0;
+    }
+
+    .firebase-user-info {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .firebase-user-avatar,
+    .firebase-user-avatar-default {
+        width: 30px;
+        height: 30px;
+    }
+
+    .firebase-user-name {
+        font-size: var(--font-size-xs);
+    }
+
+    .firebase-user-email {
+        font-size: 10px;
+    }
+
+    .firebase-signin-btn {
+        padding: 8px var(--space-sm);
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* ---------- Transition for theme switch ---------- */
+#firebase-auth-container,
+.firebase-signin-btn,
+.firebase-user-info,
+.firebase-signout-btn {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* =============================================
+   AUTH GUARD — Login Screen Styles
+   ============================================= */
+
+/* ---------- Content Protection ---------- */
+.auth-guard-hidden {
+    display: none !important;
+}
+
+/* ---------- Full-Screen Login Overlay ---------- */
+.auth-guard-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-primary);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: var(--space-xl);
+}
+
+.auth-guard-container {
+    max-width: 520px;
+    width: 100%;
+    animation: authGuardSlideIn 0.5s ease;
+}
+
+@keyframes authGuardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-guard-content {
+    text-align: center;
+}
+
+/* Logo */
+.auth-guard-logo {
+    margin-bottom: var(--space-lg);
+}
+
+.auth-guard-logo-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--color-html), var(--color-css), var(--color-php));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    font-weight: 800;
+    font-family: var(--font-code);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+
+/* Title */
+.auth-guard-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+    background: linear-gradient(135deg, var(--color-html), var(--color-css), var(--color-php));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-guard-subtitle {
+    font-size: var(--font-size-md);
+    color: var(--text-muted);
+    margin-bottom: var(--space-xl);
+}
+
+/* Message Card */
+.auth-guard-message {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-guard-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-html), var(--color-css), var(--color-js-dark), var(--color-php));
+}
+
+.auth-guard-lock-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.auth-guard-message h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.auth-guard-message p {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Sign-In Button Wrapper */
+.auth-guard-btn-wrapper {
+    margin-bottom: var(--space-xl);
+}
+
+/* Larger sign-in button for the guard screen */
+.auth-guard-signin-btn-large {
+    padding: 14px var(--space-xl) !important;
+    font-size: var(--font-size-md) !important;
+    border-radius: var(--radius-lg) !important;
+    justify-content: center;
+    max-width: 320px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+}
+
+.auth-guard-signin-btn-large:hover {
+    box-shadow: var(--shadow-lg) !important;
+    transform: translateY(-2px) !important;
+}
+
+.auth-guard-signin-btn-large .google-icon {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Error Message */
+.auth-guard-error-msg {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--error);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-lg);
+    animation: firebase-fadeIn 0.3s ease;
+}
+
+/* Feature List */
+.auth-guard-features {
+    text-align: left;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.auth-guard-features h3 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+}
+
+.auth-guard-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.auth-guard-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.auth-guard-features li:last-child {
+    border-bottom: none;
+}
+
+.auth-guard-features .feature-icon {
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+/* Footer */
+.auth-guard-footer {
+    padding-top: var(--space-md);
+}
+
+.auth-guard-footer p {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ---------- Dark Mode ---------- */
+[data-theme="dark"] .auth-guard-message {
+    border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .auth-guard-features {
+    border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .auth-guard-logo-icon {
+    box-shadow: 0 8px 24px rgba(129, 140, 248, 0.2);
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 768px) {
+    .auth-guard-screen {
+        padding: var(--space-md);
+    }
+
+    .auth-guard-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .auth-guard-message {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .auth-guard-lock-icon {
+        font-size: 2rem;
+    }
+
+    .auth-guard-message h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .auth-guard-features {
+        padding: var(--space-md);
+    }
+
+    .auth-guard-signin-btn-large {
+        max-width: 100%;
+        min-height: 48px;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth-guard-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .auth-guard-subtitle {
+        font-size: var(--font-size-sm);
+    }
+}
