@@ -25,7 +25,6 @@
     try {
         app = firebase.initializeApp(firebaseConfig);
         auth = firebase.auth();
-        database = firebase.database();
         provider = new firebase.auth.GoogleAuthProvider();
 
         // Request email scope
@@ -36,6 +35,15 @@
     } catch (error) {
         console.error('[Firebase Auth] ❌ Failed to initialize Firebase:', error);
         return; // Stop execution if Firebase fails to initialize
+    }
+
+    // Database is optional — don't let it kill auth
+    try {
+        database = firebase.database();
+        console.log('[Firebase Auth] ✅ Realtime Database connected');
+    } catch (error) {
+        console.warn('[Firebase Auth] ⚠️ Realtime Database not available (missing databaseURL?):', error.message);
+        database = null;
     }
 
     // ─── Auth Container Reference ─────────────────────────
@@ -235,6 +243,10 @@
      * @param {Object} user - Firebase User object
      */
     async function saveUserData(user) {
+        if (!database) {
+            console.warn('[Firebase Auth] ⚠️ Database not available, skipping user data save');
+            return;
+        }
         try {
             const userRef = database.ref('users/' + user.uid);
             const snapshot = await userRef.once('value');
@@ -268,6 +280,10 @@
      * @param {string} action - 'login' or 'logout'
      */
     async function trackLoginEvent(user, action) {
+        if (!database) {
+            console.warn('[Firebase Auth] ⚠️ Database not available, skipping event tracking');
+            return;
+        }
         try {
             const historyRef = database.ref('login-history/' + user.uid);
             const newEventRef = historyRef.push();

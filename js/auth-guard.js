@@ -17,6 +17,7 @@
     class AuthGuard {
         constructor() {
             this.isAuthenticated = false;
+            this.wasAuthenticated = false; // Track if user WAS signed in (for detecting real sign-outs)
             this.guardScreen = null;
             this.initialized = false;
 
@@ -223,10 +224,20 @@
                     // ✅ User is signed in
                     console.log('[Auth Guard] 🟢 User authenticated:', user.email);
                     this.isAuthenticated = true;
+                    this.wasAuthenticated = true;
                     this._showContent();
                 } else {
                     // ❌ User is NOT signed in
                     console.log('[Auth Guard] 🔴 User not authenticated');
+
+                    // If user WAS authenticated and now isn't, this is a real sign-out
+                    if (this.wasAuthenticated) {
+                        console.log('[Auth Guard] 🔄 Sign-out detected, reloading...');
+                        this.wasAuthenticated = false;
+                        window.location.reload();
+                        return;
+                    }
+
                     this.isAuthenticated = false;
                     this._hideContent();
                     this._showLoginScreen();
@@ -247,12 +258,7 @@
         new AuthGuard();
     }
 
-    // Listen for sign-out events to re-show the guard
-    window.addEventListener('userSignedOut', () => {
-        console.log('[Auth Guard] 🔄 Sign-out detected, reloading...');
-        setTimeout(() => {
-            window.location.reload();
-        }, 300);
-    });
+    // Sign-out is now handled inside _checkAuthState via onAuthStateChanged
+    // No need for a separate event listener that causes reload loops
 
 })();
