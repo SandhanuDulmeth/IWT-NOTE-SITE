@@ -39,6 +39,7 @@
 - 📝 Interactive live code editor with multi-tab support
 - 📱 Fully responsive design (1024px / 768px / 480px breakpoints)
 - 📋 Practicals section with filtering, search, and answer toggling
+- ◀️ Sidebar toggle — hide/show navigation on desktop with localStorage persistence
 
 ---
 
@@ -236,14 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### Module Breakdown:
 
-#### 1. `app.js` — Core Application (82 lines)
+#### 1. `app.js` — Core Application (122 lines)
 ```
 Functions:
+├── initSidebarToggle()  – Toggle sidebar visibility on desktop, save to localStorage
 ├── initMobileMenu()     – Hamburger toggle, overlay, click-outside close
 ├── setActiveNavLink()   – Highlight current page in sidebar via data-page
 └── initSmoothScroll()   – Smooth scroll for anchor (#) links
 
-Dependencies: None
+Storage Key: 'iwt-sidebar-collapsed'
+Values: 'true' | 'false'
+Dependencies: localStorage API
 ```
 
 #### 2. `theme.js` — Theme Toggle (64 lines)
@@ -528,6 +532,9 @@ Theme is applied via `data-theme` attribute on `<html>` element.
 // Theme preference
 localStorage.getItem('iwt-theme')              // 'light' | 'dark'
 
+// Sidebar collapsed state
+localStorage.getItem('iwt-sidebar-collapsed')  // 'true' | 'false'
+
 // Lecture progress (per section)
 localStorage.getItem('iwt-progress')            // JSON: {"html-intro": true, "css-selectors": true, ...}
 
@@ -709,6 +716,15 @@ All scripts use `defer` attribute or `DOMContentLoaded` listener. Recommended or
 - Check if `#sidebar-overlay` element exists
 - The menu only appears at ≤768px viewport width
 
+#### 8. Sidebar Toggle Not Working (Desktop)
+**Problem:** Clicking the toggle button doesn't hide/show the sidebar  
+**Solutions:**
+- Check that `app.js` is loaded
+- Verify `#sidebar-toggle-btn` element exists in the HTML
+- The toggle button only appears at >768px viewport width
+- Clear localStorage: `localStorage.removeItem('iwt-sidebar-collapsed')`
+- Check console for JS errors
+
 ---
 
 ## 🚀 Future Enhancements
@@ -770,9 +786,10 @@ This project is for educational purposes.
 |---------|------|---------|
 | **v1.0** | Feb 2025 | Initial release — core lecture pages, theme toggle, progress tracking |
 | **v1.1** | Feb 2025 | Enhanced features — live code runner, code copy buttons, search, live editor, text-to-speech, mobile optimizations, practicals page |
+| **v1.2** | Mar 2026 | Sidebar toggle — hide/show navigation bar on desktop with localStorage persistence |
 
 ---
 
-**Last Updated:** February 15, 2026  
+**Last Updated:** March 1, 2026  
 **Maintained By:** Sandhanu Dulmeth  
 **Repository:** IWT-NOTE-SITE

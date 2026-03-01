@@ -20,6 +20,20 @@
 /* ---------- Mobile (≤ 768px) ---------- */
 @media (max-width: 768px) {
 
+    /* ---- Hide desktop sidebar toggle on mobile ---- */
+    .sidebar-toggle-btn {
+        display: none !important;
+    }
+
+    /* ---- Remove collapsed state on mobile ---- */
+    body.sidebar-collapsed .sidebar {
+        transform: translateX(-100%);
+    }
+
+    body.sidebar-collapsed .main-content {
+        margin-left: 0;
+    }
+
     /* ---- Top bar & sidebar ---- */
     .top-bar {
         display: flex;

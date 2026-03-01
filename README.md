@@ -122,6 +122,7 @@ Use this template inside any section:
 | 📋 Code Copy | One-click copy for all code blocks |
 | 📱 Responsive | Works on desktop, tablet, and mobile |
 | 🎨 Color-coded Topics | HTML=orange, CSS=blue, JS=yellow, PHP=purple |
+| ◀️ Sidebar Toggle | Hide/show navigation bar on desktop; persists via localStorage |
 
 ## 🧹 Reset Progress
 

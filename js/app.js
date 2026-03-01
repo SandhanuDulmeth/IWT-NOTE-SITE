@@ -3,6 +3,7 @@
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initSidebarToggle();
   initMobileMenu();
   setActiveNavLink();
   initSmoothScroll();
@@ -77,5 +78,43 @@ function initSmoothScroll() {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  });
+}
+
+/* ---------- Sidebar Toggle (Desktop) ---------- */
+function initSidebarToggle() {
+  const toggleBtn = document.getElementById('sidebar-toggle-btn');
+  if (!toggleBtn) return;
+
+  const STORAGE_KEY = 'iwt-sidebar-collapsed';
+
+  // Restore saved preference (desktop only)
+  if (window.innerWidth > 768) {
+    const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    if (isCollapsed) {
+      document.body.classList.add('sidebar-collapsed');
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    // Only toggle on desktop
+    if (window.innerWidth <= 768) return;
+
+    document.body.classList.toggle('sidebar-collapsed');
+    const collapsed = document.body.classList.contains('sidebar-collapsed');
+    localStorage.setItem(STORAGE_KEY, collapsed);
+  });
+
+  // Remove collapsed class when resizing to mobile
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+      document.body.classList.remove('sidebar-collapsed');
+    } else {
+      // Restore preference when going back to desktop
+      const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+      if (isCollapsed) {
+        document.body.classList.add('sidebar-collapsed');
+      }
+    }
   });
 }
