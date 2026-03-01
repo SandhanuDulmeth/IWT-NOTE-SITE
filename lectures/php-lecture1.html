@@ -7,7 +7,7 @@
     <meta name="description"
         content="PHP Lecture 1 — Introduction to PHP, server-side scripting, syntax, variables, operators, control structures, and loops.">
     <title>Lecture 1 — Introduction to PHP — IWT Note Site</title>
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">    <!-- Firebase SDK -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg"> <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -489,6 +489,37 @@ http://localhost/folder/filename.php</code></pre>
                                 inside functions</li>
                             <li><strong>Static</strong> — keeps its value between function calls</li>
                         </ul>
+                        <table style="width:100%; border-collapse:collapse; margin:0.75rem 0;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--border-color);">
+                                    <th style="text-align:left; padding:0.5rem;">Feature</th>
+                                    <th style="text-align:left; padding:0.5rem;">Global</th>
+                                    <th style="text-align:left; padding:0.5rem;">Static</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Where defined?</td>
+                                    <td style="padding:0.5rem;">Outside function</td>
+                                    <td style="padding:0.5rem;">Inside function</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Accessible everywhere?</td>
+                                    <td style="padding:0.5rem;">Yes (with <code>global</code>)</td>
+                                    <td style="padding:0.5rem;">No</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border-color);">
+                                    <td style="padding:0.5rem;">Remembers value between calls?</td>
+                                    <td style="padding:0.5rem;">Yes (naturally)</td>
+                                    <td style="padding:0.5rem;">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.5rem;">Scope</td>
+                                    <td style="padding:0.5rem;">Entire script</td>
+                                    <td style="padding:0.5rem;">Only inside that function</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="code-block">
